@@ -1,6 +1,5 @@
 /* ============================================================
    ZORNAVIK — Shared HTML partials (header + footer)
-   Call injectLayout() before DOMContentLoaded completes
    ============================================================ */
 
 const HEADER_HTML = `
@@ -12,7 +11,6 @@ const HEADER_HTML = `
       </div>
       <nav class="site-nav dynamic-nav" aria-label="Main navigation">
         <a href="/" class="static-link nav-home">Home</a>
-        <!-- dynamic category links injected by JS -->
       </nav>
       <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -21,7 +19,6 @@ const HEADER_HTML = `
   </div>
   <nav class="mobile-nav dynamic-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
     <a href="/" class="static-link">Home</a>
-    <!-- dynamic category links injected by JS -->
   </nav>
 </header>`;
 
@@ -57,26 +54,24 @@ const FOOTER_HTML = `
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="year"></span> Zornavik.me — All rights reserved. | Built with ❤️ by Liam Adrian Foster</p>
+      <p>&copy; <span id="year"></span> Zornavik.me &mdash; All rights reserved. Built with &hearts; by Liam Adrian Foster</p>
     </div>
   </div>
 </footer>`;
 
 function injectLayout() {
-  // Header
-  const headerPlaceholder = document.getElementById('header-placeholder');
-  if (headerPlaceholder) {
-    headerPlaceholder.outerHTML = HEADER_HTML;
-  }
-  // Footer
-  const footerPlaceholder = document.getElementById('footer-placeholder');
-  if (footerPlaceholder) {
-    footerPlaceholder.outerHTML = FOOTER_HTML;
-  }
-  // Year
+  const headerEl = document.getElementById('header-placeholder');
+  if (headerEl) headerEl.outerHTML = HEADER_HTML;
+
+  const footerEl = document.getElementById('footer-placeholder');
+  if (footerEl) footerEl.outerHTML = FOOTER_HTML;
+
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
-// Run immediately (before DOMContentLoaded so scripts that follow can find elements)
-injectLayout();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', injectLayout);
+} else {
+  injectLayout();
+}
