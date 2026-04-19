@@ -66,11 +66,11 @@ const FOOTER_HTML = `
         <h4>Quick Links</h4>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/pages/about.html">About Me</a></li>
-          <li><a href="/pages/contact.html">Contact Us</a></li>
-          <li><a href="/pages/privacy.html">Privacy Policy</a></li>
-          <li><a href="/pages/disclaimer.html">Disclaimer</a></li>
-          <li><a href="/pages/terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="/pages/about">About Me</a></li>
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/privacy">Privacy Policy</a></li>
+          <li><a href="/pages/disclaimer">Disclaimer</a></li>
+          <li><a href="/pages/terms">Terms &amp; Conditions</a></li>
         </ul>
       </div>
     </div>
