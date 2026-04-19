@@ -17,7 +17,7 @@ const NAV_CATEGORIES = [
 // ── Build nav links HTML from the array above ─────────────────
 function buildCategoryLinks() {
   return NAV_CATEGORIES.map(c =>
-    `<a href="/category.html?cat=${c.slug}">${c.name}</a>`
+    `<a href="/category/${c.slug}">${c.name}</a>`
   ).join('');
 }
 
