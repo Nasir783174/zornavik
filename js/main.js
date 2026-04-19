@@ -90,7 +90,7 @@ async function loadPosts() {
       .map(p => ({
         ...p,
         // url: use 'url' field if given, otherwise build from slug
-        url: p.url || `/blogs/${p.slug}.html`
+        url: p.url || `/blogs/${p.slug}`
       }))
       .sort((a, b) => {
         if (!a.date) return 1;
@@ -136,8 +136,14 @@ async function initHomePage() {
 // ── CATEGORY PAGE ────────────────────────────────────────────
 async function initCategoryPage() {
   allPosts = await loadPosts();
-  // Support both /category/slug and /category?cat=slug
-  const catSlug = (window.location.pathname.split('/category/')[1] || getUrlParam('cat') || '').toLowerCase().replace(/\/+$/, '');
+  // FIX: Correctly extract slug from clean URL (/category/best)
+  // or fallback to query param (/category.html?cat=best)
+  const pathParts = window.location.pathname.split('/');
+  // pathname for /category/best → ['', 'category', 'best']
+  const slugFromPath = pathParts.length >= 3 && pathParts[1] === 'category'
+    ? pathParts[2]
+    : null;
+  const catSlug = (slugFromPath || getUrlParam('cat') || '').toLowerCase().replace(/\/+$/, '');
   const filtered = allPosts.filter(p => (p.category_slug || '').toLowerCase() === catSlug);
 
   const catName = filtered.length
