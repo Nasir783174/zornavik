@@ -1,6 +1,25 @@
 /* ============================================================
    ZORNAVIK — Shared HTML partials (header + footer)
+
+   ▶ CATEGORIES — how to add/edit nav links:
+     Edit the NAV_CATEGORIES array below.
+     Each item: { name: "Display Name", slug: "url-slug" }
+     Example: { name: "Best", slug: "best" }
    ============================================================ */
+
+const NAV_CATEGORIES = [
+  { name: "Best",    slug: "best"    },
+  // { name: "Reviews", slug: "reviews" },
+  // { name: "Guides",  slug: "guides"  },
+  // Add more categories here ↑
+];
+
+// ── Build nav links HTML from the array above ─────────────────
+function buildCategoryLinks() {
+  return NAV_CATEGORIES.map(c =>
+    `<a href="/category.html?cat=${c.slug}">${c.name}</a>`
+  ).join('');
+}
 
 const HEADER_HTML = `
 <header id="site-header">
@@ -9,16 +28,18 @@ const HEADER_HTML = `
       <div class="site-logo">
         <a href="/">Zorna<span>vik</span></a>
       </div>
-      <nav class="site-nav dynamic-nav" aria-label="Main navigation">
-        <a href="/" class="static-link nav-home">Home</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-home">Home</a>
+        ${buildCategoryLinks()}
       </nav>
       <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
-  <nav class="mobile-nav dynamic-mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="/" class="static-link">Home</a>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="/">Home</a>
+    ${buildCategoryLinks()}
   </nav>
 </header>`;
 
@@ -68,10 +89,36 @@ function injectLayout() {
 
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Highlight active nav link
+  const currentPath = window.location.pathname;
+  const currentSearch = window.location.search;
+  document.querySelectorAll('.site-nav a, .mobile-nav a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    if (href === '/' && currentPath === '/') {
+      a.classList.add('active');
+    } else if (href !== '/' && (currentPath + currentSearch).startsWith(href)) {
+      a.classList.add('active');
+    }
+  });
+}
+
+// Hamburger
+function initHamburger() {
+  const btn = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  if (!btn || !mobileNav) return;
+  btn.addEventListener('click', () => {
+    const isOpen = btn.classList.toggle('open');
+    mobileNav.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  });
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', injectLayout);
+  document.addEventListener('DOMContentLoaded', () => { injectLayout(); initHamburger(); });
 } else {
   injectLayout();
+  initHamburger();
 }
