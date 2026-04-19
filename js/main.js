@@ -136,7 +136,8 @@ async function initHomePage() {
 // ── CATEGORY PAGE ────────────────────────────────────────────
 async function initCategoryPage() {
   allPosts = await loadPosts();
-  const catSlug = (getUrlParam('cat') || '').toLowerCase();
+  // Support both /category/slug and /category?cat=slug
+  const catSlug = (window.location.pathname.split('/category/')[1] || getUrlParam('cat') || '').toLowerCase().replace(/\/+$/, '');
   const filtered = allPosts.filter(p => (p.category_slug || '').toLowerCase() === catSlug);
 
   const catName = filtered.length
