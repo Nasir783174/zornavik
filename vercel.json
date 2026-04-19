@@ -6,7 +6,15 @@
       "source": "/blog.html",
       "destination": "/",
       "permanent": false
+    },
+    {
+      "source": "/category.html",
+      "destination": "/category",
+      "permanent": false
     }
+  ],
+  "rewrites": [
+    { "source": "/category/:slug", "destination": "/category.html?cat=:slug" }
   ],
   "headers": [
     {
