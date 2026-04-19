@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/blog", "destination": "/blog.html" },
     { "source": "/category", "destination": "/category.html" }
   ],
   "headers": [
