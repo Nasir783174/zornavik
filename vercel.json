@@ -1,16 +1,16 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/category/:slug", "destination": "/category?cat=:slug" },
+    { "source": "/blogs/:slug",    "destination": "/blogs/:slug" }
+  ],
   "redirects": [
     {
       "source": "/blog.html",
       "destination": "/",
       "permanent": false
     }
-  ],
-  "rewrites": [
-    { "source": "/category/:slug", "destination": "/category.html" },
-    { "source": "/blogs/:slug",    "destination": "/blogs/:slug.html" }
   ],
   "headers": [
     {
