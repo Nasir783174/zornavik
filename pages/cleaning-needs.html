@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Cleaning Needs — Zornavik</title>
+  <meta name="description" content="Expert reviews and buying guides for vacuums for all floor types — hardwood, carpet, tile, and mixed flooring.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zornavik.me/pages/cleaning-needs.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .cat-hero { background: var(--cream); border-bottom: 1px solid var(--warm-gray-200); padding: 48px 0 36px; }
+    .cat-hero__eyebrow { display: inline-block; font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: var(--accent-bg); border: 1px solid rgba(200,112,42,.2); border-radius: var(--radius-sm); padding: 4px 12px; margin-bottom: 14px; }
+    .cat-hero__title { font-family: var(--font-display); font-size: clamp(1.75rem,4vw,2.5rem); color: var(--charcoal); margin-bottom: 12px; }
+    .cat-hero__desc { font-size: 1.05rem; color: var(--warm-gray-600); max-width: 620px; line-height: 1.7; }
+    .subcategory-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 36px 0 28px; }
+    .subcategory-tab { padding: 8px 18px; border-radius: 99px; border: 1.5px solid var(--warm-gray-200); background: white; color: var(--warm-gray-700); font-size: .875rem; font-weight: 500; cursor: pointer; transition: all .2s; }
+    .subcategory-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .subcategory-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+    .section-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--charcoal); margin-bottom: 24px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); display: inline-block; }
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--warm-gray-500); }
+    .empty-state svg { margin-bottom: 16px; opacity: .4; }
+  </style>
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <main id="main-content">
+
+    <section class="cat-hero">
+      <div class="container">
+        <span class="cat-hero__eyebrow">Category</span>
+        <h1 class="cat-hero__title">Cleaning Needs</h1>
+        <p class="cat-hero__desc">Browse our guides for every cleaning need — pet hair, cordless, robot, handheld, and upright vacuums.</p>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <div class="container">
+
+        <!-- Subcategory Filter Tabs -->
+        <div class="subcategory-tabs" id="subcategory-tabs"></div>
+
+        <h2 class="section-title" id="active-section-title">All Posts</h2>
+
+        <!-- Blog grid — auto-populated -->
+        <div class="blog-grid" id="blog-grid" aria-live="polite"></div>
+
+        <div class="empty-state" id="empty-state" style="display:none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <p>No posts in this subcategory yet. Check back soon!</p>
+        </div>
+
+        <nav class="pagination" id="pagination" aria-label="Blog post pages" role="navigation"></nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/blog-registry.js"></script>
+  <script src="../js/components.js"></script>
+  <script>
+    const THIS_CATEGORY = 'cleaning-needs';
+    const ROOT_PATH     = '../';
+
+    ZornavikComponents.init(ROOT_PATH);
+
+    // Build subcategory tabs
+    const catMeta    = CategoryMeta[THIS_CATEGORY];
+    const tabsEl     = document.getElementById('subcategory-tabs');
+    const sectionTitle = document.getElementById('active-section-title');
+    const emptyState = document.getElementById('empty-state');
+
+    let activeSubcat = 'all';
+
+    function renderGrid(subcat) {
+      activeSubcat = subcat;
+
+      const posts = BlogRegistry.filter(p => {
+        if (p.category !== THIS_CATEGORY) return false;
+        if (subcat === 'all') return true;
+        return p.subcategory === subcat;
+      });
+
+      // Update title
+      if (subcat === 'all') {
+        sectionTitle.textContent = 'All Posts';
+      } else {
+        sectionTitle.textContent = catMeta.subcategories[subcat] || subcat;
+      }
+
+      // Update active tab
+      document.querySelectorAll('.subcategory-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.subcat === subcat);
+      });
+
+      const grid = document.getElementById('blog-grid');
+      const pagination = document.getElementById('pagination');
+
+      if (posts.length === 0) {
+        grid.innerHTML = '';
+        pagination.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      renderBlogGrid('blog-grid', posts, ROOT_PATH);
+
+      // Re-run pagination from main.js logic inline
+      runPagination();
+    }
+
+    function runPagination() {
+      const grid = document.getElementById('blog-grid');
+      const paginationContainer = document.getElementById('pagination');
+      if (!grid || !paginationContainer) return;
+
+      const allCards = Array.from(grid.querySelectorAll('.post-card'));
+      const POSTS_PER_PAGE = 9;
+      const totalPages = Math.ceil(allCards.length / POSTS_PER_PAGE);
+      let currentPage = 1;
+
+      function showPage(page) {
+        currentPage = page;
+        const start = (page - 1) * POSTS_PER_PAGE;
+        const end   = start + POSTS_PER_PAGE;
+        allCards.forEach((card, i) => {
+          card.style.display = (i >= start && i < end) ? '' : 'none';
+        });
+        renderPagination();
+        window.scrollTo({ top: grid.offsetTop - 120, behavior: 'smooth' });
+      }
+
+      function renderPagination() {
+        if (totalPages <= 1) { paginationContainer.style.display = 'none'; return; }
+        paginationContainer.style.display = '';
+        let html = '';
+        html += `<button class="pagination__btn" ${currentPage===1?'disabled':''} data-page="${currentPage-1}" aria-label="Previous page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>`;
+        for (let p = 1; p <= totalPages; p++) {
+          if (p===1||p===totalPages||(p>=currentPage-1&&p<=currentPage+1)) {
+            html += `<button class="pagination__btn ${p===currentPage?'active':''}" data-page="${p}">${p}</button>`;
+          } else if (p===currentPage-2||p===currentPage+2) {
+            html += `<span class="pagination__ellipsis">…</span>`;
+          }
+        }
+        html += `<button class="pagination__btn" ${currentPage===totalPages?'disabled':''} data-page="${currentPage+1}" aria-label="Next page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>`;
+        paginationContainer.innerHTML = html;
+        paginationContainer.querySelectorAll('.pagination__btn[data-page]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const page = parseInt(btn.dataset.page);
+            if (page && page !== currentPage) showPage(page);
+          });
+        });
+      }
+
+      showPage(1);
+    }
+
+    // Build tabs
+    let tabHTML = `<button class="subcategory-tab active" data-subcat="all">All</button>`;
+    Object.entries(catMeta.subcategories).forEach(([key, label]) => {
+      tabHTML += `<button class="subcategory-tab" data-subcat="${key}">${label}</button>`;
+    });
+    tabsEl.innerHTML = tabHTML;
+
+    tabsEl.querySelectorAll('.subcategory-tab').forEach(btn => {
+      btn.addEventListener('click', () => renderGrid(btn.dataset.subcat));
+    });
+
+
+    // Read subcategory from URL query param e.g. ?sub=best-for-carpet
+    const urlSubcat = new URLSearchParams(window.location.search).get('sub');
+    renderGrid(urlSubcat && catMeta.subcategories[urlSubcat] ? urlSubcat : 'all');
+
+  </script>
+
+</body>
+</html>
