@@ -46,7 +46,7 @@ const BlogRegistry = [
 
   {
     title:       "Best 10 Cordless Vacuum Cleaners of 2026",
-    slug:        "blogs/best-cordless-vacuums-2026.html",
+    slug:        "blogs/best-cordless-vacuum-cleaners.html",
     date:        "2026-04-01",
     excerpt:     "Industry reports show cordless vacuums now account for over half of global vacuum sales. We tested and ranked the top 10 models — from the Dyson Gen5 Detect to the Samsung Bespoke Jet AI Ultra — so you don't have to.",
     readTime:    12,
