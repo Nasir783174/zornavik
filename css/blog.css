@@ -1,0 +1,624 @@
+/* ============================================================
+   ZORNAVIK — blog.css
+   Plain-HTML Blog Post Styling
+   Works on top of style.css (variables already loaded there)
+   ============================================================ */
+
+/* ─── Page Layout ────────────────────────────────────────── */
+
+body {
+  background: var(--white);
+}
+
+main,
+body > h1,
+body > h2,
+body > h3,
+body > h4,
+body > p,
+body > ul,
+body > ol,
+body > table,
+body > img,
+body > .callout,
+body > .pros-cons,
+body > .product-card {
+  display: block;
+}
+
+/* ─── Central Content Column ─────────────────────────────── */
+
+main > *,
+body > h1,
+body > h2,
+body > h3,
+body > h4,
+body > h5,
+body > p,
+body > ul,
+body > ol,
+body > table,
+body > img,
+body > .callout,
+body > .pros-cons,
+body > .product-card,
+body > #main-content > * {
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+}
+
+/* ─── Hero: First H1 ─────────────────────────────────────── */
+
+main > h1:first-of-type,
+body > h1:first-of-type {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--charcoal);
+  letter-spacing: -0.025em;
+  padding-top: 56px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border: none;
+}
+
+/* Drop-cap on first paragraph */
+main > h1:first-of-type + p::first-letter,
+body > h1:first-of-type + p::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.2em;
+  font-weight: 700;
+  line-height: 0.78;
+  float: left;
+  margin-right: 10px;
+  margin-top: 6px;
+  color: var(--accent);
+}
+
+/* ─── Intro image (right after h1) ───────────────────────── */
+
+main > img,
+body > img {
+  width: 100%;
+  max-width: 740px;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-top: 32px;
+  margin-bottom: 40px;
+  display: block;
+}
+
+/* ─── Paragraph ──────────────────────────────────────────── */
+
+main > p,
+body > p,
+#main-content p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--warm-gray-800);
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+}
+
+/* ─── H2 — Section Heading ───────────────────────────────── */
+
+main > h2,
+body > h2,
+#main-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-top: 3.2rem;
+  margin-bottom: 1rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--warm-gray-200);
+}
+
+/* First h2 after h1 — no extra top border */
+main > h1 + h2,
+body > h1 + h2 {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2rem;
+}
+
+/* ─── H3 — Sub Section ───────────────────────────────────── */
+
+main > h3,
+body > h3,
+#main-content h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--charcoal);
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+/* ─── Lists ──────────────────────────────────────────────── */
+
+main > ul,
+main > ol,
+body > ul,
+body > ol,
+#main-content ul,
+#main-content ol {
+  padding-left: 0;
+  margin-bottom: 1.4rem;
+  list-style: none;
+}
+
+main > ul li,
+body > ul li,
+#main-content ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.55rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--warm-gray-800);
+}
+
+main > ul li::before,
+body > ul li::before,
+#main-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+main > ol,
+body > ol,
+#main-content ol {
+  counter-reset: ol-counter;
+}
+
+main > ol li,
+body > ol li,
+#main-content ol li {
+  counter-increment: ol-counter;
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 0.65rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--warm-gray-800);
+}
+
+main > ol li::before,
+body > ol li::before,
+#main-content ol li::before {
+  content: counter(ol-counter);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--charcoal);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Strong / Em ────────────────────────────────────────── */
+
+strong {
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+em {
+  font-style: italic;
+  color: var(--warm-gray-800);
+}
+
+/* ─── Table ──────────────────────────────────────────────── */
+
+main > table,
+body > table,
+#main-content table {
+  width: 100%;
+  max-width: 740px;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+#main-content table thead tr,
+main > table thead tr,
+body > table thead tr {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+#main-content table th,
+main > table th,
+body > table th {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  padding: 13px 16px;
+  text-align: left;
+  border: none;
+}
+
+#main-content table td,
+main > table td,
+body > table td {
+  padding: 11px 16px;
+  border: none;
+  border-bottom: 1px solid var(--warm-gray-200);
+  color: var(--warm-gray-800);
+  vertical-align: middle;
+}
+
+#main-content table tbody tr:nth-child(even),
+main > table tbody tr:nth-child(even),
+body > table tbody tr:nth-child(even) {
+  background: var(--off-white);
+}
+
+#main-content table tbody tr:last-child td,
+main > table tbody tr:last-child td,
+body > table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#main-content table tbody tr:hover td,
+main > table tbody tr:hover td,
+body > table tbody tr:hover td {
+  background: var(--accent-bg);
+  transition: background var(--transition);
+}
+
+/* ─── Callout Block ──────────────────────────────────────── */
+
+.callout {
+  background: var(--accent-bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 18px 22px;
+  margin-top: 0.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.callout p {
+  font-size: 0.9375rem !important;
+  color: var(--warm-gray-800) !important;
+  margin-bottom: 0 !important;
+  line-height: 1.7 !important;
+}
+
+/* ─── Product Card ───────────────────────────────────────── */
+
+.product-card {
+  background: var(--off-white);
+  border: 1px solid var(--warm-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-top: 0.75rem;
+  margin-bottom: 2.4rem;
+}
+
+.product-card__rank {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--warm-gray-200);
+  color: var(--warm-gray-600);
+  border-radius: 100px;
+  padding: 3px 12px;
+  margin-bottom: 12px;
+}
+
+.product-card__rank.gold {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.product-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.product-card__title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+.product-card__badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid rgba(200,112,42,0.25);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+
+.product-card__image-wrap {
+  margin-bottom: 18px;
+}
+
+.product-card__image-placeholder {
+  background: var(--warm-gray-100);
+  border-radius: var(--radius-md);
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--warm-gray-400);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+}
+
+.product-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.spec-item {
+  background: var(--white);
+  border: 1px solid var(--warm-gray-200);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.spec-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--warm-gray-400);
+  margin-bottom: 3px;
+}
+
+.spec-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.product-card > p {
+  font-size: 0.9375rem !important;
+  line-height: 1.75 !important;
+  color: var(--warm-gray-800) !important;
+  margin-bottom: 1rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: none !important;
+}
+
+/* ─── Pros / Cons ────────────────────────────────────────── */
+
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pros-list,
+.cons-list {
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  list-style: none !important;
+}
+
+.pros-list {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.cons-list {
+  background: #fff7f0;
+  border: 1px solid #fed7aa;
+}
+
+.pros-list h5,
+.cons-list h5 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.pros-list h5 { color: #15803d; }
+.cons-list h5 { color: #c2410c; }
+
+.pros-list li,
+.cons-list li {
+  font-size: 0.875rem !important;
+  line-height: 1.6 !important;
+  padding-left: 1.2rem !important;
+  margin-bottom: 0.4rem !important;
+  color: var(--warm-gray-800) !important;
+}
+
+.pros-list li::before {
+  content: '✓' !important;
+  color: #16a34a !important;
+  font-weight: 700 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: none !important;
+  top: 0 !important;
+  font-size: 0.8rem !important;
+}
+
+.cons-list li::before {
+  content: '✕' !important;
+  color: #ea580c !important;
+  font-weight: 700 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: none !important;
+  top: 0 !important;
+  font-size: 0.8rem !important;
+}
+
+/* ─── FAQ section styling ─────────────────────────────────── */
+
+/* h3 that looks like a question inside FAQ section */
+main > h2 + h3,
+body > h2 + h3 {
+  margin-top: 1.2rem;
+}
+
+/* ─── Breadcrumb ─────────────────────────────────────────── */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--warm-gray-400);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--warm-gray-600);
+  transition: color var(--transition);
+}
+
+.breadcrumb a:hover { color: var(--accent); }
+
+.breadcrumb-sep {
+  color: var(--warm-gray-400);
+  font-size: 0.75rem;
+}
+
+/* ─── Final Verdict section highlight ───────────────────── */
+
+/* The last ul before the end of the article */
+main > ul:last-of-type li,
+body > ul:last-of-type li {
+  font-weight: 500;
+}
+
+/* ─── Spacing after #site-header and before #site-footer ─── */
+
+#site-header + * {
+  padding-top: 0;
+}
+
+#site-footer {
+  margin-top: 80px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+  main > *,
+  body > h1,
+  body > h2,
+  body > h3,
+  body > h4,
+  body > h5,
+  body > p,
+  body > ul,
+  body > ol,
+  body > table,
+  body > img,
+  body > .callout,
+  body > .pros-cons,
+  body > .product-card,
+  body > #main-content > * {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  main > h1:first-of-type,
+  body > h1:first-of-type {
+    padding-top: 36px;
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .pros-cons {
+    grid-template-columns: 1fr;
+  }
+
+  .product-specs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #main-content table,
+  main > table,
+  body > table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main > img,
+  body > img {
+    border-radius: var(--radius-sm);
+    aspect-ratio: 16 / 8;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .product-specs {
+    grid-template-columns: 1fr;
+  }
+
+  main > h1:first-of-type,
+  body > h1:first-of-type {
+    padding-top: 28px;
+  }
+
+  main > h1:first-of-type + p::first-letter,
+  body > h1:first-of-type + p::first-letter {
+    font-size: 3.2em;
+  }
+}
