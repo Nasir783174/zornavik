@@ -184,7 +184,7 @@ a { color: inherit; text-decoration: none; }
   padding: 64px 0 56px;
   border-bottom: 1px solid var(--border);
 }
-.hero-inner { max-width: 680px; }
+.hero-inner { max-width: 100%; }
 .hero-badge {
   display: inline-flex;
   align-items: center;
