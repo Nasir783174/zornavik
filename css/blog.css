@@ -210,7 +210,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: .875rem;
-  margin: 28px 0;
+  margin: 28px 0 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -436,8 +436,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-    order: -1;
-    margin-bottom: 32px;
+    order: 2;
+    margin-top: 40px;
+    margin-bottom: 0;
   }
   .post-sidebar .post-sidebar-card,
   .post-sidebar .product-highlight {
@@ -476,6 +477,10 @@
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
     min-width: unset;
+    margin: 0;
+  }
+  .post-body table + * {
+    margin-top: 28px;
   }
 
   .post-sidebar {
