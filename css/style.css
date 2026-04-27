@@ -2,27 +2,27 @@
    ZORNAVIK.ME — Main Stylesheet
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 /* ── CSS Variables ── */
 :root {
   --white:       #ffffff;
-  --off-white:   #f8f7f5;
-  --light-gray:  #f0efec;
-  --mid-gray:    #e2e0db;
-  --text-muted:  #8a8680;
-  --text-body:   #3d3a35;
-  --text-dark:   #1a1814;
+  --off-white:   #f9f9f9;
+  --light-gray:  #f0f0f0;
+  --mid-gray:    #e0e0e0;
+  --text-muted:  #757575;
+  --text-body:   #1a1a1a;
+  --text-dark:   #1a1a1a;
   --accent:      #c0392b;
   --accent-dark: #962d22;
   --accent-soft: #fdf0ee;
-  --border:      #e8e6e1;
-  --shadow-sm:   0 1px 4px rgba(0,0,0,.06);
-  --shadow-md:   0 4px 16px rgba(0,0,0,.08);
-  --shadow-lg:   0 8px 32px rgba(0,0,0,.1);
+  --border:      #e8e8e8;
+  --shadow-sm:   0 1px 4px rgba(0,0,0,.05);
+  --shadow-md:   0 4px 16px rgba(0,0,0,.07);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,.09);
   --radius:      6px;
   --radius-lg:   12px;
-  --font-display:'Playfair Display', Georgia, serif;
+  --font-display:'Source Serif 4', Georgia, serif;
   --font-body:   'DM Sans', system-ui, sans-serif;
   --max-w:       1200px;
   --transition:  .22s ease;
@@ -34,9 +34,9 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--text-body);
-  background: var(--white);
+  background: var(--off-white);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
@@ -180,7 +180,7 @@ a { color: inherit; text-decoration: none; }
    HERO / HOME INTRO
    ============================================ */
 .hero {
-  background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 60%);
+  background: var(--white);
   padding: 64px 0 56px;
   border-bottom: 1px solid var(--border);
 }
@@ -293,7 +293,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--light-gray), var(--mid-gray));
+  background: var(--light-gray);
 }
 .card-thumb-placeholder svg { width: 40px; height: 40px; opacity: .3; }
 
@@ -516,7 +516,7 @@ a { color: inherit; text-decoration: none; }
    PAGE LAYOUTS (About, Contact, etc.)
    ============================================ */
 .page-hero {
-  background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+  background: var(--white);
   border-bottom: 1px solid var(--border);
   padding: 48px 0 40px;
 }
