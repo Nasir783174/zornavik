@@ -390,20 +390,84 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 900px) {
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
   .post-layout {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
   .post-sidebar {
     position: static;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     order: -1;
+  }
+  .post-sidebar .post-sidebar-card,
+  .post-sidebar .product-highlight {
+    margin: 0;
+  }
+  /* TOC spans full width on tablet */
+  .post-sidebar .post-sidebar-card:first-child {
+    grid-column: 1 / -1;
   }
 }
 
-@media (max-width: 600px) {
-  .post-meta-bar { gap: 10px; }
+/* Small tablet (≤ 768px) */
+@media (max-width: 768px) {
+  .post-article { padding: 0; }
+
+  .post-header { margin-bottom: 24px; }
+  .post-header h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+
+  .post-meta-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   .post-meta-sep { display: none; }
-  .post-nav { grid-template-columns: 1fr; }
-  .post-nav-next { text-align: left; }
+
   .post-body h2 { font-size: 1.4rem; }
+  .post-body h3 { font-size: 1.1rem; }
+  .post-body p,
+  .post-body li { font-size: .95rem; }
+
+  /* Table — horizontal scroll on small screens */
+  .post-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .post-sidebar {
+    grid-template-columns: 1fr;
+  }
+  .post-sidebar .post-sidebar-card:first-child {
+    grid-column: auto;
+  }
+
+  .post-nav { grid-template-columns: 1fr; gap: 12px; }
+  .post-nav-next { text-align: left; }
+}
+
+/* Mobile (≤ 480px) */
+@media (max-width: 480px) {
+  .post-header h1 { font-size: 1.45rem; }
+
+  .post-body h2 { font-size: 1.25rem; }
+  .post-body h3 { font-size: 1.05rem; }
+
+  .affiliate-notice {
+    flex-direction: column;
+    gap: 8px;
+    font-size: .8rem;
+  }
+
+  .post-body blockquote {
+    margin-left: 0;
+    padding-left: 14px;
+  }
+
+  .post-meta-bar { font-size: .78rem; }
 }
