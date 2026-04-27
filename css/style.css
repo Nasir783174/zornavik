@@ -759,30 +759,6 @@ a { color: inherit; text-decoration: none; }
   padding-top: 56px;
 }
 
-/* ============================================
-   CATEGORY FILTER TABS
-   ============================================ */
-.cat-tabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.cat-tab {
-  padding: 8px 18px;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-size: .85rem;
-  font-weight: 500;
-  color: var(--text-body);
-  cursor: pointer;
-  background: var(--white);
-  transition: all var(--transition);
-  font-family: var(--font-body);
-}
-.cat-tab:hover { border-color: var(--accent); color: var(--accent); }
-.cat-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
-
 /* No results */
 .no-results {
   text-align: center;
@@ -851,18 +827,6 @@ a { color: inherit; text-decoration: none; }
 
   /* Main section padding */
   .main-section { padding: 28px 0 48px; }
-
-  /* Category tabs — scrollable row */
-  .cat-tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 6px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .cat-tabs::-webkit-scrollbar { display: none; }
-  .cat-tab { flex-shrink: 0; white-space: nowrap; }
 
   /* Category filter — scrollable row (legacy) */
   .category-filter {
