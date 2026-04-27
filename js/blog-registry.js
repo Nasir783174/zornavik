@@ -1,14 +1,3 @@
-/**
- * ZORNAVIK — Blog Registry
- * Add every new post here. The homepage and category pages
- * will automatically pick it up — no other changes needed.
- *
- * category values:
- *   "vacuum-for-floors"   → Vacuum for Floors
- *   "cleaning-needs"      → Cleaning Needs
- *   "by-home-type"        → By Home Type
- */
-
 const BLOG_REGISTRY = [
   {
     title:    "Best Upright Vacuum Cleaners of 2026",
@@ -20,14 +9,13 @@ const BLOG_REGISTRY = [
     image:    "../images/bissell vacuum/bissell vacuum cleaner.webp",
   },
 
-  // ─── ADD YOUR NEXT POST BELOW ───
-  // {
-  //   title:    "Best Cordless Vacuum Cleaners of 2026",
-  //   slug:     "posts/best-cordless-vacuums-2026.html",
-  //   date:     "2026-04-01",
-  //   excerpt:  "Industry reports show cordless vacuums now account for over half of global vacuum sales. We tested and ranked the top 10 models.",
-  //   readTime: 12,
-  //   category: "cleaning-needs",
-  //   image:    "",   // leave empty string if no image
-  // },
+  {
+    title:    "Best Lightweight Vacuum in 2026",
+    slug:     "posts/best-lightweight-vacuum-2026.html",
+    date:     "2026-04-27",
+    excerpt:  "Not all lightweight vacuums are truly light where it matters. I broke down the top 5 models — Dyson V15, Shark Stratos Cordless, Dyson V12, Levoit LVAC-200, and Tineco Pure One Station — so you can choose based on real use, not marketing claims.",
+    readTime: 16,
+    category: "cleaning-needs",
+    image:    "",
+  },
 ];
