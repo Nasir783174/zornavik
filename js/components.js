@@ -39,46 +39,9 @@
 
           <!-- Desktop Nav -->
           <nav class="site-nav" aria-label="Main navigation">
-
-            <div class="nav-item">
-              <a class="nav-link" href="${base}index.html?cat=vacuum-for-floors">
-                Vacuum for Floors
-                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-              </a>
-              <div class="dropdown">
-                <a href="${base}index.html?cat=vacuum-for-floors">All Floor Vacuums</a>
-                <a href="${base}index.html?cat=vacuum-for-floors&type=upright">Upright Vacuums</a>
-                <a href="${base}index.html?cat=vacuum-for-floors&type=cordless">Cordless Vacuums</a>
-                <a href="${base}index.html?cat=vacuum-for-floors&type=robot">Robot Vacuums</a>
-              </div>
-            </div>
-
-            <div class="nav-item">
-              <a class="nav-link" href="${base}index.html?cat=cleaning-needs">
-                Cleaning Needs
-                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-              </a>
-              <div class="dropdown">
-                <a href="${base}index.html?cat=cleaning-needs">All Cleaning Needs</a>
-                <a href="${base}index.html?cat=cleaning-needs&type=pet-hair">Pet Hair</a>
-                <a href="${base}index.html?cat=cleaning-needs&type=allergies">Allergies</a>
-                <a href="${base}index.html?cat=cleaning-needs&type=deep-clean">Deep Cleaning</a>
-              </div>
-            </div>
-
-            <div class="nav-item">
-              <a class="nav-link" href="${base}index.html?cat=by-home-type">
-                By Home Type
-                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-              </a>
-              <div class="dropdown">
-                <a href="${base}index.html?cat=by-home-type">All Home Types</a>
-                <a href="${base}index.html?cat=by-home-type&type=apartment">Apartments</a>
-                <a href="${base}index.html?cat=by-home-type&type=large-home">Large Homes</a>
-                <a href="${base}index.html?cat=by-home-type&type=multi-floor">Multi-Floor Homes</a>
-              </div>
-            </div>
-
+            <a class="nav-link" href="${base}index.html?cat=vacuum-for-floors">Vacuum for Floors</a>
+            <a class="nav-link" href="${base}index.html?cat=cleaning-needs">Cleaning Needs</a>
+            <a class="nav-link" href="${base}index.html?cat=by-home-type">By Home Type</a>
           </nav>
 
           <!-- Mobile Toggle -->
@@ -92,26 +55,11 @@
       <!-- Mobile Nav -->
       <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
         <div class="mobile-nav-section">
-          <div class="mobile-nav-label">Vacuum for Floors</div>
-          <a href="${base}index.html?cat=vacuum-for-floors">All Floor Vacuums</a>
-          <a href="${base}index.html?cat=vacuum-for-floors&type=upright">Upright Vacuums</a>
-          <a href="${base}index.html?cat=vacuum-for-floors&type=cordless">Cordless Vacuums</a>
-          <a href="${base}index.html?cat=vacuum-for-floors&type=robot">Robot Vacuums</a>
+          <a href="${base}index.html?cat=vacuum-for-floors">Vacuum for Floors</a>
+          <a href="${base}index.html?cat=cleaning-needs">Cleaning Needs</a>
+          <a href="${base}index.html?cat=by-home-type">By Home Type</a>
         </div>
         <div class="mobile-nav-section">
-          <div class="mobile-nav-label">Cleaning Needs</div>
-          <a href="${base}index.html?cat=cleaning-needs">All Cleaning Needs</a>
-          <a href="${base}index.html?cat=cleaning-needs&type=pet-hair">Pet Hair</a>
-          <a href="${base}index.html?cat=cleaning-needs&type=allergies">Allergies</a>
-        </div>
-        <div class="mobile-nav-section">
-          <div class="mobile-nav-label">By Home Type</div>
-          <a href="${base}index.html?cat=by-home-type">All Home Types</a>
-          <a href="${base}index.html?cat=by-home-type&type=apartment">Apartments</a>
-          <a href="${base}index.html?cat=by-home-type&type=large-home">Large Homes</a>
-        </div>
-        <div class="mobile-nav-section">
-          <div class="mobile-nav-label">Pages</div>
           <a href="${base}pages/about.html">About</a>
           <a href="${base}pages/contact.html">Contact</a>
         </div>
