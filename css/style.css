@@ -849,7 +849,22 @@ a { color: inherit; text-decoration: none; }
   .hero p { font-size: .95rem; }
   .hero-badge { font-size: .72rem; }
 
-  /* Category filter — scrollable row */
+  /* Main section padding */
+  .main-section { padding: 28px 0 48px; }
+
+  /* Category tabs — scrollable row */
+  .cat-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .cat-tabs::-webkit-scrollbar { display: none; }
+  .cat-tab { flex-shrink: 0; white-space: nowrap; }
+
+  /* Category filter — scrollable row (legacy) */
   .category-filter {
     display: flex;
     flex-wrap: nowrap;
@@ -893,4 +908,12 @@ a { color: inherit; text-decoration: none; }
 
   /* Social links section */
   .social-links-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+/* ── Very small screens (≤ 360px) ── */
+@media (max-width: 360px) {
+  .container { padding: 0 12px; }
+  .hero h1 { font-size: 1.35rem; }
+  .card-title { font-size: .95rem; }
+  .logo-text { font-size: 1.15rem; }
 }
