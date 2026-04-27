@@ -60,6 +60,7 @@
     'cleaning-needs':    'Cleaning Needs',
     'by-home-type':      'By Home Type',
   };
+  // Note: cat tabs removed from UI; CAT_LABELS kept for card badges only
 
   /* ══════════════════════════════════════════
      FORMAT DATE
@@ -146,27 +147,16 @@
 
     // Update hero heading
     if (hero) {
-      const catTitle = cat ? CAT_LABELS[cat] || cat : null;
       const h1 = hero.querySelector('h1');
       const badge = hero.querySelector('.hero-badge');
-      if (catTitle) {
-        if (h1)    h1.textContent = catTitle;
-        if (badge) badge.textContent = 'Category';
-      } else {
-        if (h1)    h1.textContent = 'Honest Vacuum Reviews You Can Trust';
-        if (badge) badge.textContent = 'Welcome';
-      }
+      if (h1)    h1.textContent = 'Honest Vacuum Reviews You Can Trust';
+      if (badge) badge.textContent = 'Welcome';
     }
 
     // Paginate
     const totalPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
     const safePage   = Math.min(Math.max(1, page), totalPages);
     const slice      = posts.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE);
-
-    // Update cat tabs
-    document.querySelectorAll('.cat-tab').forEach(t => {
-      t.classList.toggle('active', (t.dataset.cat || '') === (cat || ''));
-    });
 
     // Render
     if (slice.length === 0) {
@@ -198,18 +188,6 @@
     const page   = parseInt(params.get('page') || '1', 10);
 
     renderGrid(cat, page);
-
-    // Cat tab clicks
-    document.querySelectorAll('.cat-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const c = btn.dataset.cat || '';
-        const newParams = new URLSearchParams();
-        if (c) newParams.set('cat', c);
-        history.pushState({}, '', '?' + newParams.toString());
-        renderGrid(c, 1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
   }
 
   /* ══════════════════════════════════════════
