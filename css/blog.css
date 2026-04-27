@@ -9,6 +9,7 @@
   gap: 48px;
   padding: 48px 0 80px;
   align-items: start;
+  min-width: 0;
 }
 
 /* ── Post Article ── */
@@ -389,13 +390,46 @@
   margin-top: 1px;
 }
 
+/* ── Post Article — prevent overflow ── */
+.post-article {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+/* ── Table wrapper — always scrollable ── */
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+  margin: 28px 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 28px 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+.table-scroll table {
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  white-space: nowrap;
+  min-width: 500px;
+}
+
 /* ── Responsive ── */
 
 /* Tablet (≤ 1024px) */
 @media (max-width: 1024px) {
   .post-layout {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 0;
+    padding: 32px 0 60px;
   }
   .post-sidebar {
     position: static;
@@ -403,12 +437,12 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     order: -1;
+    margin-bottom: 32px;
   }
   .post-sidebar .post-sidebar-card,
   .post-sidebar .product-highlight {
     margin: 0;
   }
-  /* TOC spans full width on tablet */
   .post-sidebar .post-sidebar-card:first-child {
     grid-column: 1 / -1;
   }
@@ -416,10 +450,12 @@
 
 /* Small tablet (≤ 768px) */
 @media (max-width: 768px) {
-  .post-article { padding: 0; }
+  .post-layout {
+    padding: 24px 0 48px;
+  }
 
   .post-header { margin-bottom: 24px; }
-  .post-header h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .post-article h1 { font-size: clamp(1.45rem, 5vw, 2rem) !important; }
 
   .post-meta-bar {
     flex-wrap: wrap;
@@ -427,17 +463,19 @@
   }
   .post-meta-sep { display: none; }
 
-  .post-body h2 { font-size: 1.4rem; }
-  .post-body h3 { font-size: 1.1rem; }
-  .post-body p,
+  .post-body { font-size: .97rem; }
+  .post-body h2 { font-size: 1.35rem; margin: 36px 0 14px; }
+  .post-body h3 { font-size: 1.08rem; margin: 24px 0 10px; }
+  .post-body p { font-size: .95rem; margin-bottom: 16px; }
   .post-body li { font-size: .95rem; }
 
-  /* Table — horizontal scroll on small screens */
+  /* Table: always scroll on tablet */
   .post-body table {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
+    min-width: unset;
   }
 
   .post-sidebar {
@@ -449,19 +487,32 @@
 
   .post-nav { grid-template-columns: 1fr; gap: 12px; }
   .post-nav-next { text-align: left; }
+
+  .affiliate-notice {
+    padding: 14px 16px;
+    gap: 10px;
+  }
 }
 
 /* Mobile (≤ 480px) */
 @media (max-width: 480px) {
-  .post-header h1 { font-size: 1.45rem; }
+  .post-layout {
+    padding: 16px 0 40px;
+  }
 
-  .post-body h2 { font-size: 1.25rem; }
-  .post-body h3 { font-size: 1.05rem; }
+  .post-article h1 { font-size: 1.35rem !important; }
+
+  .post-body h2 { font-size: 1.2rem; }
+  .post-body h3 { font-size: 1rem; }
+  .post-body { font-size: .93rem; line-height: 1.8; }
+
+  .post-featured-img { margin-bottom: 24px; }
 
   .affiliate-notice {
     flex-direction: column;
     gap: 8px;
     font-size: .8rem;
+    padding: 12px 14px;
   }
 
   .post-body blockquote {
@@ -469,5 +520,21 @@
     padding-left: 14px;
   }
 
-  .post-meta-bar { font-size: .78rem; }
+  .post-meta-bar { font-size: .78rem; gap: 6px; }
+  .post-meta-item { gap: 4px; }
+  .post-author-name { font-size: .82rem; }
+  .post-author-role { font-size: .7rem; }
+
+  /* Sidebar stacks cleanly */
+  .post-sidebar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .product-highlight { padding: 16px; }
+  .btn-primary { padding: 9px 16px; font-size: .83rem; }
+
+  /* Comparison table */
+  .post-body thead th { padding: 10px 12px; font-size: .72rem; }
+  .post-body tbody td { padding: 9px 12px; font-size: .82rem; }
 }
