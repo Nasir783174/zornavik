@@ -18,4 +18,13 @@ const BLOG_REGISTRY = [
     category: "cleaning-needs",
     image:    "",
   },
+   {
+    title:    "Bissell Vacuum Cleaner in 2026",
+    slug:     "posts/bissell-vacuum-cleaner-in-2026.html",
+    date:     "2026-04-26",
+    excerpt:  "Bissell vacuum cleaners continue to hold a strong place in modern homes because they focus on real cleaning problems people face every day. From pet hair on sofas to muddy footprints on hard floors...",
+    readTime: 8,
+    category: "by-home-type",
+    image:    "",
+  },
 ];
