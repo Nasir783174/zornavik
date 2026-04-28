@@ -422,6 +422,230 @@
   min-width: 500px;
 }
 
+/* ══════════════════════════════════════════════
+   AFFILIATE BUY BUTTON
+   ══════════════════════════════════════════════ */
+
+.buy-btn-wrap {
+  margin: 28px 0 8px;
+}
+
+.btn-affiliate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 14px rgba(192,57,43,.28);
+}
+
+.btn-affiliate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform .55s ease;
+}
+
+.btn-affiliate:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-affiliate:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(192,57,43,.35);
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-affiliate:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(192,57,43,.25);
+}
+
+.btn-affiliate svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.btn-affiliate-note {
+  font-size: .73rem;
+  color: var(--text-muted);
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-affiliate-note svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Product rank badge ── */
+.product-rank {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--accent);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  padding: 4px 11px;
+  border-radius: 100px;
+  margin-bottom: 6px;
+}
+
+/* ── Specs grid ── */
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 18px 0 22px;
+}
+
+.spec-item {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 14px;
+}
+
+.spec-label {
+  font-size: .68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.spec-value {
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ── Pros / Cons grid ── */
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0 10px;
+}
+
+.pros-box,
+.cons-box {
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.pros-box {
+  background: #f0faf4;
+  border: 1px solid #b8dfc9;
+}
+
+.cons-box {
+  background: #fff5f4;
+  border: 1px solid #f0c4be;
+}
+
+.pros-cons-title {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pros-box .pros-cons-title { color: #1a7a45; }
+.cons-box .pros-cons-title { color: #c0392b; }
+
+.pros-cons-title svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.pros-box ul,
+.cons-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pros-box ul li,
+.cons-box ul li {
+  font-size: .8rem;
+  padding-left: 16px;
+  position: relative;
+  color: var(--text-body);
+  margin-bottom: 0;
+}
+
+.pros-box ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #1a7a45;
+  font-weight: 700;
+  font-size: .78rem;
+}
+
+.cons-box ul li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: #c0392b;
+  font-weight: 700;
+  font-size: .78rem;
+}
+
+/* ── Section divider ── */
+.product-divider {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 52px 0 0;
+}
+
+/* ── Responsive: button & pros-cons ── */
+@media (max-width: 600px) {
+  .pros-cons { grid-template-columns: 1fr; gap: 10px; }
+  .specs-grid { grid-template-columns: repeat(2, 1fr); }
+  .btn-affiliate { width: 100%; font-size: .88rem; padding: 13px 20px; }
+}
+
 /* ── Responsive ── */
 
 /* Tablet (≤ 1024px) */
