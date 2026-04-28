@@ -25,7 +25,7 @@ const BLOG_REGISTRY = [
     excerpt:  "Bissell vacuum cleaners continue to hold a strong place in modern homes because they focus on real cleaning problems people face every day. From pet hair on sofas to muddy footprints on hard floors...",
     readTime: 8,
     category: "vacuums",
-    image:    "../images/cordless-vacuum-cleaners/cordless-vacuum-cleaners.webp",
+    image:    "",
   },
   {
     title:    "Best Cordless Vacuum Cleaner in 2026",
@@ -34,7 +34,7 @@ const BLOG_REGISTRY = [
     excerpt:  "Bissell vacuum cleaners continue to hold a strong place in modern homes because they focus on real cleaning problems people face every day. From pet hair on sofas to muddy footprints on hard floors...",
     readTime: 8,
     category: "cordless-stick-vacuums",
-    image:    "",
+    image:    "../images/cordless-vacuum-cleaners/cordless-vacuum-cleaners.webp",
   },
 ];
 
