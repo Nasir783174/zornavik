@@ -197,23 +197,20 @@ body {
 .spec-value { font-family: var(--font-body); font-size: .875rem; font-weight: 600; color: #1a1a1a; }
 
 /* ── Pros / Cons ── */
-.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0 12px; }
-.pros-box, .cons-box { border-radius: var(--radius); padding: 14px 16px; }
-.pros-box { background: #f0faf4; border: 1px solid #cce8d8; }
-.cons-box { background: #fff5f4; border: 1px solid #f0c4be; }
+.pros-cons { margin: 22px 0 12px; }
+.pros-box { margin-bottom: 12px; }
+.cons-box { margin-bottom: 0; }
 .pros-cons-title {
-  font-family: var(--font-body); font-size: .7rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
+  font-family: var(--font-body); font-size: .9rem; font-weight: 600;
+  margin-bottom: 6px; color: #1a1a1a;
 }
-.pros-box .pros-cons-title { color: #1a7a45; }
-.cons-box .pros-cons-title { color: #c0392b; }
-.pros-box ul, .cons-box ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.pros-box ul, .cons-box ul { list-style: none; padding: 0; margin: 0; }
 .pros-box ul li, .cons-box ul li {
-  font-family: var(--font-body); font-size: .82rem; font-weight: 300;
-  padding-left: 16px; position: relative; color: #1a1a1a; margin-bottom: 0;
+  font-family: var(--font-body); font-size: .97rem; font-weight: 300;
+  padding-left: 20px; position: relative; color: #1a1a1a; margin-bottom: 5px;
 }
-.pros-box ul li::before { content: '✓'; position: absolute; left: 0; color: #1a7a45; font-weight: 700; font-size: .78rem; }
-.cons-box ul li::before { content: '✗'; position: absolute; left: 0; color: #c0392b; font-weight: 700; font-size: .78rem; }
+.pros-box ul li::before { content: '✓'; position: absolute; left: 0; color: #1a7a45; font-weight: 600; }
+.cons-box ul li::before { content: '✗'; position: absolute; left: 0; color: #c0392b; font-weight: 600; }
 
 /* ── Affiliate Buy Button ── */
 .buy-btn-wrap { margin: 28px 0 8px; }
@@ -222,21 +219,15 @@ body {
   background: var(--accent); color: #fff;
   font-family: var(--font-body); font-size: .88rem; font-weight: 600; letter-spacing: .02em;
   padding: 13px 26px; border-radius: var(--radius); border: none; cursor: pointer;
-  text-decoration: none; position: relative; overflow: hidden;
-  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-  box-shadow: 0 3px 12px rgba(192,57,43,.22);
+  text-decoration: none;
+  transition: box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(192,57,43,.18);
 }
-.btn-affiliate::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.15) 50%, transparent 70%);
-  transform: translateX(-100%); transition: transform .55s ease;
-}
-.btn-affiliate:hover::before { transform: translateX(100%); }
 .btn-affiliate:hover {
-  background: var(--accent-dark); transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(192,57,43,.3); color: #fff; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(192,57,43,.32);
+  color: #fff; text-decoration: none;
 }
-.btn-affiliate:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(192,57,43,.2); }
+.btn-affiliate:active { box-shadow: 0 1px 4px rgba(192,57,43,.15); }
 .btn-affiliate svg {
   width: 16px; height: 16px; fill: none; stroke: #fff;
   stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
