@@ -138,8 +138,8 @@ body {
 .post-body strong { color: #1a1a1a; font-weight: 600; }
 .post-body a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
 .post-body a:hover { text-decoration: none; }
-.post-body .btn-affiliate { color: #ffffff; text-decoration: none; }
-.post-body .btn-affiliate:hover { color: #ffffff; text-decoration: none; }
+.post-body .btn-primary { color: #ffffff; text-decoration: none; }
+.post-body .btn-primary:hover { color: #ffffff; text-decoration: none; }
 .post-body img { width: 100%; border-radius: 12px; margin: 32px 0; }
 
 /* ── Table ── */
@@ -219,47 +219,8 @@ body {
 .pros-box ul li::before { content: '✓'; position: absolute; left: 0; color: #2a7a4a; font-weight: 600; }
 .cons-box ul li::before { content: '✗'; position: absolute; left: 0; color: #a03020; font-weight: 600; }
 
-/* ── Affiliate Buy Button — Always visible, pill-shaped, matte black ── */
+/* ── Buy Button — pill-shaped, matte black ── */
 .buy-btn-wrap { margin: 28px 0 8px; }
-.btn-affiliate {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: #1a1a1a;
-  color: #ffffff;
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: .9rem;
-  font-weight: 700;
-  letter-spacing: .02em;
-  padding: 14px 28px;
-  border-radius: 100px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow:
-    0 2px 8px rgba(0,0,0,.18),
-    0 0 0 1px rgba(255,255,255,.04) inset;
-  transition: box-shadow .2s ease, transform .15s ease;
-}
-
-.btn-affiliate:hover {
-  color: #ffffff;
-  text-decoration: none;
-  box-shadow:
-    0 6px 20px rgba(0,0,0,.28),
-    0 2px 8px rgba(0,0,0,.18),
-    0 0 0 1px rgba(255,255,255,.06) inset;
-  transform: translateY(-1px);
-}
-.btn-affiliate:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0,0,0,.2);
-}
-.btn-affiliate svg {
-  width: 15px; height: 15px; fill: none; stroke: #fff;
-  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
-}
 .btn-affiliate-note {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: .72rem; font-weight: 300;
@@ -310,9 +271,9 @@ body {
   font-size: .85rem; font-weight: 700;
   padding: 11px 20px; border-radius: 100px; border: none;
   cursor: pointer; width: 100%; transition: all .22s ease;
-  letter-spacing: .01em;
+  letter-spacing: .01em; text-decoration: none;
 }
-.btn-primary:hover { background: #333; transform: translateY(-1px); color: white; }
+.btn-primary:hover { background: #333; transform: translateY(-1px); color: white; text-decoration: none; }
 
 /* Post nav */
 .post-nav {
@@ -362,7 +323,7 @@ body {
   .post-body h3 { font-size: 1.05rem; }
   .post-body { font-size: .97rem; line-height: 1.8; }
   .specs-grid { grid-template-columns: repeat(2, 1fr); }
-  .btn-affiliate { width: 100%; font-size: .88rem; padding: 14px 20px; }
+  .btn-primary { width: 100%; font-size: .88rem; padding: 14px 20px; }
   .affiliate-notice { flex-direction: column; gap: 8px; font-size: .8rem; }
   .post-sidebar { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
 }
