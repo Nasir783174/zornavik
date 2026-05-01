@@ -138,6 +138,8 @@ body {
 .post-body strong { color: #1a1a1a; font-weight: 600; }
 .post-body a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
 .post-body a:hover { text-decoration: none; }
+.post-body .btn-affiliate { color: #ffffff; text-decoration: none; }
+.post-body .btn-affiliate:hover { color: #ffffff; text-decoration: none; }
 .post-body img { width: 100%; border-radius: 12px; margin: 32px 0; }
 
 /* ── Table ── */
