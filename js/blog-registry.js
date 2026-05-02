@@ -35,6 +35,15 @@ const BLOG_REGISTRY = [
     category: "robot-vacuums",
     image:    "../images/dreame-x60-max-ultra.webp",
   },
+  {
+    title:    "Best Vacuum for Hardwood Floors in 2026",
+    slug:     "posts/best-vacuum-hardwood-floors-2026.html",
+    date:     "2026-05-02",
+    excerpt:  "Choosing a vacuum for hardwood floors is not just about suction power. We compared the top 7 models by roller design, floor safety, suction control, and real-world performance to find the best fit for your home.",
+    readTime: 14,
+    category: "vacuums",
+    image:    "../images/cordless-vacuum-cleaners/dyson-v15-detect.webp",
+  },
 ];
 
 /*
