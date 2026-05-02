@@ -9,17 +9,13 @@ const BLOG_REGISTRY = [
     image:    "../images/cordless-vacuum-cleaners/cordless-vacuum-cleaners.webp",
   },
   {
-  id: "best-vacuums-for-pet-hair-2026",
   title: "Top 5 Best Vacuums for Pet Hair in 2026",
   excerpt: "Pet hair has a way of getting everywhere...",
   category: "vacuums",
-  categoryLabel: "Vacuums",
-  date: "2026-05-02",
-  dateLabel: "May 2, 2026",
+    date: "2026-05-02"
   readTime: "12 min read",
   image: "../images/dyson-ball-animal-3.webp",
-  url: "posts/best-cordless-vacuums-2026.html",
-  featured: true,
+  slug: "posts/best-cordless-vacuums-2026.html",
 }
 ];
 
