@@ -54,13 +54,13 @@ const BLOG_REGISTRY = [
     image:    "../images/roomba-combo-10-max.webp",
   },
   {
-    title:    "Best handheld vacuum in 2026",
-    slug:     "posts/best-handheld-vacuums-2026.html",
+    title:    "Best Dyson Cordless Vacuum (2026)",
+    slug:     "posts/best-dyson-cordless-vacuums-2026.html",
     date:     "2026-05-02",
-    excerpt:  "Handheld vacuums have changed a lot in the past few years. What used to be a weak, noisy tool is now powerful enough to clean pet hair, car interiors, and tight corners without much effort.",
-    readTime: 12,
-    category: "vacuums",
-    image:    "../images/black-decker-pivot-max.webp",
+    excerpt:  "Not all Dyson cordless vacuums are built the same. We compare the top 5 models — V15 Detect, Gen5detect, V12 Detect Slim, V8, and V15s Submarine — by suction, weight, runtime, and real-world performance.",
+    readTime: 15,
+    category: "cordless-stick-vacuums",
+    image:    "../images/cordless-vacuum-cleaners/dyson-v15-detect.webp",
   },
 ];
 
