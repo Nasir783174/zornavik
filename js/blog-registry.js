@@ -26,6 +26,15 @@ const BLOG_REGISTRY = [
     category: "vacuums",
     image:    "../images/black-decker-pivot-max.webp",
   },
+  {
+    title:    "Best Robot Vacuum and Mop in 2026",
+    slug:     "posts/best-robot-vacuum-mop-2026.html",
+    date:     "2026-05-02",
+    excerpt:  "Robot vacuum mop combos in 2026 go far beyond simple floor cleaning. We compared the top 5 models by suction, mopping performance, obstacle handling, and real-world usability to find the best fit for your home.",
+    readTime: 15,
+    category: "robot-vacuums",
+    image:    "../images/dreame-x60-max-ultra.webp",
+  },
 ];
 
 /*
