@@ -1,5 +1,14 @@
 const BLOG_REGISTRY = [
   {
+    title:    "Best Lightweight Vacuum in 2026",
+    slug:     "posts/best-lightweight-vacuums-2026.html",
+    date:     "2026-05-02",
+    excerpt:  "Not all lightweight vacuums are truly light where it matters. Here are the 5 best lightweight vacuums of 2026 compared by real-world weight, battery life, filtration, and daily usability.",
+    readTime: 14,
+    category: "cordless-stick-vacuums",
+    image:    "../images/cordless-vacuum-cleaners/dyson-v15-detect.webp",
+  },
+  {
     title:    "Best Bissell Vacuum Cleaners (2026)",
     slug:     "posts/best-bissell-vacuums-2026.html",
     date:     "2026-04-26",
