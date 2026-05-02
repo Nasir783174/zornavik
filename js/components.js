@@ -19,8 +19,11 @@
 
     // Highlight active nav link
     const currentPath = window.location.pathname;
+    // Extract just the filename from currentPath for exact comparison
+    const currentFile = currentPath.split('/').pop() || 'index.html';
     function isActive(href) {
-      return currentPath.endsWith(href.replace('../', '').replace('./', '')) ? 'active' : '';
+      const hrefFile = href.split('/').pop();
+      return currentFile === hrefFile ? 'active' : '';
     }
 
     el.innerHTML = `
