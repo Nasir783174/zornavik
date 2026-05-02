@@ -12,7 +12,7 @@ const BLOG_REGISTRY = [
   title: "Top 5 Best Vacuums for Pet Hair in 2026",
   excerpt: "Pet hair has a way of getting everywhere...",
   category: "vacuums",
-    date: "2026-05-02"
+    date: "2026-05-02",
   readTime: "12 min read",
   image: "../images/dyson-ball-animal-3.webp",
   slug: "posts/best-cordless-vacuums-2026.html",
