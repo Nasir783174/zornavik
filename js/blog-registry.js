@@ -1,5 +1,14 @@
 const BLOG_REGISTRY = [
   {
+    title:    "Best Bissell Vacuum Cleaners (2026)",
+    slug:     "posts/best-bissell-vacuums-2026.html",
+    date:     "2026-04-26",
+    excerpt:  "Bissell builds machines for specific messes, not generic cleaning. Here are the 5 best Bissell vacuums of 2026 compared by task, performance, and which one actually fits your home.",
+    readTime: 12,
+    category: "vacuums",
+    image:    "../images/bissell-little-green-portable-carpet-cleaner.webp",
+  },
+  {
     title:    "Best Upright Vacuum (2026)",
     slug:     "posts/best-upright-vacuums-2026.html",
     date:     "2026-04-28",
