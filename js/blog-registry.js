@@ -9,14 +9,23 @@ const BLOG_REGISTRY = [
     image:    "../images/cordless-vacuum-cleaners/cordless-vacuum-cleaners.webp",
   },
   {
-  title: "Top 5 Best Vacuums for Pet Hair in 2026",
-  excerpt: "Pet hair has a way of getting everywhere...",
-  category: "vacuums",
-    date: "2026-05-02",
-  readTime: "12 min read",
-  image: "../images/dyson-ball-animal-3.webp",
-  slug: "posts/best-vacuums-for-pet-hair-2026.html",
-},
+    title:    "Top 5 Best Vacuums for Pet Hair in 2026",
+    slug:     "posts/best-vacuums-for-pet-hair-2026.html",
+    date:     "2026-05-02",
+    excerpt:  "Pet hair has a way of getting everywhere. It sticks to carpets, hides in corners, and floats through the air..",
+    readTime: 12,
+    category: "vacuums",
+    image:    "../images/dyson-ball-animal-3.webp",
+  },
+  {
+    title:    "Best handheld vacuum in 2026",
+    slug:     "posts/best-vacuums-for-pet-hair-2026.html",
+    date:     "2026-05-02",
+    excerpt:  "Handheld vacuums have changed a lot in the past few years. What used to be a weak, noisy tool is now powerful enough to clean pet hair, car interiors, and tight corners without much effort.",
+    readTime: 12,
+    category: "vacuums",
+    image:    "../images/black-decker-pivot-max.webp",
+  },
 ];
 
 /*
