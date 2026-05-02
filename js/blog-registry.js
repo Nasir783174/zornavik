@@ -19,7 +19,7 @@ const BLOG_REGISTRY = [
   },
   {
     title:    "Best handheld vacuum in 2026",
-    slug:     "posts/best-vacuums-for-pet-hair-2026.html",
+    slug:     "posts/best-handheld-vacuums-2026.html",
     date:     "2026-05-02",
     excerpt:  "Handheld vacuums have changed a lot in the past few years. What used to be a weak, noisy tool is now powerful enough to clean pet hair, car interiors, and tight corners without much effort.",
     readTime: 12,
