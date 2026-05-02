@@ -16,7 +16,7 @@ const BLOG_REGISTRY = [
   readTime: "12 min read",
   image: "../images/dyson-ball-animal-3.webp",
   slug: "posts/best-cordless-vacuums-2026.html",
-}
+},
 ];
 
 /*
