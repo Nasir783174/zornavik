@@ -18,7 +18,7 @@ const BLOG_REGISTRY = [
   dateLabel: "May 2, 2026",
   readTime: "12 min read",
   image: "../images/dyson-ball-animal-3.webp",
-  url: "../posts/best-vacuums-for-pet-hair-2026.html",
+  url: "posts/best-cordless-vacuums-2026.html",
   featured: true,
 }
 ];
