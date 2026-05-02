@@ -1,5 +1,14 @@
 const BLOG_REGISTRY = [
   {
+    title:    "Best Upright Vacuum (2026)",
+    slug:     "posts/best-upright-vacuums-2026.html",
+    date:     "2026-04-28",
+    excerpt:  "Five upright vacuums tested and compared for real-world performance — covering suction power, hair handling, filtration, weight, and which model fits your home type best.",
+    readTime: 14,
+    category: "vacuums",
+    image:    "../images/shark-stratos-upright.webp",
+  },
+  {
     title:    "Best 10 Cordless Vacuum Cleaners of 2026",
     slug:     "posts/best-cordless-vacuums-2026.html",
     date:     "2026-04-28",
