@@ -44,6 +44,15 @@ const BLOG_REGISTRY = [
     category: "vacuums",
     image:    "../images/cordless-vacuum-cleaners/dyson-v15-detect.webp",
   },
+  {
+    title:    "Best Roomba for Pet Hair in 2026",
+    slug:     "posts/best-roomba-for-pet-hair-2026.html",
+    date:     "2026-05-02",
+    excerpt:  "Not every Roomba handles pet hair the same way. We compared the top 5 models by real-world pickup rate, brush design, automation, and long-term value to find the best fit for pet owners in 2026.",
+    readTime: 16,
+    category: "robot-vacuums",
+    image:    "../images/roomba-combo-10-max.webp",
+  },
 ];
 
 /*
