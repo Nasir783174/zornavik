@@ -5,6 +5,12 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/",
+      "destination": "/",
+      "has": [{ "type": "query", "key": "m" }],
+      "permanent": true
     }
   ],
   "headers": [
