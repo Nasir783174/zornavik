@@ -12,7 +12,7 @@ const BLOG_REGISTRY = [
     readTime: 18,
     category: "cordless-stick-vacuums",
     catLabel: "Cordless Stick Vacuums",
-    image:    "/images/cordless-vacuum-cleaners.webp",
+    image:    "/images/cordless-vacuum-cleaners-featured.webp",
   },
   {
     title:    "Top 5 Best Vacuums for Pet Hair in 2026",
