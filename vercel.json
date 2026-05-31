@@ -1,0 +1,55 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/blog/best-cordless-vacuum-cleaners", "destination": "/cordless-stick-vacuums/best-cordless-vacuum-cleaners", "permanent": true },
+    { "source": "/blog/best-vacuums-for-pet-hair",     "destination": "/vacuums/best-vacuums-for-pet-hair",     "permanent": true },
+    { "source": "/blog/best-handheld-vacuums",         "destination": "/vacuums/best-handheld-vacuums",         "permanent": true },
+    { "source": "/blog/best-robot-vacuum-mop",         "destination": "/robot-vacuums/best-robot-vacuum-mop",   "permanent": true },
+    { "source": "/blog/best-vacuum-for-hardwood-floors","destination": "/vacuums/best-vacuum-for-hardwood-floors","permanent": true },
+    { "source": "/blog/best-roomba-for-pet-hair",      "destination": "/robot-vacuums/best-roomba-for-pet-hair","permanent": true },
+    { "source": "/blog/best-dyson-cordless-vacuum",    "destination": "/cordless-stick-vacuums/best-dyson-cordless-vacuum","permanent": true },
+    { "source": "/blog/best-upright-vacuum",           "destination": "/vacuums/best-upright-vacuum",           "permanent": true },
+    { "source": "/blog/best-bissell-vacuum",           "destination": "/vacuums/best-bissell-vacuum",           "permanent": true },
+    { "source": "/blog/best-lightweight-vacuum",       "destination": "/cordless-stick-vacuums/best-lightweight-vacuum","permanent": true },
+    { "source": "/blog",                               "destination": "/",                                      "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/category/robot-vacuums/page-:page",       "destination": "/category/robot-vacuums" },
+    { "source": "/category/vacuums/page-:page",             "destination": "/category/vacuums" },
+    { "source": "/category/cordless-stick-vacuums/page-:page","destination": "/category/cordless-stick-vacuums" },
+    { "source": "/page-:page",                              "destination": "/index" }
+  ]
+}
