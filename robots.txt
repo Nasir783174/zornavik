@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /privacy-policy
-Disallow: /terms-and-conditions
-Disallow: /disclaimer
-Disallow: /contact
-
 Sitemap: https://zornavik.me/sitemap.xml
