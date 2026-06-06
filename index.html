@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zornavik.me &mdash; Honest Vacuum Cleaner Reviews &amp; Buying Guides</title>
-  <meta name="description" content="Honest vacuum cleaner reviews and simple buying guides by Liam Adrian Foster, a 12-year vacuum industry expert. Find the right vacuum without confusion or wasted money.">
+  <title>Zornavik — Honest Vacuum Reviews & Buying Guides 2026</title>
+  <meta name="description" content="Honest vacuum cleaner reviews &amp; buying guides by Liam Adrian Foster, a 12-year vacuum industry expert. Find the right vacuum without confusion or waste.">
   <link rel="canonical" href="https://zornavik.me/">
-    <meta property="og:image" content="https://zornavik.me/images/zornavik-og.webp">
+  <meta property="og:image" content="https://zornavik.me/images/zornavik-og.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Zornavik.me — Honest Vacuum Cleaner Reviews & Buying Guides">
-  <meta property="og:description" content="Honest vacuum cleaner reviews and simple buying guides by a 12-year vacuum industry expert.">
+  <meta property="og:title" content="Zornavik — Honest Vacuum Reviews & Buying Guides 2026">
+  <meta property="og:description" content="Honest vacuum cleaner reviews &amp; buying guides by Liam Adrian Foster, a 12-year vacuum industry expert. Find the right vacuum without confusion or waste.">
   <meta property="og:url" content="https://zornavik.me/">
   <meta property="og:site_name" content="Zornavik.me">
   <meta name="twitter:card" content="summary_large_image">
@@ -26,7 +26,7 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Zornavik.me",
+    "name": "Zornavik",
     "url": "https://zornavik.me",
     "description": "Honest vacuum cleaner reviews and buying guides by Liam Adrian Foster.",
     "author": { "@type": "Person", "name": "Liam Adrian Foster" }
@@ -51,8 +51,8 @@
 <header id="site-header">
   <div class="container">
     <div class="header-inner">
-      <a href="/" class="site-logo">Zornavik<span>.me</span></a>
-            <nav class="main-nav" aria-label="Main navigation">
+      <a href="/" class="site-logo">Zornavik</a>
+      <nav class="main-nav" aria-label="Main navigation">
         <a href="/">Home</a>
         <a href="/category/robot-vacuums">Robot Vacuums</a>
         <a href="/category/vacuums">Vacuums</a>
@@ -63,7 +63,7 @@
       </button>
     </div>
   </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
     <a href="/">Home</a>
     <a href="/category/robot-vacuums">Robot Vacuums</a>
     <a href="/category/vacuums">Vacuums</a>
@@ -74,9 +74,12 @@
 <main>
   <div class="container">
 
+    <!-- SEO: Primary H1 -->
+    <h1 class="sr-only">Vacuum Cleaner Reviews &amp; Buying Guides</h1>
+
     <!-- Featured Post -->
     <section class="featured-section">
-      <a href="/blog/best-cordless-vacuum-cleaners" class="featured-post">
+      <a href="/cordless-stick-vacuums/best-cordless-vacuum-cleaners" class="featured-post">
         <div class="featured-img-wrap">
           <img src="/images/cordless-vacuum-cleaners-featured.webp"
                alt="Best 10 Cordless Vacuum Cleaners of 2026"
@@ -84,7 +87,7 @@
         </div>
         <div class="featured-content">
           <span class="featured-label">Featured &mdash; Cordless Stick Vacuums</span>
-          <h1 class="featured-title">Best 10 Cordless Vacuum Cleaners of 2026</h1>
+          <h2 class="featured-title">Best 10 Cordless Vacuum Cleaners of 2026</h2>
           <p class="featured-excerpt">Compare the top 10 cordless vacuum cleaners of 2026. Expert-tested for suction, runtime, filtration &amp; pet hair. Find the best cordless vacuum for your home.</p>
           <span class="featured-meta">January 10, 2026 &middot; 18 min read</span>
           <span class="btn-read">Read Article</span>
@@ -111,7 +114,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="/" class="site-logo">Zornavik<span>.me</span></a>
+        <a href="/" class="site-logo">Zornavik</a>
         <p>Honest vacuum cleaner reviews and buying guides by Liam Adrian Foster.</p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
@@ -136,7 +139,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="yr"></span> Zornavik.me &mdash; All rights reserved.</p>
+      <p>&copy; <span id="yr"></span> Zornavik &mdash; All rights reserved.</p>
       <p>Some links are affiliate links. <a href="/disclaimer">Read disclaimer</a>.</p>
     </div>
   </div>
@@ -146,42 +149,31 @@
 <script src="/js/registry.js"></script>
 <script src="/js/main.js"></script>
 <script>
-  // Home page: show posts 1-9 (skip featured post at index 0)
-  // Featured post (index 0) is shown above, so grid shows indices 1..9
   const postsPerPage = 9;
-  const gridPosts = BLOG_REGISTRY.slice(1, 10); // posts 2–10
-  renderGrid('home-grid', gridPosts);
+  // Page 1: featured post (index 0) + grid posts (index 1-9)
+  // Page 2+: all posts paginated normally (no featured slot)
+  const pathParts = window.location.pathname.split('/page-');
+  const currentPage = pathParts.length > 1 ? parseInt(pathParts[1]) : 1;
 
-  // Pagination: total posts = 10, featured takes slot 0, remaining 9 fit on page 1
-  // So only 1 page needed currently. When you add more posts, update here.
+  if (currentPage === 1) {
+    // Page 1: skip featured post (index 0), show next 9
+    const gridPosts = BLOG_REGISTRY.slice(1, 10);
+    renderGrid('home-grid', gridPosts);
+  } else {
+    // Page 2+: hide featured section, paginate all posts
+    const featuredSection = document.querySelector('.featured-section');
+    if (featuredSection) featuredSection.style.display = 'none';
+    const start = 1 + (currentPage - 1) * postsPerPage; // offset by 1 for featured
+    const pagePosts = BLOG_REGISTRY.slice(start, start + postsPerPage);
+    renderGrid('home-grid', pagePosts);
+  }
+
   const totalPosts = BLOG_REGISTRY.length - 1; // excluding featured
   const totalPages = Math.ceil(totalPosts / postsPerPage);
   if (totalPages > 1) {
-    document.getElementById('home-pagination').innerHTML = buildPagination(1, totalPages, '');
+    document.getElementById('home-pagination').innerHTML = buildPagination(currentPage, totalPages, '');
   }
 </script>
 
-<div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
-  <p>We use cookies to improve your experience and analyze site traffic. By continuing to use this site, you accept our use of cookies. <a href="/privacy-policy">Privacy Policy</a></p>
-  <div class="cookie-buttons">
-    <button id="cookie-accept" aria-label="Accept cookies">Accept</button>
-    <button id="cookie-decline" aria-label="Decline cookies">Decline</button>
-  </div>
-</div>
-<script>
-(function(){
-  var b=document.getElementById('cookie-banner');
-  if(!b)return;
-  var s=localStorage.getItem('cookieConsent');
-  if(s==='accepted'||s==='declined'){b.style.display='none';return;}
-  b.style.display='flex';
-  document.getElementById('cookie-accept').addEventListener('click',function(){
-    localStorage.setItem('cookieConsent','accepted');b.style.display='none';
-  });
-  document.getElementById('cookie-decline').addEventListener('click',function(){
-    localStorage.setItem('cookieConsent','declined');b.style.display='none';
-  });
-})();
-</script>
 </body>
 </html>

@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me &mdash; Liam Adrian Foster | Zornavik.me</title>
-  <meta name="description" content="Hi, I'm Liam Adrian Foster. I run zornavik.me, where I share honest reviews and simple guides about vacuum cleaners based on 12 years of industry experience.">
+  <title>About Liam Adrian Foster — Vacuum Expert | Zornavik</title>
+  <meta name="description" content="Meet Liam Adrian Foster, 12-year vacuum industry expert behind Zornavik. Honest vacuum cleaner reviews you can actually trust — zero sponsored bias.">
   <link rel="canonical" href="https://zornavik.me/about">
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="About Me — Liam Adrian Foster | Zornavik.me">
+  <meta property="og:title" content="About Liam Adrian Foster — Vacuum Expert | Zornavik">
   <meta property="og:url" content="https://zornavik.me/about">
+  <meta property="og:image" content="https://zornavik.me/images/zornavik-og.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:description" content="Meet Liam Adrian Foster, 12-year vacuum industry expert behind Zornavik. Honest vacuum cleaner reviews you can actually trust — zero sponsored bias.">
   <link rel="icon" type="image/webp" href="/images/zornavik.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +27,22 @@
     "url": "https://zornavik.me/about",
     "image": "https://zornavik.me/images/liam-adrian-foster.webp",
     "jobTitle": "Vacuum Industry Expert",
-    "description": "12-year vacuum industry expert. Founder of Zornavik.me.",
+    "description": "12-year vacuum industry expert. Founder of Zornavik.",
+    "knowsAbout": ["Vacuum Cleaners", "Home Appliances", "Cordless Vacuums", "Robot Vacuums", "HEPA Filtration"],
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Vacuum Industry Expert",
+      "yearsOfExperience": 12
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Zornavik",
+      "url": "https://zornavik.me",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://zornavik.me/images/zornavik.webp"
+      }
+    },
     "sameAs": [
       "https://twitter.com/zornavik",
       "https://www.facebook.com/zornavik",
@@ -37,8 +56,8 @@
 <header id="site-header">
   <div class="container">
     <div class="header-inner">
-      <a href="/" class="site-logo">Zornavik<span>.me</span></a>
-            <nav class="main-nav" aria-label="Main navigation">
+      <a href="/" class="site-logo">Zornavik</a>
+                  <nav class="main-nav" aria-label="Main navigation">
         <a href="/">Home</a>
         <a href="/category/robot-vacuums">Robot Vacuums</a>
         <a href="/category/vacuums">Vacuums</a>
@@ -49,7 +68,7 @@
       </button>
     </div>
   </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
     <a href="/">Home</a>
     <a href="/category/robot-vacuums">Robot Vacuums</a>
     <a href="/category/vacuums">Vacuums</a>
@@ -67,7 +86,7 @@
       </div>
       <p class="page-sub">Hi, I'm Liam Adrian Foster.</p>
 
-      <p>I run this website zornavik.me, where I share honest reviews and simple guides about vacuum cleaners. My goal is very clear: I want to help you choose the right vacuum without confusion or waste of money.</p>
+      <p>I run this website zornavik, where I share honest reviews and simple guides about vacuum cleaners. My goal is very clear: I want to help you choose the right vacuum without confusion or waste of money.</p>
 
       <h2>My Experience</h2>
       <p>I have worked in the vacuum cleaner industry for over 12 years. During this time, I worked with different vacuum companies in product testing, quality checking, and customer feedback analysis.</p>
@@ -102,7 +121,7 @@
 
       <h2>My Goal</h2>
       <p>My goal is simple. I want to help you find the right vacuum cleaner for your home without stress or confusion. If my content helps you make a better decision, then my job is done.</p>
-      <p>Thanks for visiting zornavik.me.</p>
+      <p>Thanks for visiting zornavik.</p>
     </div>
   </div>
 </main>
@@ -111,7 +130,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="/" class="site-logo">Zornavik<span>.me</span></a>
+        <a href="/" class="site-logo">Zornavik</a>
         <p>Honest vacuum cleaner reviews and buying guides by Liam Adrian Foster.</p>
       </div>
       <nav class="footer-links">
@@ -124,34 +143,12 @@
       </div></div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="yr"></span> Zornavik.me &mdash; All rights reserved.</p>
+      <p>&copy; <span id="yr"></span> Zornavik &mdash; All rights reserved.</p>
       <p>Some links are affiliate links. <a href="/disclaimer">Read disclaimer</a>.</p>
     </div>
   </div>
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 <script src="/js/registry.js"></script><script src="/js/main.js"></script>
-<div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
-  <p>We use cookies to improve your experience and analyze site traffic. By continuing to use this site, you accept our use of cookies. <a href="/privacy-policy">Privacy Policy</a></p>
-  <div class="cookie-buttons">
-    <button id="cookie-accept" aria-label="Accept cookies">Accept</button>
-    <button id="cookie-decline" aria-label="Decline cookies">Decline</button>
-  </div>
-</div>
-<script>
-(function(){
-  var b=document.getElementById('cookie-banner');
-  if(!b)return;
-  var s=localStorage.getItem('cookieConsent');
-  if(s==='accepted'||s==='declined'){b.style.display='none';return;}
-  b.style.display='flex';
-  document.getElementById('cookie-accept').addEventListener('click',function(){
-    localStorage.setItem('cookieConsent','accepted');b.style.display='none';
-  });
-  document.getElementById('cookie-decline').addEventListener('click',function(){
-    localStorage.setItem('cookieConsent','declined');b.style.display='none';
-  });
-})();
-</script>
 </body>
 </html>
