@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Best Cordless Stick Vacuum Reviews 2026 | Zornavik</title>
-  <meta name="description" content="Expert cordless stick vacuum reviews &amp; buying guides for 2026. Compare the best Dyson, lightweight &amp; cordless vacuums. Tested by a 12-year vacuum expert.">
-  <link rel="canonical" href="https://zornavik.me/category/cordless-stick-vacuums">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Best Cordless Stick Vacuum Reviews 2026 | Zornavik">
-  <meta property="og:description" content="Expert cordless stick vacuum reviews and buying guides for 2026. Compare the best Dyson and lightweight cordless vacuums.">
-  <meta property="og:url" content="https://zornavik.me/category/cordless-stick-vacuums">
+  <title>All Vacuum Products Compared 2026 | Zornavik</title>
+  <meta name="description" content="Browse every vacuum cleaner we've reviewed — real prices, ratings and specs for robot vacuums, uprights, canisters and cordless sticks, tested for the US market.">
+  <link rel="canonical" href="https://zornavik.me/products">
   <meta property="og:image" content="https://zornavik.me/images/zornavik-og.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="All Vacuum Products Compared 2026 | Zornavik">
+  <meta property="og:description" content="Browse every vacuum cleaner we've reviewed — real prices, ratings and specs for robot vacuums, uprights, canisters and cordless sticks, tested for the US market.">
+  <meta property="og:url" content="https://zornavik.me/products">
+  <meta property="og:site_name" content="Zornavik.me">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@zornavik">
   <link rel="icon" type="image/webp" href="/images/zornavik.webp">
@@ -21,13 +22,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"></noscript>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/products.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Cordless Stick Vacuum Reviews",
-    "url": "https://zornavik.me/category/cordless-stick-vacuums",
-    "description": "All cordless stick vacuum reviews and buying guides at Zornavik.",
+    "name": "All Vacuum Products",
+    "url": "https://zornavik.me/products",
+    "description": "Browse every vacuum cleaner we've reviewed — real prices, ratings and specs for robot vacuums, uprights, canisters and cordless sticks, tested for the US market.",
     "isPartOf": { "@type": "WebSite", "name": "Zornavik", "url": "https://zornavik.me" }
   }
   </script>
@@ -37,7 +39,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zornavik.me" },
-      { "@type": "ListItem", "position": 2, "name": "Cordless Stick Vacuums", "item": "https://zornavik.me/category/cordless-stick-vacuums" }
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://zornavik.me/products" }
     ]
   }
   </script>
@@ -82,18 +84,21 @@
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
         <span class="breadcrumb-sep">/</span>
-        <span>Cordless Stick Vacuums</span>
+        <span>Products</span>
       </nav>
-      <h1>Cordless Stick Vacuum Reviews</h1>
-      <p>Expert reviews and buying guides for cordless stick vacuums &mdash; by Liam Adrian Foster.</p>
+      <h1>All Vacuum Products</h1>
+      <p>Every vacuum we've researched and reviewed &mdash; real prices, ratings and specs, side by side.</p>
     </div>
 
-    <div class="section-head" style="margin-top:32px;">
-      <h2>All Cordless Stick Vacuum Reviews</h2>
+    <div class="filter-tabs" id="product-filter-tabs" style="margin-top:32px;">
+      <button class="filter-tab active" data-filter="all">All Products</button>
+      <button class="filter-tab" data-filter="robot-vacuums">Robot Vacuums</button>
+      <button class="filter-tab" data-filter="vacuums">Vacuums</button>
+      <button class="filter-tab" data-filter="cordless-stick-vacuums">Cordless Stick Vacuums</button>
     </div>
 
-    <div class="blog-grid" id="cat-grid"></div>
-    <div id="cat-pagination"></div>
+    <div class="product-grid" id="products-grid"></div>
+    <div id="products-pagination"></div>
   </div>
 </main>
 
@@ -134,21 +139,45 @@
 
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 <script src="/js/registry.js"></script>
+<script src="/js/products.js"></script>
 <script src="/js/main.js"></script>
 <script>
-    const CATEGORY = 'cordless-stick-vacuums';
-  const CAT_BASE = '/category/cordless-stick-vacuums';
-  const postsPerPage = 9;
+  const productsPerPage = 12;
+  let activeFilter = 'all';
+
+  function getFiltered() {
+    return activeFilter === 'all'
+      ? PRODUCT_REGISTRY
+      : PRODUCT_REGISTRY.filter(p => p.category === activeFilter);
+  }
+
+  function renderPage(page) {
+    const filtered = getFiltered();
+    if (activeFilter !== 'all') {
+      renderProductGrid('products-grid', filtered);
+      document.getElementById('products-pagination').innerHTML = '';
+      return;
+    }
+    const totalPages = Math.ceil(filtered.length / productsPerPage);
+    const start = (page - 1) * productsPerPage;
+    renderProductGrid('products-grid', filtered.slice(start, start + productsPerPage));
+    document.getElementById('products-pagination').innerHTML =
+      totalPages > 1 ? buildPagination(page, totalPages, '/products') : '';
+  }
+
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      renderPage(1);
+      window.scrollTo({ top: document.getElementById('products-grid').offsetTop - 100, behavior: 'smooth' });
+    });
+  });
+
   const pathParts = window.location.pathname.split('/page-');
   const currentPage = pathParts.length > 1 ? parseInt(pathParts[1]) : 1;
-  const filtered = BLOG_REGISTRY.filter(p => p.category === CATEGORY);
-  const totalPages = Math.ceil(filtered.length / postsPerPage);
-  const start = (currentPage - 1) * postsPerPage;
-  const pagePosts = filtered.slice(start, start + postsPerPage);
-  renderGrid('cat-grid', pagePosts);
-  if (totalPages > 1) {
-    document.getElementById('cat-pagination').innerHTML = buildPagination(currentPage, totalPages, CAT_BASE);
-  }
+  renderPage(currentPage);
 </script>
 
 </body>

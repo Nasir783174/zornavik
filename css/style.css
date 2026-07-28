@@ -779,3 +779,29 @@ img.author-avatar {
 .related-guides ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .related-guides ul li a { display: inline-block; padding: 8px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--accent); font-size: 0.9rem; text-decoration: none; transition: background .2s, border-color .2s; }
 .related-guides ul li a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ---- NAV DROPDOWN (Categories) ---- */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle { display: inline-flex !important; align-items: center; gap: 5px; }
+.nav-dropdown-toggle .caret { width: 8px; height: 5px; fill: currentColor; transition: transform .15s; }
+.nav-dropdown:hover .nav-dropdown-toggle .caret, .nav-dropdown:focus-within .nav-dropdown-toggle .caret { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity .15s, transform .15s, visibility .15s;
+  z-index: 200;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-dropdown-menu a { display: block; padding: 10px 12px; border-radius: 4px; font-size: 0.875rem; }
+.nav-dropdown-menu a:hover { background: var(--gray-100); }

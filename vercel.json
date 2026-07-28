@@ -43,13 +43,14 @@
     { "source": "/blog/best-dyson-cordless-vacuum",    "destination": "/cordless-stick-vacuums/best-dyson-cordless-vacuum","permanent": true },
     { "source": "/blog/best-upright-vacuum",           "destination": "/vacuums/best-upright-vacuum",           "permanent": true },
     { "source": "/blog/best-bissell-vacuum",           "destination": "/vacuums/best-bissell-vacuum",           "permanent": true },
-    { "source": "/blog/best-lightweight-vacuum",       "destination": "/cordless-stick-vacuums/best-lightweight-vacuum","permanent": true },
-    { "source": "/blog",                               "destination": "/",                                      "permanent": true }
+    { "source": "/blog/best-lightweight-vacuum",       "destination": "/cordless-stick-vacuums/best-lightweight-vacuum","permanent": true }
   ],
   "rewrites": [
     { "source": "/category/robot-vacuums/page-:page",       "destination": "/category/robot-vacuums" },
     { "source": "/category/vacuums/page-:page",             "destination": "/category/vacuums" },
     { "source": "/category/cordless-stick-vacuums/page-:page","destination": "/category/cordless-stick-vacuums" },
+    { "source": "/blog/page-:page",                         "destination": "/blog" },
+    { "source": "/products/page-:page",                     "destination": "/products" },
     { "source": "/page-:page",                              "destination": "/index" }
   ]
 }
