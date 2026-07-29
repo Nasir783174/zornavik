@@ -36,8 +36,8 @@
   z-index: 2;
   background: #111;
   color: #fff;
-  font-family: var(--font-head);
-  font-size: 0.6875rem;
+  font-family: var(--font-body);
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
   padding: 4px 10px;
@@ -58,8 +58,8 @@
 .product-card:hover .product-card-img img { transform: scale(1.04); }
 .product-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .pc-cat {
-  font-family: var(--font-head);
-  font-size: 0.6875rem;
+  font-family: var(--font-body);
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -67,29 +67,30 @@
 }
 .pc-title {
   font-family: var(--font-head);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
   color: var(--black);
   transition: color .15s;
   min-height: 2.6em;
 }
 .product-card:hover .pc-title { color: #444; }
 .pc-rating-row { display: flex; align-items: center; gap: 6px; }
-.pc-rating-count { font-size: 0.75rem; color: var(--gray-400); font-family: var(--font-head); }
+.pc-rating-count { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); }
 .pc-price-row { display: flex; align-items: baseline; gap: 8px; margin-top: 2px; }
-.pc-price { font-family: var(--font-head); font-weight: 700; font-size: 1.0625rem; color: var(--black); }
-.pc-price-cta { font-size: 0.875rem; color: #E07B39; }
-.pc-price-old { font-size: 0.8125rem; color: var(--gray-400); text-decoration: line-through; }
+.pc-price { font-family: var(--font-head); font-weight: 700; font-size: 20px; color: var(--black); }
+.pc-price-cta { font-family: var(--font-body); font-size: 16px; color: #E07B39; }
+.pc-price-old { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); text-decoration: line-through; }
 .pc-actions { display: flex; gap: 8px; margin-top: 10px; }
 .pc-btn {
   flex: 1;
   text-align: center;
   padding: 9px 10px;
   border-radius: 5px;
-  font-family: var(--font-head);
-  font-size: 0.8125rem;
+  font-family: var(--font-body);
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1.2;
   transition: all .15s;
 }
 .pc-btn-outline { border: 1px solid var(--gray-200); color: var(--black); }
@@ -103,9 +104,10 @@
   padding: 9px 18px;
   border: 1px solid var(--gray-200);
   border-radius: 20px;
-  font-family: var(--font-head);
-  font-size: 0.8125rem;
+  font-family: var(--font-body);
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1.2;
   color: var(--gray-600);
   transition: all .15s;
   cursor: pointer;
@@ -133,29 +135,29 @@
 .product-hero-img img { width: 100%; height: 100%; object-fit: cover; }
 .product-hero-badge {
   position: absolute; top: 14px; left: 14px;
-  background: #111; color: #fff; font-family: var(--font-head);
-  font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 20px;
+  background: #111; color: #fff; font-family: var(--font-body);
+  font-size: 14px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
 }
 .product-hero-info { display: flex; flex-direction: column; gap: 14px; }
-.product-hero-cat { font-family: var(--font-head); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-400); }
-.product-hero-title { font-family: var(--font-head); font-size: 1.875rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--black); }
-.product-hero-brand { font-size: 0.9375rem; color: var(--gray-600); }
+.product-hero-cat { font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-400); }
+.product-hero-title { font-family: var(--font-head); font-size: 52px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--black); }
+.product-hero-brand { font-family: var(--font-body); font-size: 16px; color: var(--gray-600); }
 .product-hero-brand strong { color: var(--black); }
 .product-hero-rating { display: flex; align-items: center; gap: 10px; }
-.product-hero-rating .rating-num { font-family: var(--font-head); font-weight: 700; font-size: 1rem; }
-.product-hero-rating .rating-count { font-size: 0.8125rem; color: var(--gray-400); font-family: var(--font-head); }
+.product-hero-rating .rating-num { font-family: var(--font-head); font-weight: 700; font-size: 20px; }
+.product-hero-rating .rating-count { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); }
 .product-hero-price-box {
   display: flex; align-items: baseline; gap: 10px; padding: 16px 0;
   border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
 }
-.product-hero-price { font-family: var(--font-head); font-weight: 700; font-size: 1.75rem; color: var(--black); }
-.product-hero-price-old { font-size: 1rem; color: var(--gray-400); text-decoration: line-through; }
-.product-hero-price-note { font-size: 0.8125rem; color: var(--gray-400); font-family: var(--font-head); }
+.product-hero-price { font-family: var(--font-head); font-weight: 700; font-size: 32px; color: var(--black); }
+.product-hero-price-old { font-family: var(--font-body); font-size: 16px; color: var(--gray-400); text-decoration: line-through; }
+.product-hero-price-note { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); }
 .product-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .cta-buy {
   display: inline-flex; align-items: center; gap: 8px;
   background: #FF9900; color: #111 !important;
-  font-family: var(--font-head); font-size: 0.9375rem; font-weight: 700;
+  font-family: var(--font-body); font-size: 16px; font-weight: 600; line-height: 1.2;
   padding: 13px 26px; border-radius: 6px; text-decoration: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12); transition: background .15s;
 }
@@ -163,11 +165,11 @@
 .cta-secondary {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid var(--gray-200); color: var(--black);
-  font-family: var(--font-head); font-size: 0.9375rem; font-weight: 600;
+  font-family: var(--font-body); font-size: 16px; font-weight: 600; line-height: 1.2;
   padding: 13px 22px; border-radius: 6px; transition: all .15s;
 }
 .cta-secondary:hover { border-color: var(--black); background: var(--gray-100); }
-.product-best-for { display: inline-block; font-family: var(--font-head); font-size: 0.8125rem; font-weight: 600; color: #E07B39; }
+.product-best-for { display: inline-block; font-family: var(--font-body); font-size: 16px; font-weight: 600; color: #E07B39; }
 
 /* ---- QUICK SPECS GRID ---- */
 .quick-specs-grid {
@@ -181,12 +183,12 @@
 }
 .qs-item { padding: 16px 14px; border-right: 1px solid var(--gray-200); background: var(--gray-100); }
 .qs-item:last-child { border-right: none; }
-.qs-label { display: block; font-family: var(--font-head); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
-.qs-value { display: block; font-family: var(--font-head); font-size: 0.9375rem; font-weight: 700; color: var(--black); }
+.qs-label { display: block; font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+.qs-value { display: block; font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--black); }
 
 /* ---- FEATURE LIST ---- */
 .feature-list { list-style: none; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 10px; }
-.feature-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 1.0625rem; color: #333; line-height: 1.6; }
+.feature-list li { display: flex; gap: 10px; align-items: flex-start; font-family: var(--font-body); font-size: 18px; font-weight: 400; color: #333; line-height: 1.8; }
 .feature-list li::before { content: "●"; color: #E07B39; font-size: 0.6rem; margin-top: 8px; flex-shrink: 0; }
 
 /* ---- RELATED PRODUCTS ---- */
@@ -202,7 +204,7 @@
   .product-grid { grid-template-columns: 1fr 1fr; }
   .related-products-grid { grid-template-columns: 1fr 1fr; }
   .product-hero { grid-template-columns: 1fr; }
-  .product-hero-title { font-size: 1.5rem; }
+  .product-hero-title { font-size: 36px; }
   .quick-specs-grid { grid-template-columns: repeat(2, 1fr); }
   .qs-item:nth-child(2n) { border-right: none; }
 }
@@ -210,9 +212,9 @@
   .product-grid { grid-template-columns: 1fr; }
   .related-products-grid { grid-template-columns: 1fr; }
   .quick-specs-grid { grid-template-columns: 1fr 1fr; }
-  .product-hero-price { font-size: 1.5rem; }
+  .product-hero-price { font-size: 26px; }
   .filter-tabs { gap: 6px; }
-  .filter-tab { padding: 7px 14px; font-size: 0.75rem; }
+  .filter-tab { padding: 7px 14px; font-size: 14px; }
 }
 
 /* ---- HOMEPAGE: HERO SECTION ---- */
@@ -223,13 +225,13 @@
   gap: 48px;
   align-items: center;
 }
-.hero-eyebrow { font-family: var(--font-head); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #E07B39; margin-bottom: 14px; display: block; }
-.hero-title { font-family: var(--font-head); font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; color: var(--black); margin-bottom: 18px; }
-.hero-subtitle { font-size: 1.0625rem; color: var(--gray-600); line-height: 1.65; max-width: 500px; margin-bottom: 28px; }
+.hero-eyebrow { font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #E07B39; margin-bottom: 14px; display: block; }
+.hero-title { font-family: var(--font-head); font-size: 40px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; color: var(--black); margin-bottom: 18px; }
+.hero-subtitle { font-family: var(--font-body); font-size: 18px; font-weight: 400; color: var(--gray-600); line-height: 1.8; max-width: 500px; margin-bottom: 28px; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
 .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-.hero-stat-num { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--black); display: block; }
-.hero-stat-label { font-size: 0.8125rem; color: var(--gray-400); font-family: var(--font-head); }
+.hero-stat-num { font-family: var(--font-head); font-size: 26px; font-weight: 700; color: var(--black); display: block; }
+.hero-stat-label { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); }
 .hero-visual {
   aspect-ratio: 1 / 1;
   border-radius: 16px;
@@ -265,9 +267,9 @@
 .category-card:hover { border-color: var(--black); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
 .category-card-icon { width: 40px; height: 40px; margin-bottom: 10px; color: #E07B39; }
 .category-card-icon svg { width: 100%; height: 100%; }
-.category-card h3 { font-family: var(--font-head); font-size: 1.125rem; font-weight: 700; color: var(--black); }
-.category-card p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.55; }
-.category-card-count { font-family: var(--font-head); font-size: 0.75rem; font-weight: 600; color: var(--gray-400); margin-top: 4px; }
+.category-card h3 { font-family: var(--font-head); font-size: 32px; font-weight: 700; line-height: 1.25; color: var(--black); }
+.category-card p { font-family: var(--font-body); font-size: 16px; font-weight: 400; color: var(--gray-600); line-height: 1.7; }
+.category-card-count { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--gray-400); margin-top: 4px; }
 
 /* ---- POPULAR COMPARISONS ---- */
 .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -279,9 +281,9 @@
   transition: all .18s;
 }
 .comparison-card:hover { border-color: var(--black); background: var(--gray-100); }
-.comparison-vs { font-family: var(--font-head); font-weight: 700; font-size: 0.8125rem; color: #E07B39; flex-shrink: 0; width: 34px; height: 34px; border: 1px solid #E07B39; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.comparison-text h4 { font-family: var(--font-head); font-size: 0.9375rem; font-weight: 600; color: var(--black); margin-bottom: 3px; }
-.comparison-text p { font-size: 0.8125rem; color: var(--gray-400); }
+.comparison-vs { font-family: var(--font-head); font-weight: 700; font-size: 14px; color: #E07B39; flex-shrink: 0; width: 34px; height: 34px; border: 1px solid #E07B39; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.comparison-text h4 { font-family: var(--font-head); font-size: 26px; font-weight: 700; line-height: 1.3; color: var(--black); margin-bottom: 3px; }
+.comparison-text p { font-family: var(--font-body); font-size: 16px; color: var(--gray-400); }
 
 /* ---- FAQ ACCORDION ---- */
 .faq-list { display: flex; flex-direction: column; gap: 10px; max-width: 820px; }
@@ -290,7 +292,7 @@
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: 18px 22px;
   cursor: pointer;
-  font-family: var(--font-head); font-size: 0.9375rem; font-weight: 600; color: var(--black);
+  font-family: var(--font-head); font-size: 20px; font-weight: 600; line-height: 1.4; color: var(--black);
   background: var(--white);
   transition: background .15s;
 }
@@ -298,11 +300,11 @@
 .faq-question .faq-icon { flex-shrink: 0; width: 18px; height: 18px; transition: transform .2s; color: var(--gray-400); }
 .faq-item.open .faq-question .faq-icon { transform: rotate(45deg); color: #E07B39; }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
-.faq-answer-inner { padding: 0 22px 20px; font-size: 0.9375rem; color: var(--gray-600); line-height: 1.65; }
+.faq-answer-inner { padding: 0 22px 20px; font-family: var(--font-body); font-size: 18px; font-weight: 400; color: var(--gray-600); line-height: 1.8; }
 .faq-item.open .faq-answer { max-height: 400px; }
 
 /* ---- SECTION SUBHEAD (used under section-head h2) ---- */
-.section-sub { font-size: 0.9375rem; color: var(--gray-400); margin: -14px 0 24px; max-width: 620px; }
+.section-sub { font-family: var(--font-body); font-size: 16px; color: var(--gray-400); margin: -14px 0 24px; max-width: 620px; }
 
 @media (max-width: 1024px) {
   .hero-section { grid-template-columns: 1fr; }
@@ -311,6 +313,6 @@
   .comparison-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .hero-title { font-size: 1.875rem; }
+  .hero-title { font-size: 28px; }
   .hero-stats { gap: 20px; }
 }
