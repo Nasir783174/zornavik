@@ -99,22 +99,52 @@
 .pc-btn-solid:hover { background: #c9662b; }
 
 /* ---- CATEGORY / PRODUCT FILTER TABS ---- */
-.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 36px;
+  padding: 6px;
+  background: var(--gray-100);
+  border-radius: 14px;
+  width: fit-content;
+  max-width: 100%;
+}
 .filter-tab {
   padding: 9px 18px;
-  border: 1px solid var(--gray-200);
-  border-radius: 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.2;
+  letter-spacing: 0.01em;
   color: var(--gray-600);
-  transition: all .15s;
+  transition: all .18s ease;
   cursor: pointer;
-  background: var(--white);
+  background: transparent;
+  white-space: nowrap;
 }
-.filter-tab:hover { border-color: var(--black); color: var(--black); }
-.filter-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.filter-tab:hover { color: var(--black); background: var(--white); }
+.filter-tab.active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+
+@media (max-width: 640px) {
+  .filter-tabs {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .filter-tab { flex-shrink: 0; }
+}
 
 /* ---- PRODUCT DETAIL PAGE ---- */
 .product-hero {
