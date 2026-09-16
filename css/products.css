@@ -263,7 +263,7 @@
 .hero-stat-num { font-family: var(--font-head); font-size: 26px; font-weight: 700; color: var(--black); display: block; }
 .hero-stat-label { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); }
 .hero-visual {
-  height: 800px;
+  aspect-ratio: 1 / 1;
   position: relative;
 }
 .hero-visual::before {
@@ -347,7 +347,7 @@
 
 @media (max-width: 1024px) {
   .hero-section { grid-template-columns: 1fr; }
-  .hero-visual { max-width: 340px; height: 340px; margin: 0 auto; }
+  .hero-visual { max-width: 340px; margin: 0 auto; }
   .category-grid { grid-template-columns: 1fr; }
   .comparison-grid { grid-template-columns: 1fr; }
 }
