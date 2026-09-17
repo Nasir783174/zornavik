@@ -133,7 +133,7 @@ function buildPagination(currentPage, totalPages, baseUrl) {
   let html = `<div class="pagination">`;
   html += `<a href="${currentPage > 1 ? baseUrl + (currentPage - 1 === 1 ? '' : '/page-' + (currentPage - 1)) : '#'}" class="page-btn${currentPage === 1 ? ' disabled' : ''}">&#8592;</a>`;
   for (let i = 1; i <= totalPages; i++) {
-    const url = i === 1 ? baseUrl : `${baseUrl}/page-${i}`;
+    const url = i === 1 ? (baseUrl || '/') : `${baseUrl}/page-${i}`;
     html += `<a href="${url}" class="page-btn${i === currentPage ? ' active' : ''}">${i}</a>`;
   }
   html += `<a href="${currentPage < totalPages ? baseUrl + '/page-' + (currentPage + 1) : '#'}" class="page-btn${currentPage === totalPages ? ' disabled' : ''}">&#8594;</a>`;

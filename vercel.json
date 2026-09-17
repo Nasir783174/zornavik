@@ -5,25 +5,25 @@
     {
       "source": "/(.*\\.html)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
       ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
       ]
     },
     {
       "source": "/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
       ]
     },
     {
       "source": "/js/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
       ]
     },
     {
@@ -44,13 +44,5 @@
     { "source": "/blog/best-upright-vacuum",           "destination": "/vacuums/best-upright-vacuum",           "permanent": true },
     { "source": "/blog/best-bissell-vacuum",           "destination": "/vacuums/best-bissell-vacuum",           "permanent": true },
     { "source": "/blog/best-lightweight-vacuum",       "destination": "/cordless-stick-vacuums/best-lightweight-vacuum","permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/category/robot-vacuums/page-:page",       "destination": "/category/robot-vacuums" },
-    { "source": "/category/vacuums/page-:page",             "destination": "/category/vacuums" },
-    { "source": "/category/cordless-stick-vacuums/page-:page","destination": "/category/cordless-stick-vacuums" },
-    { "source": "/blog/page-:page",                         "destination": "/blog" },
-    { "source": "/products/page-:page",                     "destination": "/products" },
-    { "source": "/page-:page",                              "destination": "/index" }
   ]
 }
