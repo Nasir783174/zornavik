@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+cms/node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+
+# Logs
+npm-debug.log*
+*.log

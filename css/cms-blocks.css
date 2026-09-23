@@ -1,0 +1,58 @@
+/* =============================================
+   zornavik.me — CMS blocks
+   Extra styles for the blocks the local CMS can insert.
+   (Pros/Cons, Spec box and Check-Price button already live in style.css.)
+   Only loaded on posts made with the CMS.
+   ============================================= */
+
+/* ---- Quick Picks (jump list at the top of a review) ---- */
+.article-content .quick-picks {
+  background: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+}
+.article-content .quick-picks-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 14px;
+  color: #111;
+}
+.article-content .quick-picks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+}
+.article-content .quick-picks-list li {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+.article-content .quick-picks-list a {
+  color: #E07B39;
+  text-decoration: none;
+}
+.article-content .quick-picks-list a:hover { color: #E07B39; text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .article-content .quick-picks { padding: 20px 18px; }
+  .article-content .quick-picks-list { grid-template-columns: 1fr; }
+}
+
+/* ---- Text blocks the editor offers that style.css does not style yet ---- */
+.article-content blockquote {
+  border-left: 3px solid #111;
+  margin: 1.5rem 0;
+  padding: 4px 0 4px 20px;
+}
+.article-content blockquote p { color: #444; margin-bottom: 0.5rem; }
+.article-content li > ul,
+.article-content li > ol { margin-top: 0.4rem; margin-bottom: 0.4rem; }
+.article-content h2, .article-content h3, .article-content h4 { scroll-margin-top: 88px; }

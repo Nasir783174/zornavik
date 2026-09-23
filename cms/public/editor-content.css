@@ -1,0 +1,31 @@
+/* Styles applied INSIDE the editor iframe, on top of the website's own style.css */
+html { background: #fff; }
+body.article-content {
+  margin: 0 auto !important;
+  padding: 8px 40px 120px;
+  max-width: 820px;
+  font-size: 18px;
+}
+body.article-content > *:first-child { margin-top: 0; }
+body.article-content .cms-widget {
+  position: relative;
+  border-radius: 6px;
+  outline: 1px dashed transparent;
+  outline-offset: 6px;
+  margin: 1.25rem 0;
+  cursor: default;
+}
+body.article-content .cms-widget:hover { outline-color: #c9cdd4; }
+body.article-content .cms-widget[data-mce-selected],
+body.article-content .cms-widget.mce-active { outline: 2px solid #E07B39; }
+body.article-content .cms-widget .buy-btn { pointer-events: none; }
+body.article-content .cms-widget .quick-picks { margin-bottom: 0; }
+body.article-content .cms-widget .pros-cons { margin: 0; }
+body.article-content .cms-widget .specs-box { margin: 0; }
+body.article-content img { cursor: default; }
+body.article-content h2, body.article-content h3, body.article-content h4 { margin-top: 2rem; margin-bottom: 0.75rem; }
+body.article-content table { display: table; }
+/* placeholder */
+.mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+  color: #98a1ae; font-family: Inter, system-ui, sans-serif;
+}

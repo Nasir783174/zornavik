@@ -1,0 +1,22 @@
+{
+  "name": "zornavik-cms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local blog CMS for zornavik.me — writes static HTML straight into this website folder.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "express": "^4.21.2",
+    "tinymce": "^7.9.1"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.35.4"
+  }
+}
