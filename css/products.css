@@ -336,6 +336,7 @@
   background: var(--white);
   transition: background .15s;
 }
+.faq-question h3 { font: inherit; margin: 0; color: inherit; }
 .faq-question:hover { background: var(--gray-100); }
 .faq-question .faq-icon { flex-shrink: 0; width: 18px; height: 18px; transition: transform .2s; color: var(--gray-400); }
 .faq-item.open .faq-question .faq-icon { transform: rotate(45deg); color: #E07B39; }
