@@ -1,5 +1,5 @@
 'use strict';
-/* Zornavik Studio — dashboard (plain JavaScript, no build step) */
+/* Zornavik Studio - dashboard (plain JavaScript, no build step) */
 
 /* ------------------------------------------------------------------ */
 /* helpers                                                             */
@@ -16,9 +16,9 @@ function slugify(str, max = 90) {
 const pad2 = (n) => String(n).padStart(2, '0');
 function todayISO() { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; }
 function fmtDate(iso) {
-  if (!iso) return '—';
+  if (!iso) return '-';
   const d = new Date(String(iso).slice(0, 10) + 'T00:00:00Z');
-  return isNaN(d) ? '—' : d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+  return isNaN(d) ? '-' : d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 }
 function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
@@ -93,7 +93,7 @@ let S = null;      // server state
 let E = null;      // editor state (only while the editor is open)
 
 const siteUrl = (p) => `http://localhost:${S.sitePort}${p || ''}`;
-const catLabel = (slug) => { const c = S.categories.find((x) => x.slug === slug); return c ? c.label : (slug || '—'); };
+const catLabel = (slug) => { const c = S.categories.find((x) => x.slug === slug); return c ? c.label : (slug || '-'); };
 async function refresh() {
   S = await api('GET', '/api/bootstrap');
   $('#site-link').href = siteUrl('/');
@@ -522,7 +522,7 @@ function renderSeo() {
 }
 function renderAdvPanel() {
   const p = E.post;
-  $('#pnl-adv').innerHTML = `<div class="field"><label>Read time <span class="hint">minutes — leave blank to calculate automatically</span></label><input type="number" min="1" id="pp-rt" value="${p.readTimeOverride || ''}" placeholder="Auto"></div>
+  $('#pnl-adv').innerHTML = `<div class="field"><label>Read time <span class="hint">minutes - leave blank to calculate automatically</span></label><input type="number" min="1" id="pp-rt" value="${p.readTimeOverride || ''}" placeholder="Auto"></div>
     <label class="check"><input type="checkbox" id="pp-disc" ${p.showDisclosure ? 'checked' : ''}> Show the affiliate disclosure box</label>
     <label class="check"><input type="checkbox" id="pp-auth" ${p.showAuthor ? 'checked' : ''}> Show the author card at the end</label>
     <label class="check"><input type="checkbox" id="pp-rel" ${p.showRelated ? 'checked' : ''}> Show "Related Guides" at the end</label>
@@ -542,7 +542,7 @@ function renderChecklist() {
   push(!!p.title, p.title ? `Title added (${p.title.length} characters)` : 'Add a title');
   push(!!p.slug, p.slug ? `Slug: ${p.slug}` : 'Add a slug');
   push(!!p.category, p.category ? `Category: ${catLabel(p.category)}` : 'Choose a category');
-  push(words >= 300, `${words.toLocaleString()} words${words < 300 ? ' — aim for 300+' : ''}`);
+  push(words >= 300, `${words.toLocaleString()} words${words < 300 ? ' - aim for 300+' : ''}`);
   push(!!p.featuredImage, p.featuredImage ? 'Featured image set' : 'No featured image yet');
   push(!!(p.metaTitle || p.title), p.metaTitle ? 'Meta title set' : 'Meta title will default to the post title');
   push(!!(p.metaDescription || p.excerpt), (p.metaDescription || p.excerpt) ? 'Meta description set' : 'Add a meta description');
@@ -572,7 +572,7 @@ async function doPublish() {
     document.querySelector('.doc').innerHTML = `Editing <b>${esc(p.title)}</b>`;
     renderPublishPanel();
     let msg = r.firstPublish ? 'Published.' : 'Updated.';
-    if (r.moved) msg += ` Moved from ${r.moved} — a redirect was added.`;
+    if (r.moved) msg += ` Moved from ${r.moved} - a redirect was added.`;
     if (r.missingAlt) msg += ` ${r.missingAlt} image${r.missingAlt > 1 ? 's are' : ' is'} missing alt text.`;
     toast(msg, { href: siteUrl(r.url), linkText: 'View', ms: 8000 });
     const linkBtn = document.querySelector('.topbar').querySelector('a[target="_blank"]');
@@ -600,8 +600,8 @@ function widgetHtml(kind, data) {
     return `<div class="pros-cons"><div class="pros"><h4>Pros</h4><ul>${li(data.pros)}</ul></div><div class="cons"><h4>Cons</h4><ul>${li(data.cons)}</ul></div></div>`;
   }
   if (kind === 'quick-picks') {
-    const li = (data.rows || []).filter((r) => r.text).map((r) => `<li>&#8594; ${r.anchor ? `<a href="#${esc(r.anchor)}">${esc(r.text)}</a>` : esc(r.text)}${r.note ? ` — <em>${esc(r.note)}</em>` : ''}</li>`).join('');
-    return `<div class="quick-picks"><p class="quick-picks-title">${esc(data.title || '▾ Quick Picks — Jump to Any Review')}</p><ul class="quick-picks-list">${li}</ul></div>`;
+    const li = (data.rows || []).filter((r) => r.text).map((r) => `<li>&#8594; ${r.anchor ? `<a href="#${esc(r.anchor)}">${esc(r.text)}</a>` : esc(r.text)}${r.note ? ` - <em>${esc(r.note)}</em>` : ''}</li>`).join('');
+    return `<div class="quick-picks"><p class="quick-picks-title">${esc(data.title || '▾ Quick Picks - Jump to Any Review')}</p><ul class="quick-picks-list">${li}</ul></div>`;
   }
   return '';
 }
@@ -630,7 +630,7 @@ async function initEditor(post) {
       block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4',
       content_css: ['/css/style.css', '/_cms/editor-content.css'],
       body_class: 'article-content',
-      placeholder: 'Type / for nothing yet — paste your draft from Google Docs, or start writing…',
+      placeholder: 'Type / for nothing yet - paste your draft from Google Docs, or start writing…',
       paste_data_images: true,
       paste_preprocess: (plugin, args) => { args.content = args.content.replace(/<o:p>[\s\S]*?<\/o:p>/g, ''); },
       table_default_attributes: {},
@@ -781,13 +781,13 @@ function quickPicksRowsFromNode(node) {
   return [...node.querySelectorAll('.quick-picks-list li')].map((li) => {
     const a = li.querySelector('a'), em = li.querySelector('em');
     const clone = li.cloneNode(true); if (clone.querySelector('a')) clone.querySelector('a').remove(); if (clone.querySelector('em')) clone.querySelector('em').remove();
-    return { text: a ? a.textContent.trim() : clone.textContent.replace(/^\s*→?\s*/, '').replace(/—\s*$/, '').trim(), anchor: a ? a.getAttribute('href').replace(/^#/, '') : '', note: em ? em.textContent.trim() : '' };
+    return { text: a ? a.textContent.trim() : clone.textContent.replace(/^\s*→?\s*/, '').replace(/-\s*$/, '').trim(), anchor: a ? a.getAttribute('href').replace(/^#/, '') : '', note: em ? em.textContent.trim() : '' };
   });
 }
 function openQuickPicksDialog(ed, node) {
   if (!node) ensureEditableCaret(ed);
   const bookmark = node ? null : ed.selection.getBookmark(2, true);
-  const title = node ? node.querySelector('.quick-picks-title').textContent.trim() : '▾ Quick Picks — Jump to Any Review';
+  const title = node ? node.querySelector('.quick-picks-title').textContent.trim() : '▾ Quick Picks - Jump to Any Review';
   let rows = quickPicksRowsFromNode(node);
   const headings = headingOptionsFromEditor(ed);
   const body = document.createElement('div');
@@ -797,7 +797,7 @@ function openQuickPicksDialog(ed, node) {
       ${headings.length ? '' : '<p class="hint" style="margin-top:8px">Add H2/H3 headings first so you can link a row to a section.</p>'}`;
     const rowsEl = $('[data-rows]', body);
     rowsEl.innerHTML = rows.map((r, i) => `<div class="qp-row"><div class="anchor"><label>Text</label><input type="text" data-t="${i}" value="${esc(r.text)}" placeholder="Product name"></div>
-      <div><label>Jumps to</label><select data-a="${i}"><option value="">— none —</option>${headings.map((h) => `<option value="${esc(h.id)}" ${r.anchor === h.id ? 'selected' : ''}>${esc(h.text)}</option>`).join('')}</select></div>
+      <div><label>Jumps to</label><select data-a="${i}"><option value="">- none -</option>${headings.map((h) => `<option value="${esc(h.id)}" ${r.anchor === h.id ? 'selected' : ''}>${esc(h.text)}</option>`).join('')}</select></div>
       <div><label>Note</label><input type="text" data-n="${i}" value="${esc(r.note)}" placeholder="Best overall"></div>
       <button type="button" class="btn btn-sm btn-danger" data-rm="${i}">✕</button></div>`).join('');
     rowsEl.querySelectorAll('[data-t]').forEach((i) => i.oninput = () => rows[+i.dataset.t].text = i.value);

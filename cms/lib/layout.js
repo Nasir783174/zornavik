@@ -200,7 +200,7 @@ ${related.map((r) => `            <li><a href="${esc(r.slug)}">${esc(unesc(r.tit
             </a>`;
 
   const previewBanner = preview
-    ? `\n<div style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#111;color:#fff;font:600 14px/1.4 Inter,system-ui,sans-serif;padding:10px 16px;text-align:center;">Preview — this page is not published yet</div>\n`
+    ? `\n<div style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#111;color:#fff;font:600 14px/1.4 Inter,system-ui,sans-serif;padding:10px 16px;text-align:center;">Preview - this page is not published yet</div>\n`
     : '';
 
   return `<!DOCTYPE html>
@@ -286,7 +286,7 @@ function renderCategoryPage({ cat, entries, page, totalPages, perPage, settings,
   const base = `/category/${cat.slug}`;
   const url = settings.siteUrl + (page === 1 ? base : `${base}/page-${page}`);
   const lower = cat.label.toLowerCase();
-  const title = page === 1 ? cat.metaTitle : `${cat.h1} — Page ${page} | ${settings.siteName}`;
+  const title = page === 1 ? cat.metaTitle : `${cat.h1} - Page ${page} | ${settings.siteName}`;
   const desc = page === 1 ? cat.metaDescription : `More ${lower} reviews and buying guides from ${settings.siteName}, page ${page} of ${lower}.`;
   const ogTitle = page === 1 ? (cat.ogTitle || cat.metaTitle) : title;
   const ogDesc = page === 1 ? (cat.ogDescription || cat.metaDescription) : desc;

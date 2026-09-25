@@ -1,5 +1,5 @@
 /* =============================================
-   zornavik.me — Main JS
+   zornavik.me - Main JS
    Hamburger menu only. No heavy logic.
    ============================================= */
 

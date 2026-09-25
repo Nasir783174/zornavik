@@ -41,17 +41,17 @@ async function processContent(html, ctx = {}) {
   const siteHost = hostOf(siteUrl);
   const $ = cheerio.load(String(html || ''), null, false);
 
-  /* 1 — throw away anything that should never be in an article */
+  /* 1 - throw away anything that should never be in an article */
   $('script, style, iframe, object, embed, form, input, button, select, textarea, link, meta, noscript, colgroup, col').remove();
   $('*').each((_, el) => {
     for (const name of Object.keys(el.attribs || {})) if (/^on/i.test(name)) $(el).removeAttr(name);
   });
 
-  /* 2 — unwrap dashboard widget wrappers (keep the markup inside) */
+  /* 2 - unwrap dashboard widget wrappers (keep the markup inside) */
   $('[data-cms-widget]').each((_, el) => { $(el).replaceWith($(el).contents()); });
 
-  /* 3 — normalise tags */
-  /* Google Docs / Word mark bold + italic with inline styles on <span>s — turn those into real <strong>/<em> */
+  /* 3 - normalise tags */
+  /* Google Docs / Word mark bold + italic with inline styles on <span>s - turn those into real <strong>/<em> */
   $('span[style]').each((_, el) => {
     const st = String($(el).attr('style') || '').toLowerCase();
     const bold = /font-weight:\s*(bold|[6-9]00)/.test(st);
@@ -78,7 +78,7 @@ async function processContent(html, ctx = {}) {
     else rename(el, 'p');
   });
 
-  /* 4 — list items / table cells: Google Docs wraps their text in <p> */
+  /* 4 - list items / table cells: Google Docs wraps their text in <p> */
   $('li').each((_, el) => {
     const kids = $(el).children('p');
     if (kids.length === 1 && $(el).contents().length === 1) $(kids[0]).replaceWith($(kids[0]).contents());
@@ -89,7 +89,7 @@ async function processContent(html, ctx = {}) {
     kids.each((i, p) => { if (i < kids.length - 1) $(p).after('<br>'); $(p).replaceWith($(p).contents()); });
   });
 
-  /* 5 — attribute + class whitelist */
+  /* 5 - attribute + class whitelist */
   $('*').each((_, el) => {
     const tag = el.name;
     const allowed = ATTRS[tag] || [];
@@ -103,14 +103,14 @@ async function processContent(html, ctx = {}) {
     if (href && /^\s*(javascript|data|vbscript):/i.test(href)) $(el).removeAttr('href');
   });
 
-  /* 6 — empty blocks, trailing <br> */
+  /* 6 - empty blocks, trailing <br> */
   $('p').each((_, el) => { if (isBlank($, el)) $(el).remove(); });
   $('p').each((_, el) => {
     let last = $(el).contents().last();
     while (last.length && last[0].type === 'tag' && last[0].name === 'br') { last.remove(); last = $(el).contents().last(); }
   });
 
-  /* 7 — images: unwrap <p><img></p>, clean src, dimensions, lazy loading */
+  /* 7 - images: unwrap <p><img></p>, clean src, dimensions, lazy loading */
   $('p').each((_, el) => {
     const kids = $(el).contents().filter((__, n) => !(n.type === 'text' && !n.data.trim()));
     if (kids.length === 1 && kids[0].type === 'tag' && kids[0].name === 'img') $(el).replaceWith(kids[0]);
@@ -130,7 +130,7 @@ async function processContent(html, ctx = {}) {
     }
   }
 
-  /* 8 — links (Google Docs wraps every link in a google.com/url?q=... redirect on copy — unwrap it) */
+  /* 8 - links (Google Docs wraps every link in a google.com/url?q=... redirect on copy - unwrap it) */
   $('a[href]').each((_, el) => {
     let href = ($(el).attr('href') || '').trim();
     const gm = /^https?:\/\/(?:www\.)?google\.[a-z.]+\/url\?(?:[^#&]*&)*q=([^&]+)/i.exec(href);
@@ -151,7 +151,7 @@ async function processContent(html, ctx = {}) {
     if (kids.length === 1 && kids[0].type === 'tag' && kids[0].name === 'a' && $(kids[0]).hasClass('buy-btn')) $(el).replaceWith(kids[0]);
   });
 
-  /* 9 — tables need a header row */
+  /* 9 - tables need a header row */
   $('table').each((_, el) => {
     const $t = $(el);
     $t.find('thead, tbody, tfoot').each((__, s) => { /* flatten so we can rebuild */ $(s).replaceWith($(s).contents()); });
@@ -164,13 +164,13 @@ async function processContent(html, ctx = {}) {
     $t.empty().append(thead).append(tbody);
   });
 
-  /* headings: Google Docs marks its Heading styles as bold spans too — that's redundant once it's an <h2> */
+  /* headings: Google Docs marks its Heading styles as bold spans too - that's redundant once it's an <h2> */
   $('h2, h3, h4, h5, h6').each((_, el) => {
     const $el = $(el);
     if ($el.children().length === 1 && $el.children().first().is('strong')) $el.children().first().replaceWith($el.children().first().contents());
   });
 
-  /* 10 — heading ids (used by Quick Picks and "jump to" links) */
+  /* 10 - heading ids (used by Quick Picks and "jump to" links) */
   const used = new Set();
   $('[id]').each((_, el) => { if (/^h[2-6]$/.test(el.name)) used.add($(el).attr('id')); });
   const headings = [];
@@ -187,7 +187,7 @@ async function processContent(html, ctx = {}) {
     headings.push({ level: Number(el.name[1]), text, id });
   });
 
-  /* 11 — FAQ block → structured data */
+  /* 11 - FAQ block → structured data */
   const faqs = [];
   const top = $.root().children().toArray();
   const faqIdx = top.findIndex((n) => n.name === 'h2' && /^(faqs?\b|frequently asked)/i.test(textOf($, n)));
@@ -202,7 +202,7 @@ async function processContent(html, ctx = {}) {
   }
   const faqItems = faqs.map((f) => ({ q: f.q, a: f.a.join(' ').trim() })).filter((f) => f.q && f.a);
 
-  /* 12 — serialise with a blank line between top-level blocks */
+  /* 12 - serialise with a blank line between top-level blocks */
   const parts = [];
   $.root().contents().each((_, n) => {
     if (n.type === 'text') { if (n.data.trim()) parts.push(`<p>${U.esc(n.data.trim())}</p>`); return; }

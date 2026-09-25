@@ -19,7 +19,7 @@ const DEFAULT_SETTINGS = {
   disclosure:
     'Zornavik participates in the Amazon Services LLC Associates Program and other affiliate programs. ' +
     'If you click a link on this page and make a purchase, we may earn a small commission at no extra cost to you. ' +
-    'This does not influence our recommendations — we only feature products we genuinely believe offer value.',
+    'This does not influence our recommendations - we only feature products we genuinely believe offer value.',
   author: {
     name: 'Liam Adrian Foster',
     role: 'Vacuum Expert & Reviewer',
@@ -70,7 +70,7 @@ function saveSettings(input) {
 /* ------------------------------------------------------------------ */
 /* Categories                                                          */
 /* ------------------------------------------------------------------ */
-const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', mdash: '—', ndash: '–', rsquo: '’', lsquo: '‘', hellip: '…' };
+const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', mdash: '-', ndash: '–', rsquo: '’', lsquo: '‘', hellip: '…' };
 function decodeEntities(s) {
   return String(s || '').replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (m, e) => {
     if (e[0] === '#') {
@@ -146,7 +146,7 @@ function buildCategory(input, settings, existing) {
     slug,
     label,
     h1: s(input.h1) || base.h1 || `${label} Reviews`,
-    intro: s(input.intro) || base.intro || `Expert reviews and buying guides for ${lower} — by ${author}.`,
+    intro: s(input.intro) || base.intro || `Expert reviews and buying guides for ${lower} - by ${author}.`,
     sectionTitle: s(input.sectionTitle) || base.sectionTitle || `All ${label} Reviews`,
     metaTitle: s(input.metaTitle) || base.metaTitle || `Best ${label} Reviews & Buying Guides | ${settings.siteName}`,
     metaDescription:

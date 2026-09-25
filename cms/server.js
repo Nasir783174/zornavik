@@ -1,9 +1,9 @@
 'use strict';
 /*
- * Zornavik CMS — local blog editor.
+ * Zornavik CMS - local blog editor.
  *   Dashboard:      http://localhost:3000
  *   Site preview:   http://localhost:3001   (your real website files, served locally)
- * Nothing here is deployed — Vercel only ever sees the HTML/CSS/JS/images the CMS writes.
+ * Nothing here is deployed - Vercel only ever sees the HTML/CSS/JS/images the CMS writes.
  */
 const fs = require('fs');
 const path = require('path');
@@ -241,7 +241,7 @@ function listen(server, port, label) {
   console.log(`  ▸ Dashboard      ${url}`);
   console.log(`  ▸ Site preview   http://localhost:${SITE_PORT}`);
   console.log(`  ▸ Website folder ${P.ROOT}`);
-  console.log(I.hasSharp() ? '  ▸ Images         JPG/PNG uploads are converted to WebP automatically' : '  ▸ Images         (sharp not installed — uploads are saved as they are)');
+  console.log(I.hasSharp() ? '  ▸ Images         JPG/PNG uploads are converted to WebP automatically' : '  ▸ Images         (sharp not installed - uploads are saved as they are)');
   console.log('\n  Press Ctrl+C to stop.\n');
   openBrowser(url);
 })();

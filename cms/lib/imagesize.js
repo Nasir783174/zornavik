@@ -1,5 +1,5 @@
 'use strict';
-/* Tiny image-dimension reader (PNG, JPEG, GIF, WebP) — no native dependency needed. */
+/* Tiny image-dimension reader (PNG, JPEG, GIF, WebP) - no native dependency needed. */
 const fs = require('fs');
 
 function fromBuffer(b) {

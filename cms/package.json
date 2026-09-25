@@ -2,7 +2,7 @@
   "name": "zornavik-cms",
   "version": "1.0.0",
   "private": true,
-  "description": "Local blog CMS for zornavik.me — writes static HTML straight into this website folder.",
+  "description": "Local blog CMS for zornavik.me - writes static HTML straight into this website folder.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

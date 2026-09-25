@@ -6,7 +6,7 @@ const U = require('./util');
 const { fromBuffer, imageSize } = require('./imagesize');
 
 let sharp = null;
-try { sharp = require('sharp'); } catch (e) { /* optional — images are then saved as they are */ }
+try { sharp = require('sharp'); } catch (e) { /* optional - images are then saved as they are */ }
 
 const ALLOWED = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.avif']);
 const MAX_WIDTH = 1600;
@@ -70,7 +70,7 @@ function listImages() {
   return out.sort((a, b) => b.mtime - a.mtime);
 }
 
-/* Google Docs sometimes pastes images as base64 — save them as real files. */
+/* Google Docs sometimes pastes images as base64 - save them as real files. */
 async function inlineDataImages(html, baseName) {
   const re = /(<img\b[^>]*?\bsrc=")data:image\/([a-z0-9.+-]+);base64,([A-Za-z0-9+/=\s]+)(")/gi;
   const jobs = [];

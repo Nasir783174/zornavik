@@ -1,5 +1,5 @@
 /* =============================================
-   zornavik.me — Product Registry
+   zornavik.me - Product Registry
    Single source of truth for all product review pages.
    Product URLs: /products/<slug>
    Rendering is controlled entirely from this file + main.js helpers below.
@@ -49,10 +49,10 @@ const PRODUCT_REGISTRY = [
     affiliateUrl: "https://amzn.to/4b5OddZ",
     slugUrl: "/products/timitrek-cordless-vacuum-cleaner",
     quickSpecs: [["Suction Power", "50 kPa"], ["Motor", "600W"], ["Battery Runtime", "Up to 60 min"], ["Filter", "HEPA"], ["Warranty", "2 Years"]],
-    features: ["Self-standing design — no wall dock required", "3 selectable suction modes", "LED display with green floor headlights", "180° swivel floor head for tight corners", "Wall-mount storage dock included"],
+    features: ["Self-standing design - no wall dock required", "3 selectable suction modes", "LED display with green floor headlights", "180° swivel floor head for tight corners", "Wall-mount storage dock included"],
     pros: ["Genuinely self-standing, no dock needed to store it", "Bright floor lights reveal hidden dust", "Strong suction relative to the price"],
     cons: ["Max suction mode burns through the battery in ~15 minutes", "No dedicated onboard accessory storage"],
-    summary: "A budget-friendly, self-standing stick vacuum with an unusually strong 4.7-star average. Great for daily quick cleanups — just save the max mode for spot-cleaning.",
+    summary: "A budget-friendly, self-standing stick vacuum with an unusually strong 4.7-star average. Great for daily quick cleanups - just save the max mode for spot-cleaning.",
   },
   {
     serial: 3,
@@ -76,7 +76,7 @@ const PRODUCT_REGISTRY = [
     features: ["Wet & dry pickup with reusable cloth and foam filters", "Stainless-steel tank body", "Built-in blower function", "4 caster wheels for easy movement", "Onboard accessory storage"],
     pros: ["Compact size compared to full-size shop vacs", "Handles wet spills and dry debris equally well", "Wheeled, portable design"],
     cons: ["Power cord is fairly short at 8 ft", "Hose and extension wands feel a little flimsy", "Louder than a typical household vacuum"],
-    summary: "A mid-size wet/dry shop vacuum that lands neatly between bulky industrial units and small handhelds — a strong fit for garages, workshops and vehicle detailing.",
+    summary: "A mid-size wet/dry shop vacuum that lands neatly between bulky industrial units and small handhelds - a strong fit for garages, workshops and vehicle detailing.",
   },
   {
     serial: 4,
@@ -100,7 +100,7 @@ const PRODUCT_REGISTRY = [
     features: ["10-in-1 attachment kit, including a dryer-vent cleaner", "270° rotating anti-tangle brush", "LED touch-screen display", "Detachable rechargeable battery", "Extra HEPA filter set included in the box"],
     pros: ["Huge attachment kit for the price", "Lightweight and easy for daily use", "Spare filter included at no extra cost"],
     cons: ["Struggles on thick, high-pile carpet", "Newer listing, so long-term durability is still unproven"],
-    summary: "A feature-packed budget cordless vacuum whose 10-in-1 accessory kit covers everything from dryer vents to car interiors — best suited to hard floors and light carpet.",
+    summary: "A feature-packed budget cordless vacuum whose 10-in-1 accessory kit covers everything from dryer vents to car interiors - best suited to hard floors and light carpet.",
   },
   {
     serial: 5,
@@ -124,7 +124,7 @@ const PRODUCT_REGISTRY = [
     features: ["10.5-inch cleaning width", "Large 1.7 L dust cup", "Includes crevice tool and dusting brush", "Performs well on hard floors and low-pile carpet", "No motorized brushroll"],
     pros: ["Very affordable and lightweight at 7.7 lbs", "Large dust cup means less frequent emptying", "Washable filter keeps ongoing costs low"],
     cons: ["No motorized brushroll, so it's weaker on thick plush carpet", "No HEPA filtration", "Runs fairly loud at around 82 dB"],
-    summary: "One of the best-reviewed budget uprights on Amazon, with nearly 40,000 ratings backing it up — an easy, affordable pick for hard floors, low-pile carpet and everyday pet hair.",
+    summary: "One of the best-reviewed budget uprights on Amazon, with nearly 40,000 ratings backing it up - an easy, affordable pick for hard floors, low-pile carpet and everyday pet hair.",
   },
   {
     serial: 6,
@@ -148,7 +148,7 @@ const PRODUCT_REGISTRY = [
     features: ["Self-standing design", "Touch-screen display", "Anti-tangle V-shaped brush", "Cleans car interiors and keyboards", "Converts to a handheld vacuum"],
     pros: ["Long 65-minute runtime for this class", "3-year warranty is well above average", "Excellent suction-to-price ratio"],
     cons: ["Manufacturer doesn't disclose exact weight", "Fewer long-term reviews than more established brands"],
-    summary: "A strong-suction, long-runtime cordless vacuum backed by an unusually long 3-year warranty — frequently available at a steep discount through Prime pricing.",
+    summary: "A strong-suction, long-runtime cordless vacuum backed by an unusually long 3-year warranty - frequently available at a steep discount through Prime pricing.",
   },
   {
     serial: 7,
@@ -169,7 +169,7 @@ const PRODUCT_REGISTRY = [
     affiliateUrl: "https://amzn.to/4x61hbP",
     slugUrl: "/products/kttldrn-cordless-vacuum-cleaner",
     quickSpecs: [["Motor", "650W Brushless"], ["Suction Power", "55 kPa"], ["Battery Runtime", "Up to 70 min"], ["Dust Cup", "1.8 L"], ["Filter", "HEPA"]],
-    features: ["OLED display", "Self-standing design", "Anti-tangle brush head", "High 55 kPa rated suction", "1.8 L dust cup — larger than most cordless models"],
+    features: ["OLED display", "Self-standing design", "Anti-tangle brush head", "High 55 kPa rated suction", "1.8 L dust cup - larger than most cordless models"],
     pros: ["Longest advertised runtime in this roundup at 70 minutes", "Large dust cup means fewer stops to empty it", "High suction rating on paper"],
     cons: ["Small review sample size so far", "Full accessory list isn't clearly specified"],
     summary: "On paper, the longest-runtime and largest-capacity cordless vacuum in our lineup. Worth watching as more reviews come in, though it's currently a newer, less-proven listing.",
@@ -196,7 +196,7 @@ const PRODUCT_REGISTRY = [
     features: ["LED display", "6-layer sealed filtration system", "Includes extension wand and handheld unit", "Multiple cleaning attachments"],
     pros: ["6-layer filtration seals in fine dust", "Converts easily to a handheld unit", "Reasonable price point"],
     cons: ["Lowest average rating in this roundup", "Suction and runtime trail similarly priced competitors"],
-    summary: "A budget cordless option with a solid filtration system, though its rating lags behind other vacuums at the same price — worth comparing against the Timitrek or NuYupo first.",
+    summary: "A budget cordless option with a solid filtration system, though its rating lags behind other vacuums at the same price - worth comparing against the Timitrek or NuYupo first.",
   },
   {
     serial: 9,
@@ -220,7 +220,7 @@ const PRODUCT_REGISTRY = [
     features: ["Self-standing design", "LED screen", "Large-capacity dust cup", "Includes floor brush, crevice tool and 2-in-1 combo brush"],
     pros: ["Lightweight and easy to store upright", "Good suction for the price", "Amazon's Choice badge with a strong rating"],
     cons: ["Cotton filter (not HEPA) may need more frequent cleaning", "Dust cup capacity isn't officially listed"],
-    summary: "A lightweight, self-standing cordless vacuum aimed squarely at dorms, apartments and small homes — simple to store and easy to live with day to day.",
+    summary: "A lightweight, self-standing cordless vacuum aimed squarely at dorms, apartments and small homes - simple to store and easy to live with day to day.",
   },
   {
     serial: 10,
@@ -268,7 +268,7 @@ const PRODUCT_REGISTRY = [
     features: ["3 suction modes: Eco, Normal and Turbo", "Wall-mounted charging dock", "Works on marble and hard floors", "Includes user manual and multiple attachments"],
     pros: ["Strong early rating at 4.6/5", "Three clearly defined power modes", "Good runtime in Eco mode"],
     cons: ["Very new listing with only a handful of reviews so far", "Slightly heavier packaged weight at 7.9 lbs"],
-    summary: "A newly listed cordless vacuum with an early 4.6-star average — promising, though it's worth watching for more reviews before it earns a top-tier recommendation.",
+    summary: "A newly listed cordless vacuum with an early 4.6-star average - promising, though it's worth watching for more reviews before it earns a top-tier recommendation.",
   },
   {
     serial: 12,
@@ -292,7 +292,7 @@ const PRODUCT_REGISTRY = [
     features: ["Anti-tangle design built specifically for pet hair", "2-in-1 pet tool and crevice tool", "Wall hook for storage", "5-stage filtration"],
     pros: ["Purpose-built anti-tangle brush for pet owners", "Nearly 14,000 ratings back up its reliability", "From a trusted air-quality brand"],
     cons: ["Turbo mode runtime is short at around 12 minutes", "Suction rating isn't disclosed by the manufacturer"],
-    summary: "Levoit brings its air-quality expertise to a cordless vacuum built specifically to resist pet-hair tangles — one of the most-reviewed picks in this entire guide.",
+    summary: "Levoit brings its air-quality expertise to a cordless vacuum built specifically to resist pet-hair tangles - one of the most-reviewed picks in this entire guide.",
   },
   {
     serial: 13,
@@ -314,9 +314,9 @@ const PRODUCT_REGISTRY = [
     slugUrl: "/products/shark-navigator-lift-away-nv360",
     quickSpecs: [["Model", "NV360"], ["Power Source", "Corded Electric"], ["Dust Cup", "0.9 qt"], ["Filter", "HEPA + Anti-Allergen Seal"], ["Included", "Upholstery + Crevice Tool"]],
     features: ["Lift-Away detachable canister for portable cleaning", "Swivel steering", "Anti-Allergen Complete Seal technology", "Washable HEPA filter"],
-    pros: ["Over 54,000 ratings — one of the most trusted uprights on Amazon", "Lift-Away pod detaches for stairs and furniture", "Swivel steering handles tight corners easily"],
+    pros: ["Over 54,000 ratings - one of the most trusted uprights on Amazon", "Lift-Away pod detaches for stairs and furniture", "Swivel steering handles tight corners easily"],
     cons: ["No cordless convenience", "Bagless bin needs regular emptying in larger homes"],
-    summary: "The Shark Navigator Lift-Away is a long-running Amazon best-seller for good reason — reliable suction, versatile Lift-Away portability, and true HEPA filtration for allergy sufferers.",
+    summary: "The Shark Navigator Lift-Away is a long-running Amazon best-seller for good reason - reliable suction, versatile Lift-Away portability, and true HEPA filtration for allergy sufferers.",
   },
   {
     serial: 14,
@@ -340,7 +340,7 @@ const PRODUCT_REGISTRY = [
     features: ["Telescoping metal wand", "2-in-1 crevice tool / dusting brush", "Compact canister body", "Washable filter"],
     pros: ["Large 2.5 L dust cup means fewer empties", "Compact canister is easy to store", "Nearly 30,400 ratings at 4.3 stars"],
     cons: ["Corded only, no cordless convenience", "Fewer attachments than pricier models"],
-    summary: "A budget-friendly bagless canister with a surprisingly large dust cup and a huge review base — solid for hard floors, stairs and upholstery.",
+    summary: "A budget-friendly bagless canister with a surprisingly large dust cup and a huge review base - solid for hard floors, stairs and upholstery.",
   },
   {
     serial: 15,
@@ -364,7 +364,7 @@ const PRODUCT_REGISTRY = [
     features: ["Includes dusting brush, crevice tool and upholstery tool", "Stretch hose for extra reach", "Works on carpet, hard floors and shag rugs"],
     pros: ["Full accessory kit included at a budget price", "Backed by a 2-year limited warranty", "Nearly 17,700 positive ratings"],
     cons: ["Heavier than cordless stick alternatives at 11.5 lbs", "Foam filter isn't true HEPA"],
-    summary: "A well-rounded, budget-priced corded upright with a genuinely useful accessory kit included — hard to beat for the price if cordless isn't a requirement.",
+    summary: "A well-rounded, budget-priced corded upright with a genuinely useful accessory kit included - hard to beat for the price if cordless isn't a requirement.",
   },
   {
     serial: 16,
@@ -388,7 +388,7 @@ const PRODUCT_REGISTRY = [
     features: ["Removable extension wand", "Crevice tool and dusting brush included", "Compact, lightweight body"],
     pros: ["One of the lightest corded uprights in this guide at 7.5 lbs", "Compact size stores easily in small closets", "Nearly 19,600 ratings at 4.4 stars"],
     cons: ["Smaller 1 L dust cup means more frequent emptying", "Best suited to smaller homes rather than large carpeted spaces"],
-    summary: "Bissell's CleanView Compact trims the size and weight of a traditional upright without sacrificing much suction — a smart pick for apartments and smaller homes.",
+    summary: "Bissell's CleanView Compact trims the size and weight of a traditional upright without sacrificing much suction - a smart pick for apartments and smaller homes.",
   },
   {
     serial: 17,
@@ -436,7 +436,7 @@ const PRODUCT_REGISTRY = [
     features: ["Multi-stage cyclone filtration", "Wall mount included", "Detachable battery", "LED display", "Includes crevice tool and 2-in-1 brush"],
     pros: ["Multi-stage cyclone filtration is a nice extra at this price", "Detachable battery makes carrying a spare easy", "Full accessory set included"],
     cons: ["Very limited review history so far (12 ratings)", "Lowest rating of the cordless models covered in this guide"],
-    summary: "A newer cordless vacuum with cyclone-assisted filtration and a solid feature set — worth a look once it accumulates more reviews to confirm long-term reliability.",
+    summary: "A newer cordless vacuum with cyclone-assisted filtration and a solid feature set - worth a look once it accumulates more reviews to confirm long-term reliability.",
   },
   {
     serial: 19,
@@ -460,7 +460,7 @@ const PRODUCT_REGISTRY = [
     features: ["Auto dust emptying at the dock", "Auto water refill and detergent mixing", "Hot-water mop washing", "Hot-air mop drying", "Faster dock charging"],
     pros: ["Flagship-level suction at 30,000 Pa", "Fully automated dock handles emptying, mopping and drying", "Recognizes 220+ household objects to avoid obstacles"],
     cons: ["Premium price point around $1,000", "Battery runtime isn't disclosed by the manufacturer"],
-    summary: "Dreame's L60 Ultra is a genuine flagship robot vacuum and mop, offering near hands-off maintenance thanks to its all-in-one dock — at a premium price to match.",
+    summary: "Dreame's L60 Ultra is a genuine flagship robot vacuum and mop, offering near hands-off maintenance thanks to its all-in-one dock - at a premium price to match.",
   },
   {
     serial: 20,
@@ -484,7 +484,7 @@ const PRODUCT_REGISTRY = [
     features: ["Dedicated Pet Turbo Brush", "Includes crevice tool, dusting brush and upholstery tool", "Large 2.6 L bagless dust cup"],
     pros: ["Pet Turbo Brush is purpose-built for fur and dander", "Large 2.6 L dust cup needs less frequent emptying", "Over 8,500 positive ratings"],
     cons: ["Corded only", "At 10 lbs it's heavier than cordless alternatives"],
-    summary: "The Eureka NEU181A leans into pet owners specifically with its dedicated Turbo Brush and oversized dust cup — a dependable, affordable upright for fur-covered homes.",
+    summary: "The Eureka NEU181A leans into pet owners specifically with its dedicated Turbo Brush and oversized dust cup - a dependable, affordable upright for fur-covered homes.",
   },
 ];
 

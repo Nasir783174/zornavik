@@ -1,3 +1,3 @@
 # The CMS is a local-only tool (run with "npm start" inside cms/).
-# It must never be deployed — Vercel should only ever see the static site files.
+# It must never be deployed - Vercel should only ever see the static site files.
 cms/

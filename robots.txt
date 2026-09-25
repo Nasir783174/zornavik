@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /cms/
 
 Sitemap: https://zornavik.me/sitemap.xml

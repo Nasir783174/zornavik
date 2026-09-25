@@ -141,7 +141,7 @@ function rebuildListings({ syncNav = false } = {}) {
     if (writeIfChanged(indexFile, h1)) changedPaths.push('/');
     for (let k = 2; k <= total; k++) {
       let pk = retarget(h1, {
-        title: `Latest Vacuum Reviews — Page ${k} | ${settings.siteName}`,
+        title: `Latest Vacuum Reviews - Page ${k} | ${settings.siteName}`,
         desc: `More vacuum cleaner reviews and buying guides from ${settings.siteName}, page ${k} of our latest reviews archive.`,
         url: `${settings.siteUrl}/page-${k}`,
       });
@@ -169,7 +169,7 @@ function rebuildListings({ syncNav = false } = {}) {
     if (writeIfChanged(blogFile, b1)) sm('/blog', 'weekly', '0.9');
     for (let k = 2; k <= total; k++) {
       let bk = retarget(b1, {
-        title: `Vacuum Buying Guides & Reviews — Page ${k} | ${settings.siteName}`,
+        title: `Vacuum Buying Guides & Reviews - Page ${k} | ${settings.siteName}`,
         desc: `More vacuum cleaner reviews and buying guides from ${settings.siteName}, page ${k} of our full blog archive.`,
         url: `${settings.siteUrl}/blog/page-${k}`,
         jsonUrlFrom: `${settings.siteUrl}/blog`,
@@ -258,7 +258,7 @@ function validate(post, categories) {
   else if (!U.SLUG_RE.test(post.slug)) errors.push('The slug can only contain lowercase letters, numbers and hyphens.');
   if (!post.category) errors.push('Choose a category.');
   else if (!categories.some((c) => c.slug === post.category)) errors.push('That category does not exist.');
-  if (!String(post.content || '').replace(/<[^>]*>/g, '').trim() && !/<img|<table/i.test(post.content || '')) errors.push('The post is empty — write something first.');
+  if (!String(post.content || '').replace(/<[^>]*>/g, '').trim() && !/<img|<table/i.test(post.content || '')) errors.push('The post is empty - write something first.');
   if (post.canonical && !/^https?:\/\//i.test(post.canonical)) errors.push('The canonical URL must start with https://');
   if (!errors.length) {
     const url = `/${post.category}/${post.slug}`;

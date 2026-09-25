@@ -1,5 +1,5 @@
 /* =============================================
-   zornavik.me — Blog Registry
+   zornavik.me - Blog Registry
    Single source of truth for all posts.
    Blog URLs: /category-slug/post-slug
    ============================================= */

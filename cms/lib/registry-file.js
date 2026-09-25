@@ -1,5 +1,5 @@
 'use strict';
-/* Reads and writes js/registry.js — the list of blog posts the site's own JavaScript uses. */
+/* Reads and writes js/registry.js - the list of blog posts the site's own JavaScript uses. */
 const vm = require('vm');
 const P = require('./paths');
 const U = require('./util');
