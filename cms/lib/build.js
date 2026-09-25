@@ -128,33 +128,16 @@ function rebuildListings({ syncNav = false } = {}) {
   let sitemap = U.readText(P.SITEMAP, '');
   const sm = (loc, freq, prio, force) => { sitemap = sitemapSet(sitemap, settings.siteUrl + loc, { lastmod: today, changefreq: freq, priority: prio }); };
   const smKeep = (loc, freq, prio) => { if (!sitemap.includes(`<loc>${settings.siteUrl}${loc}</loc>`)) sm(loc, freq, prio); };
-  const changedPaths = [];
 
-  /* --- Home: index.html in place, page-2.html … cloned from it --- */
-  const indexFile = path.join(P.ROOT, 'index.html');
-  let home = U.readText(indexFile);
-  if (home) {
-    const total = Math.max(1, Math.ceil(entries.length / per));
-    let h1 = setPerPage(home, per);
-    h1 = U.replaceDivInner(h1, /<div class="blog-grid" id="home-grid">/, '\n' + L.buildCards(entries.slice(0, per)) + '\n') || h1;
-    h1 = U.replaceDivInner(h1, /<div id="home-pagination">/, '\n' + L.buildPagination(1, total, '') + '\n') || h1;
-    if (writeIfChanged(indexFile, h1)) changedPaths.push('/');
-    for (let k = 2; k <= total; k++) {
-      let pk = retarget(h1, {
-        title: `Latest Vacuum Reviews - Page ${k} | ${settings.siteName}`,
-        desc: `More vacuum cleaner reviews and buying guides from ${settings.siteName}, page ${k} of our latest reviews archive.`,
-        url: `${settings.siteUrl}/page-${k}`,
-      });
-      pk = U.replaceDivInner(pk, /<div class="blog-grid" id="home-grid">/, '\n' + L.buildCards(entries.slice((k - 1) * per, k * per)) + '\n') || pk;
-      pk = U.replaceDivInner(pk, /<div id="home-pagination">/, '\n' + L.buildPagination(k, total, '') + '\n') || pk;
-      if (writeIfChanged(path.join(P.ROOT, `page-${k}.html`), pk)) sm(`/page-${k}`, 'weekly', '0.5');
-      else smKeep(`/page-${k}`, 'weekly', '0.5');
-    }
-    for (const f of fs.readdirSync(P.ROOT)) {
-      const m = /^page-(\d+)\.html$/.exec(f);
-      if (m && Number(m[1]) > total) { rm(path.join(P.ROOT, f)); sitemap = sitemapRemove(sitemap, `${settings.siteUrl}/page-${m[1]}`); }
-    }
-    if (changedPaths.includes('/')) sm('/', 'weekly', '1.0');
+  /* --- Home: index.html is a single hub page, curated by hand ---
+   * The "Latest Reviews" cards on the homepage are NOT auto-generated
+   * from the registry and there is no page-2 for the homepage - it's a
+   * hub page, not an archive. Update the cards in index.html yourself
+   * after publishing a new post. Full archive + pagination lives at /blog. */
+  smKeep('/', 'weekly', '1.0');
+  for (const f of fs.readdirSync(P.ROOT)) {
+    const m = /^page-(\d+)\.html$/.exec(f);
+    if (m) { rm(path.join(P.ROOT, f)); sitemap = sitemapRemove(sitemap, `${settings.siteUrl}/page-${m[1]}`); }
   }
 
   /* --- Blog: blog/index.html in place, blog/page-2.html … cloned --- */

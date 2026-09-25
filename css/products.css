@@ -347,6 +347,11 @@
 /* ---- SECTION SUBHEAD (used under section-head h2) ---- */
 .section-sub { font-family: var(--font-body); font-size: 16px; color: var(--gray-400); margin: -14px 0 24px; max-width: 620px; }
 
+/* ---- HOME INTRO (short intro paragraph under the hero) ---- */
+.home-intro { font-family: var(--font-body); font-size: 17px; color: var(--gray-600); line-height: 1.8; max-width: 780px; margin: 4px 0 44px; }
+.home-intro a { color: inherit; text-decoration: underline; text-decoration-color: var(--gray-200); text-underline-offset: 3px; }
+.home-intro a:hover { text-decoration-color: currentColor; }
+
 @media (max-width: 1024px) {
   .hero-section { grid-template-columns: 1fr; }
   .hero-visual { max-width: 340px; margin: 0 auto; }
