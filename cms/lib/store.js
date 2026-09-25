@@ -134,9 +134,13 @@ const RESERVED_SLUGS = new Set([
   'node_modules', 'zornavik', 'favicon',
 ]);
 
-/* Fill in every derived field of a category from just a name (used for brand-new categories). */
+/* Fill in every derived field of a category from just a name (used for brand-new categories).
+   Every text field is whitespace-collapsed the same way post fields are (see coercePost below) -
+   a category's meta description is edited in a <textarea>, so without this a stray line break
+   pasted or typed in there would land as a literal newline inside <meta content="...">, breaking
+   the tag across lines on every page that uses that category. */
 function buildCategory(input, settings, existing) {
-  const s = (v) => (typeof v === 'string' ? v.trim() : '');
+  const s = (v) => (typeof v === 'string' ? v.trim().replace(/\s+/g, ' ') : '');
   const label = s(input.label);
   const slug = s(input.slug) || U.slugify(label);
   const author = settings.author.name;
