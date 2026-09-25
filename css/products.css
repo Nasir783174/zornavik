@@ -183,6 +183,7 @@
 .product-hero-price { font-family: var(--font-head); font-weight: 700; font-size: 32px; color: var(--black); }
 .product-hero-price-old { font-family: var(--font-body); font-size: 16px; color: var(--gray-400); text-decoration: line-through; }
 .product-hero-price-note { font-family: var(--font-body); font-size: 14px; color: var(--gray-400); }
+.product-hero-updated { display: block; font-family: var(--font-body); font-size: 14px; color: var(--gray-400); margin-top: 2px; }
 .product-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .cta-buy {
   display: inline-flex; align-items: center; gap: 8px;

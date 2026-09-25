@@ -124,11 +124,25 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
+/* Real intrinsic pixel size of each blog cover image, so rendered cards can
+   carry explicit width/height (prevents layout shift) without changing how
+   they look - the CSS aspect-ratio/object-fit on .post-card-img still fully
+   controls the final crop. Falls back to the common 800x600 size below. */
+const IMAGE_DIMENSIONS = {
+  "/images/vacuum.webp": [800, 800],
+  "/images/cordless-vacuum-cleaners-featured.webp": [1200, 630],
+};
+
+function getImageDims(src) {
+  return IMAGE_DIMENSIONS[src] || [800, 600];
+}
+
 function buildPostCard(post) {
+  const [imgW, imgH] = getImageDims(post.image);
   return `
   <article class="post-card">
     <a href="${post.slug}" class="post-card-img">
-      <img src="${post.image}" alt="${post.title}" loading="lazy">
+      <img src="${post.image}" width="${imgW}" height="${imgH}" alt="${post.title}" loading="lazy" decoding="async">
     </a>
     <div class="post-card-body">
       <span class="post-cat">${post.catLabel}</span>

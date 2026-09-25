@@ -518,7 +518,7 @@ function buildProductCard(p) {
   <article class="product-card">
     ${badgeHtml}
     <a href="${p.slugUrl}" class="product-card-img">
-      <img src="${p.image}" alt="${p.title}" loading="lazy"
+      <img src="${p.image}" width="1250" height="1000" alt="${p.title}" loading="lazy" decoding="async"
            onerror="this.onerror=null;this.src='https://placehold.co/500x400/f2f2f2/999999?text=Photo+Coming+Soon';">
     </a>
     <div class="product-card-body">
