@@ -9,7 +9,7 @@ const BLOG_REGISTRY = [
     title:    "Vacuum Suction Power Explained: What Pa, Air Watts, Airflow, and Watts Really Mean",
     slug:     "/guides/vacuum-suction-power-explained",
     date:     "2026-09-24",
-    excerpt:  "Vacuum suction power is often presented as a single number, but several different measurements describe how a vacuum creates and moves air. Pascals (Pa) an",
+    excerpt:  "Pa, air watts, CFM and motor watts all measure something different. Here is what each number actually tells you before you buy your next vacuum.",
     readTime: 23,
     category: "guides",
     catLabel: "Guides",
