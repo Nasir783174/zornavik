@@ -10,6 +10,7 @@ module.exports = {
   DATA: path.join(CMS, 'data'),
   POSTS: path.join(CMS, 'data', 'posts'),
   TRASH: path.join(CMS, 'data', 'trash'),
+  BACKUPS: path.join(CMS, 'data', 'backups'),
   SETTINGS_FILE: path.join(CMS, 'data', 'settings.json'),
   CATEGORIES_FILE: path.join(CMS, 'data', 'categories.json'),
   IMAGES: path.join(ROOT, 'images'),

@@ -107,7 +107,19 @@ function countWords(text) {
   return t ? t.split(' ').length : 0;
 }
 
+/* Shorten text for excerpts / meta descriptions without cutting a word in half. */
+function truncate(text, max = 155) {
+  const t = String(text || '').replace(/\s+/g, ' ').trim();
+  if (t.length <= max) return t;
+  let cut = t.slice(0, max);
+  const sp = cut.lastIndexOf(' ');
+  if (sp > max * 0.6) cut = cut.slice(0, sp);
+  cut = cut.replace(/[\s,;:\-\u2013\u2014(\[]+$/, '');
+  return /[.!?]$/.test(cut) ? cut : cut + '\u2026';
+}
+
 module.exports = {
+  truncate,
   esc, jsonLd, slugify, SLUG_RE, todayISO, formatDate, isISODate,
   ensureDir, readText, writeText, readJson, writeJson, exists, walk,
   matchDiv, replaceDivInner, countWords,

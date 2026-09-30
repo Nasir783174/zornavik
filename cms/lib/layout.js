@@ -4,8 +4,10 @@
  * and the header + footer are read live from index.html so they never drift.
  */
 const path = require('path');
+const vm = require('vm');
 const P = require('./paths');
 const U = require('./util');
+const { imageSize } = require('./imagesize');
 const { esc, jsonLd } = U;
 
 const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap';
@@ -42,8 +44,19 @@ function siteChrome(categories) {
   return { header: applyNav(header, categories), footer };
 }
 
+/* ---------- product review cards (built with the site's own js/products.js so they never drift) ---------- */
+function productCardsFor(slug) {
+  const src = U.readText(path.join(P.ROOT, 'js', 'products.js'), '');
+  if (!src) return '';
+  try {
+    const ctx = vm.createContext({});
+    vm.runInContext(`${src}\n;globalThis.__cards = PRODUCT_REGISTRY.filter(function (p) { return p.category === ${JSON.stringify(slug)}; }).map(buildProductCard);`, ctx);
+    return (ctx.__cards || []).join('\n');
+  } catch (e) { return ''; }
+}
+
 /* ---------- shared head pieces ---------- */
-function headCommon(blocks) {
+function headCommon(blocks, products) {
   return `  <link rel="icon" type="image/png" href="/zornavik.png">
   <link rel="apple-touch-icon" href="/zornavik.png">
   <link rel="manifest" href="/site.webmanifest">
@@ -51,7 +64,7 @@ function headCommon(blocks) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${FONTS_URL}" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="${FONTS_URL}"></noscript>
-  <link rel="stylesheet" href="/css/style.css">${blocks ? '\n  <link rel="stylesheet" href="/css/cms-blocks.css">' : ''}`;
+  <link rel="stylesheet" href="/css/style.css">${products ? '\n  <link rel="stylesheet" href="/css/products.css">' : ''}${blocks ? '\n  <link rel="stylesheet" href="/css/cms-blocks.css">' : ''}`;
 }
 
 function absUrl(settings, p) {
@@ -61,10 +74,18 @@ function absUrl(settings, p) {
 }
 
 /* ---------- post cards + pagination (same markup as js/registry.js builds) ---------- */
+/* width/height stop the page jumping while images load (the hand-written pages already had them) */
+function imgDims(src) {
+  try {
+    if (!String(src).startsWith('/images/')) return '';
+    const d = imageSize(path.join(P.ROOT, src));
+    return d && d.width && d.height ? ` width="${d.width}" height="${d.height}"` : '';
+  } catch (e) { return ''; }
+}
 function buildCard(e) {
   return `  <article class="post-card">
     <a href="${esc(e.slug)}" class="post-card-img">
-      <img src="${esc(e.image)}" alt="${esc(unesc(e.title))}" loading="lazy">
+      <img src="${esc(e.image)}"${imgDims(e.image)} alt="${esc(unesc(e.title))}" loading="lazy" decoding="async">
     </a>
     <div class="post-card-body">
       <span class="post-cat">${esc(unesc(e.catLabel))}</span>
@@ -98,7 +119,7 @@ function renderPost({ post, processed, settings, category, categories, related, 
   const path_ = `/${post.category}/${post.slug}`;
   const canonical = post.canonical || settings.siteUrl + path_;
   const plain = processed.html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  const desc = post.metaDescription || post.excerpt || plain.slice(0, 155);
+  const desc = post.metaDescription || post.excerpt || U.truncate(plain, 155);
   const title = post.metaTitle || `${post.title} | ${settings.siteName}`;
   const ogImage = absUrl(settings, post.featuredImage || settings.defaultOgImage);
   const a = settings.author;
@@ -148,6 +169,12 @@ function renderPost({ post, processed, settings, category, categories, related, 
       })),
     };
     schema += `\n\n  <script type="application/ld+json">\n  ${jsonLd(faq).replace(/\n/g, '\n  ')}\n  </script>`;
+  }
+
+  for (const extra of (post.extraSchema || [])) {
+    if (!extra || typeof extra !== 'object') continue;
+    if (extra['@type'] === 'FAQPage' && processed.faqs.length) continue;      // the FAQ heading in the text already generates one
+    schema += `\n\n  <script type="application/ld+json">\n  ${jsonLd(extra).replace(/\n/g, '\n  ')}\n  </script>`;
   }
 
   const meta = [
@@ -310,6 +337,10 @@ function renderCategoryPage({ cat, entries, page, totalPages, perPage, settings,
   const pageEntries = entries.slice((page - 1) * perPage, page * perPage);
   const pag = buildPagination(page, totalPages, base);
   const ind = (s) => s.replace(/\n/g, '\n  ');
+  const productCards = page === 1 ? productCardsFor(cat.slug) : '';
+  const productSection = productCards
+    ? `\n\n    <div class="section-head" style="margin-top:48px;">\n      <h2>Individual Product Reviews</h2>\n      <a href="/products">View all products</a>\n    </div>\n    <div class="related-products-grid">\n${productCards}\n    </div>\n`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -328,7 +359,7 @@ function renderCategoryPage({ cat, entries, page, totalPages, perPage, settings,
   <meta property="og:image:height" content="800">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="${esc(settings.twitterHandle)}">
-${headCommon(false)}
+${headCommon(false, !!productCards)}
   <script type="application/ld+json">
   ${ind(jsonLd(collection))}
   </script>
@@ -359,7 +390,7 @@ ${header}
     <div class="blog-grid" id="cat-grid">
 ${buildCards(pageEntries)}
 </div>
-    <div id="cat-pagination">${pag}</div>
+    <div id="cat-pagination">${pag}</div>${productSection}
   </div>
 </main>
 

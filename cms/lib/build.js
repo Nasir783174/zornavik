@@ -75,6 +75,30 @@ function addRedirect(source, destination) {
   U.writeJson(P.VERCEL, obj);
 }
 
+/* remove redirects matching a predicate (keeps vercel.json's one-line-per-redirect layout when it can) */
+function removeRedirects(pred) {
+  const txt = U.readText(P.VERCEL);
+  if (txt == null) return;
+  let obj;
+  try { obj = JSON.parse(txt); } catch (e) { return; }
+  const list = obj.redirects || [];
+  const drop = list.filter(pred);
+  if (!drop.length) return;
+  const keep = list.filter((r) => !pred(r));
+  let out = txt;
+  for (const r of drop) {
+    const line = new RegExp(`^[ \\t]*\\{\\s*"source":\\s*${reEsc(JSON.stringify(r.source))}\\s*,\\s*"destination":\\s*${reEsc(JSON.stringify(r.destination))}[^\\n]*\\}\\s*,?[ \\t]*\\r?\\n`, 'm');
+    out = out.replace(line, '');
+  }
+  out = out.replace(/,(\s*\])/, '$1');
+  try {
+    const chk = JSON.parse(out);
+    if (JSON.stringify(chk.redirects || []) === JSON.stringify(keep)) { U.writeText(P.VERCEL, out); return; }
+  } catch (e) { /* fall through to a clean rewrite */ }
+  obj.redirects = keep;
+  U.writeJson(P.VERCEL, obj);
+}
+
 /* ------------------------------------------------------------------ */
 /* Registry helpers                                                    */
 /* ------------------------------------------------------------------ */
@@ -83,7 +107,7 @@ function sortEntries(entries, order) {
   return entries.slice().sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0) * dir);
 }
 function entryForPost(post, cat, readTime, settings, plainText) {
-  const excerpt = post.excerpt || post.metaDescription || plainText.slice(0, 155);
+  const excerpt = post.excerpt || post.metaDescription || U.truncate(plainText, 155);
   return {
     title: R.htmlSafe(post.title),
     slug: `/${post.category}/${post.slug}`,
@@ -151,9 +175,13 @@ function rebuildListings({ syncNav = false } = {}) {
     b1 = U.replaceDivInner(b1, /<div id="blog-all-pagination">/, '\n' + L.buildPagination(1, total, '/blog') + '\n') || b1;
     if (writeIfChanged(blogFile, b1)) sm('/blog', 'weekly', '0.9');
     for (let k = 2; k <= total; k++) {
+      /* keep the title/description you already wrote for this archive page; only make new ones for brand-new pages */
+      const prev = U.readText(path.join(P.ROOT, 'blog', `page-${k}.html`), '');
+      const prevTitle = (/<title>([\s\S]*?)<\/title>/.exec(prev) || [])[1];
+      const prevDesc = (/<meta name="description" content="([^"]*)"/.exec(prev) || [])[1];
       let bk = retarget(b1, {
-        title: `Vacuum Buying Guides & Reviews - Page ${k} | ${settings.siteName}`,
-        desc: `More vacuum cleaner reviews and buying guides from ${settings.siteName}, page ${k} of our full blog archive.`,
+        title: prevTitle ? L.unesc(prevTitle) : `Vacuum Buying Guides & Reviews - Page ${k} | ${settings.siteName}`,
+        desc: prevDesc ? L.unesc(prevDesc) : `More vacuum cleaner reviews and buying guides from ${settings.siteName}, page ${k} of our full blog archive.`,
         url: `${settings.siteUrl}/blog/page-${k}`,
         jsonUrlFrom: `${settings.siteUrl}/blog`,
       });
@@ -239,6 +267,7 @@ function validate(post, categories) {
   if (!post.title) errors.push('Add a title.');
   if (!post.slug) errors.push('Add a slug (the last part of the URL).');
   else if (!U.SLUG_RE.test(post.slug)) errors.push('The slug can only contain lowercase letters, numbers and hyphens.');
+  else if (post.slug.length > 100) errors.push('The slug is too long (max 100 characters). Shorter URLs rank and share better.');
   if (!post.category) errors.push('Choose a category.');
   else if (!categories.some((c) => c.slug === post.category)) errors.push('That category does not exist.');
   if (!String(post.content || '').replace(/<[^>]*>/g, '').trim() && !/<img|<table/i.test(post.content || '')) errors.push('The post is empty - write something first.');
@@ -271,7 +300,13 @@ async function publishPost(post) {
       post: withFeaturedSize(post), processed, settings, category: cat, categories,
       related: relatedFor(entries, post, settings), readTime,
     });
-    U.writeText(path.join(P.ROOT, post.category, post.slug + '.html'), html);
+    const target = path.join(P.ROOT, post.category, post.slug + '.html');
+    if (post.importedFrom && U.exists(target)) {          // first time an imported page is rewritten: keep the original HTML
+      const bak = path.join(P.BACKUPS, `${post.category}__${post.slug}.original.html`);
+      if (!U.exists(bak)) U.writeText(bak, U.readText(target, ''));
+    }
+    U.writeText(target, html);
+    removeRedirects((r) => r.source === url);          // an old redirect FROM this URL would hide the page we just published
 
     /* moved to a new URL? remove the old file and add a 301 */
     const old = post.publishedUrl;
@@ -320,7 +355,31 @@ function removePublishedFiles(post, settings) {
     rmdirIfEmpty(path.join(P.ROOT, parts[0]));
   }
   R.write(R.read().filter((e) => e.slug !== url));
+  removeRedirects((r) => r.destination === url);      // don't leave redirects pointing at a page that no longer exists
   U.writeText(P.SITEMAP, sitemapRemove(U.readText(P.SITEMAP, ''), settings.siteUrl + url));
+}
+
+/* Pages (outside the CMS and the auto-built list pages) that still link to a URL that was just taken offline. */
+function findInboundLinks(url) {
+  if (!url) return [];
+  const needles = [`href="${url}"`, `href="${url}/"`, `href="${url}#`, `href="https://zornavik.me${url}"`];
+  const hits = [];
+  const skipDirs = new Set(['cms', 'node_modules', '.git']);
+  const walk = (dir) => {
+    for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (ent.isDirectory()) { if (!skipDirs.has(ent.name)) walk(path.join(dir, ent.name)); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+      const file = path.join(dir, ent.name);
+      const txt = fs.readFileSync(file, 'utf8');
+      if (needles.some((n) => txt.includes(n))) {
+        let rel = '/' + path.relative(P.ROOT, file).split(path.sep).join('/').replace(/\.html$/, '');
+        rel = rel.replace(/\/index$/, '') || '/';
+        hits.push(rel);
+      }
+    }
+  };
+  try { walk(P.ROOT); } catch (e) { return hits; }
+  return hits.slice(0, 12);
 }
 
 async function unpublishPost(post) {
@@ -432,4 +491,5 @@ async function rebuildAll() {
 module.exports = {
   UserError, withLock, publishPost, unpublishPost, deletePost, previewPost, validate,
   createCategory, updateCategory, deleteCategory, categoryCounts, rebuildAll, rebuildListings,
+  findInboundLinks,
 };

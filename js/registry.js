@@ -6,7 +6,7 @@
 
 const BLOG_REGISTRY = [
   {
-    title:    "Vacuum Suction Power Explained: What Pa, Air Watts, Airflow, and Watts Really Mean",
+    title:    "Vacuum Suction Power Explained: Pa, Watts, Airflow &amp; CFM",
     slug:     "/guides/vacuum-suction-power-explained",
     date:     "2026-09-24",
     excerpt:  "Pa, air watts, CFM and motor watts all measure something different. Here is what each number actually tells you before you buy your next vacuum.",

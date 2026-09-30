@@ -16,6 +16,7 @@ const S = require('./lib/store');
 const R = require('./lib/registry-file');
 const B = require('./lib/build');
 const I = require('./lib/images');
+const G = require('./lib/legacy');
 
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const SITE_PORT = parseInt(process.env.SITE_PORT, 10) || 3001;
@@ -123,6 +124,18 @@ api.put('/posts/:id', wrap(async (req, res) => {
   res.json(S.savePost(post));
 }));
 
+/* make an existing (hand-written) page editable in the Studio - the page itself is not touched until you press Update */
+api.post('/legacy/import', wrap(async (req, res) => {
+  const url = String((req.body && req.body.url) || '');
+  let post;
+  try { post = G.importLegacy(url); } catch (e) { if (e instanceof G.ImportError) throw e; throw e; }
+  res.json({ id: post.id, ...listAll() });
+}));
+api.post('/legacy/import-all', wrap(async (req, res) => {
+  const result = G.importAll();
+  res.json({ ...result, ...listAll() });
+}));
+
 api.post('/posts/:id/publish', wrap(async (req, res) => {
   const cur = S.getPost(req.params.id);
   if (!cur) throw new B.UserError('Post not found.', 404);
@@ -135,14 +148,17 @@ api.post('/posts/:id/publish', wrap(async (req, res) => {
 api.post('/posts/:id/unpublish', wrap(async (req, res) => {
   const cur = S.getPost(req.params.id);
   if (!cur) throw new B.UserError('Post not found.', 404);
-  res.json({ post: await B.unpublishPost(cur) });
+  const url = cur.publishedUrl;
+  const post = await B.unpublishPost(cur);
+  res.json({ post, linkedFrom: B.findInboundLinks(url) });
 }));
 
 api.delete('/posts/:id', wrap(async (req, res) => {
   const cur = S.getPost(req.params.id);
   if (!cur) throw new B.UserError('Post not found.', 404);
+  const url = cur.status === 'published' ? cur.publishedUrl : '';
   await B.deletePost(cur);
-  res.json({ ok: true });
+  res.json({ ok: true, linkedFrom: B.findInboundLinks(url) });
 }));
 
 /* images */

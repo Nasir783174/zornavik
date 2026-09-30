@@ -42,6 +42,12 @@ function toast(msg, o = {}) {
   setTimeout(() => el.remove(), o.ms || (o.err ? 7000 : 5000));
 }
 
+/* after unpublish/delete: tell the owner which hand-written pages still link to the removed URL */
+function linkWarning(r) {
+  const l = r && r.linkedFrom;
+  if (l && l.length) toast(`Heads-up: ${l.length} page${l.length === 1 ? '' : 's'} still link to the removed post (${l.slice(0, 5).join(', ')}${l.length > 5 ? ', …' : ''}). Update or remove those links so visitors do not hit a 404.`, { err: true, ms: 15000 });
+}
+
 /* ---------- modal ---------- */
 function openModal({ title, body, wide, actions = [], onOpen }) {
   const back = document.createElement('div');
@@ -144,7 +150,7 @@ function renderPosts() {
   };
   view.innerHTML = `<div class="page">
     <div class="page-head"><div><h1>Posts</h1><p class="page-sub">${S.posts.length} made with Studio · ${S.legacy.length} existing pages on the site</p></div>
-      <a class="btn btn-primary" href="#/new">Add new post</a></div>
+      <div style="display:flex;gap:8px">${S.legacy.length ? '<button class="btn" id="import-all" type="button">Make all existing posts editable</button>' : ''}<a class="btn btn-primary" href="#/new">Add new post</a></div></div>
     <div class="toolbar">
       <div class="tabs" id="p-tabs">
         ${['all', 'published', 'draft'].map((k) => `<button type="button" data-k="${k}" class="${postFilter === k ? 'active' : ''}">${{ all: 'All', published: 'Published', draft: 'Drafts' }[k]} (${counts[k]})</button>`).join('')}
@@ -163,8 +169,8 @@ function renderPosts() {
     }
     $('#p-table').innerHTML = `<table class="table"><thead><tr><th>Title</th><th style="width:170px">Category</th><th style="width:150px">Status</th><th style="width:120px">Date</th></tr></thead><tbody>
       ${list.map((r) => r.legacy ? `<tr>
-        <td><a class="t-title" href="${siteUrl(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a><div class="t-path">${esc(r.url)}</div>
-          <div class="row-actions"><a href="${siteUrl(r.url)}" target="_blank" rel="noopener">View</a><span style="color:var(--faint)">Edit its HTML in VS Code</span></div></td>
+        <td><a class="t-title" href="#" data-import="${esc(r.url)}">${esc(r.title)}</a><div class="t-path">${esc(r.url)}</div>
+          <div class="row-actions"><button type="button" data-import="${esc(r.url)}">Edit</button><a href="${siteUrl(r.url)}" target="_blank" rel="noopener">View</a></div></td>
         <td>${esc(catLabel(r.category))}</td><td><span class="pill legacy">Existing page</span></td><td>${fmtDate(r.date)}</td></tr>`
       : `<tr>
         <td><a class="t-title" href="#/edit/${r.id}">${esc(r.title || 'Untitled post')}</a>
@@ -177,10 +183,30 @@ function renderPosts() {
         <td>${fmtDate(r.date)}</td></tr>`).join('')}
       </tbody></table>`;
     $$('[data-trash]').forEach((b) => b.onclick = () => trashPost(b.dataset.trash));
+    $$('[data-import]').forEach((b) => b.onclick = (ev) => { ev.preventDefault(); importAndEdit(b.dataset.import); });
   };
   draw();
   $$('#p-tabs button').forEach((b) => b.onclick = () => { postFilter = b.dataset.k; renderPosts(); });
+  const ia = $('#import-all'); if (ia) ia.onclick = importAll;
   $('#p-search').oninput = debounce((e) => { postQuery = e.target.value; draw(); }, 120);
+}
+async function importAndEdit(url) {
+  try {
+    toast('Opening the post in the editor…');
+    const r = await api('POST', '/api/legacy/import', { url });
+    S.posts = r.posts; S.legacy = r.legacy;
+    location.hash = `#/edit/${r.id}`;
+  } catch (e) { toast(e.message, { err: true }); }
+}
+async function importAll() {
+  const ok = await confirmBox('Make all existing posts editable?', 'The Studio makes an editable copy of each existing post. Your live pages are not changed until you press Update on a post (the original HTML is backed up first).', 'Make editable');
+  if (!ok) return;
+  try {
+    const r = await api('POST', '/api/legacy/import-all', {});
+    S.posts = r.posts; S.legacy = r.legacy;
+    toast(`${r.imported} post${r.imported === 1 ? '' : 's'} can now be edited.` + (r.failed.length ? ` ${r.failed.length} could not be imported.` : ''), { err: !!r.failed.length });
+    renderPosts();
+  } catch (e) { toast(e.message, { err: true }); }
 }
 async function trashPost(id) {
   const p = S.posts.find((x) => x.id === id);
@@ -188,7 +214,7 @@ async function trashPost(id) {
     ? 'This post is live. Its page will be removed from the site (push to GitHub to take it offline). The draft is kept in cms/data/trash.'
     : 'The draft is moved to cms/data/trash.', 'Move to trash', true);
   if (!ok) return;
-  try { await api('DELETE', `/api/posts/${id}`); toast('Moved to trash.'); await refresh(); renderPosts(); } catch (e) { toast(e.message, { err: true }); }
+  try { const r = await api('DELETE', `/api/posts/${id}`); toast('Moved to trash.'); linkWarning(r); await refresh(); renderPosts(); } catch (e) { toast(e.message, { err: true }); }
 }
 
 /* ------------------------------------------------------------------ */
@@ -376,7 +402,8 @@ async function showEditor(id) {
       <div class="doc">${post.id ? `Editing <b>${esc(post.title || 'Untitled post')}</b>` : 'New post'}</div>
       <div class="saved" id="ed-saved">${post.id ? 'Saved' : 'Not saved yet'}</div>
       <button class="btn btn-sm" id="ed-side-toggle" type="button" style="display:none">Post settings</button>
-      ${post.status === 'published' ? `<a class="btn btn-sm" href="${siteUrl(post.publishedUrl)}" target="_blank" rel="noopener">View live</a>` : `<button class="btn btn-sm" id="ed-preview" type="button">Preview</button>`}
+      ${post.status === 'published' ? `<a class="btn btn-sm" id="ed-viewlive" href="${siteUrl(post.publishedUrl)}" target="_blank" rel="noopener">View live</a>` : ''}
+      <button class="btn btn-sm" id="ed-preview" type="button">Preview</button>
       <button class="btn btn-sm btn-primary" id="ed-publish" type="button">${post.status === 'published' ? 'Update' : 'Publish'}</button>
     </div>
     <div class="editor-body" id="ed-body">
@@ -410,8 +437,8 @@ async function showEditor(id) {
   renderSeo();
   renderAdvPanel();
   renderChecklist();
-  $('#ed-publish').onclick = doPublish;
-  $('#ed-preview').onclick = doPreview;
+  const pubBtn = $('#ed-publish'); if (pubBtn) pubBtn.onclick = doPublish;
+  const prevBtn = $('#ed-preview'); if (prevBtn) prevBtn.onclick = doPreview;
 
   await initEditor(post);
   window.addEventListener('beforeunload', beforeUnload);
@@ -478,7 +505,7 @@ function renderPublishPanel() {
   const un = $('#pp-unpublish');
   if (un) un.onclick = async () => {
     if (!(await confirmBox('Unpublish this post?', 'Its live page is removed from the site (push to GitHub to take it offline) and it goes back to Draft.', 'Unpublish', true))) return;
-    try { const r = await api('POST', `/api/posts/${p.id}/unpublish`); Object.assign(p, r.post); toast('Unpublished.'); renderPublishPanel(); $('#ed-publish').textContent = 'Publish'; }
+    try { const r = await api('POST', `/api/posts/${p.id}/unpublish`); Object.assign(p, r.post); toast('Unpublished.'); linkWarning(r); renderPublishPanel(); $('#ed-publish').textContent = 'Publish'; }
     catch (e) { toast(e.message, { err: true }); }
   };
 }
@@ -575,10 +602,11 @@ async function doPublish() {
     if (r.moved) msg += ` Moved from ${r.moved} - a redirect was added.`;
     if (r.missingAlt) msg += ` ${r.missingAlt} image${r.missingAlt > 1 ? 's are' : ' is'} missing alt text.`;
     toast(msg, { href: siteUrl(r.url), linkText: 'View', ms: 8000 });
-    const linkBtn = document.querySelector('.topbar').querySelector('a[target="_blank"]');
-    if (!linkBtn) {
-      const a = document.createElement('a'); a.className = 'btn btn-sm'; a.href = siteUrl(r.url); a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'View live';
-      $('#ed-preview') ? $('#ed-preview').replaceWith(a) : btn.before(a);
+    const linkBtn = $('#ed-viewlive');
+    if (linkBtn) { linkBtn.href = siteUrl(r.url); }
+    else {
+      const a = document.createElement('a'); a.id = 'ed-viewlive'; a.className = 'btn btn-sm'; a.href = siteUrl(r.url); a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'View live';
+      const pv = $('#ed-preview'); pv ? pv.before(a) : btn.before(a);
     }
   } catch (e) { toast(e.message, { err: true }); }
   finally { btn.disabled = false; if (btn.textContent === 'Publishing…') btn.textContent = was; }

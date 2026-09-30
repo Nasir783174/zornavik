@@ -2,8 +2,9 @@
 
 A small local editor that lives inside your website folder. You write a post here,
 hit Publish, and it writes a real `.html` file straight into `zornavik-main/`, updates
-the homepage/blog/category listings, the sitemap, and (when a URL changes) adds a
-redirect. You then push to GitHub and Vercel deploys it, exactly like before.
+the blog/category listings, the sitemap, and (when a URL changes) adds a
+redirect. The homepage "Latest Reviews" cards are curated by hand in `index.html` -
+the CMS does not touch the homepage. You then push to GitHub and Vercel deploys it, exactly like before.
 
 This tool never talks to the internet and is never deployed. `.vercelignore` already
 excludes the whole `cms/` folder from your Vercel deployment.
@@ -52,8 +53,8 @@ live post updates the existing page in place - it does not create a duplicate.
 Changing a post's slug or category moves it to the new URL and automatically adds
 a redirect from the old one, so you never lose SEO on an old link.
 
-Deleting a post ("Move to trash") removes its live page from your site folder but
-keeps a JSON backup in `cms/data/trash/` in case you want it back - that folder is
+Deleting a post ("Move to trash") removes its live page from your site folder (and any redirects
+pointing at it) but keeps a JSON backup in `cms/data/trash/` in case you want it back - that folder is
 never cleaned up automatically, so clear it out yourself once you're sure.
 
 ## Categories
@@ -86,7 +87,7 @@ is a normal CMS post you can edit, unpublish, or delete from the dashboard.
 - **"Port already in use"** - another `npm start` is probably still running
   somewhere; close it, or use the `PORT=... SITE_PORT=...` command above.
 - **A page 404s after publishing** - click **Rebuild site pages** at the bottom of
-  the sidebar; it regenerates the homepage, blog, and category pages and the
+  the sidebar; it regenerates the blog and category pages and the
   sitemap from scratch.
 - Nothing here ever touches Vercel or the internet directly - if a page looks
   wrong, it's a file sitting right there in your website folder, and pushing to
