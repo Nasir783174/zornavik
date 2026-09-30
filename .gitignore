@@ -1,0 +1,7 @@
+# Local CMS - a private editing tool, never pushed to GitHub or deployed
+cms/
+
+# Dependencies / OS junk
+node_modules/
+.DS_Store
+Thumbs.db
