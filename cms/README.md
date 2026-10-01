@@ -3,8 +3,13 @@
 A small local editor that lives inside your website folder. You write a post here,
 hit Publish, and it writes a real `.html` file straight into `zornavik-main/`, updates
 the blog/category listings, the sitemap, and (when a URL changes) adds a
-redirect. The homepage "Latest Reviews" cards are curated by hand in `index.html` -
-the CMS does not touch the homepage. You then push to GitHub and Vercel deploys it, exactly like before.
+redirect. It also keeps the homepage in sync: the "Latest Reviews" grid always shows your
+newest 9 posts and the "Browse by Category" cards (with live review counts) always list every
+category. The rest of `index.html` (hero text, comparisons, FAQ) is yours to edit by hand.
+
+The site is a pure review blog: Home, Blog, Categories, About/Contact/legal pages. There are no
+separate product pages - you write category-wise blog posts, link them to each other, upload
+images and add the Amazon button inside the post. You then push to GitHub and Vercel deploys it, exactly like before.
 
 This tool never talks to the internet and is never deployed. `.vercelignore` already
 excludes the whole `cms/` folder from your Vercel deployment.
@@ -87,7 +92,7 @@ is a normal CMS post you can edit, unpublish, or delete from the dashboard.
 - **"Port already in use"** - another `npm start` is probably still running
   somewhere; close it, or use the `PORT=... SITE_PORT=...` command above.
 - **A page 404s after publishing** - click **Rebuild site pages** at the bottom of
-  the sidebar; it regenerates the blog and category pages and the
+  the sidebar; it regenerates the homepage blocks, blog and category pages and the
   sitemap from scratch.
 - Nothing here ever touches Vercel or the internet directly - if a page looks
   wrong, it's a file sitting right there in your website folder, and pushing to

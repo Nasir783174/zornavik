@@ -164,7 +164,7 @@ function renderPosts() {
     if (!list.length) {
       $('#p-table').innerHTML = S.posts.length || q
         ? `<div class="empty"><h3>No posts match</h3><p>Try a different filter or search.</p></div>`
-        : `<div class="empty"><h3>Write your first post</h3><p>Paste from Google Docs, add your product boxes, and publish.</p><a class="btn btn-primary" href="#/new">Add new post</a></div>`;
+        : `<div class="empty"><h3>Write your first post</h3><p>Paste from Google Docs, add your images and Amazon buttons, and publish.</p><a class="btn btn-primary" href="#/new">Add new post</a></div>`;
       return;
     }
     $('#p-table').innerHTML = `<table class="table"><thead><tr><th>Title</th><th style="width:170px">Category</th><th style="width:150px">Status</th><th style="width:120px">Date</th></tr></thead><tbody>

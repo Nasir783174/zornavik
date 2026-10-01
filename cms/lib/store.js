@@ -19,7 +19,8 @@ const DEFAULT_SETTINGS = {
   disclosure:
     'Zornavik participates in the Amazon Services LLC Associates Program and other affiliate programs. ' +
     'If you click a link on this page and make a purchase, we may earn a small commission at no extra cost to you. ' +
-    'This does not influence our recommendations - we only feature products we genuinely believe offer value.',
+    'This does not influence our recommendations - we only feature products we genuinely believe offer value. ' +
+    'As an Amazon Associate I earn from qualifying purchases.',
   author: {
     name: 'Liam Adrian Foster',
     role: 'Vacuum Expert & Reviewer',

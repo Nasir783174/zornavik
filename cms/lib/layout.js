@@ -10,7 +10,7 @@ const U = require('./util');
 const { imageSize } = require('./imagesize');
 const { esc, jsonLd } = U;
 
-const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap';
+const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap';
 
 const SHARE_ICONS = {
   facebook: 'M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.885v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z',
@@ -44,19 +44,8 @@ function siteChrome(categories) {
   return { header: applyNav(header, categories), footer };
 }
 
-/* ---------- product review cards (built with the site's own js/products.js so they never drift) ---------- */
-function productCardsFor(slug) {
-  const src = U.readText(path.join(P.ROOT, 'js', 'products.js'), '');
-  if (!src) return '';
-  try {
-    const ctx = vm.createContext({});
-    vm.runInContext(`${src}\n;globalThis.__cards = PRODUCT_REGISTRY.filter(function (p) { return p.category === ${JSON.stringify(slug)}; }).map(buildProductCard);`, ctx);
-    return (ctx.__cards || []).join('\n');
-  } catch (e) { return ''; }
-}
-
 /* ---------- shared head pieces ---------- */
-function headCommon(blocks, products) {
+function headCommon(blocks) {
   return `  <link rel="icon" type="image/png" href="/zornavik.png">
   <link rel="apple-touch-icon" href="/zornavik.png">
   <link rel="manifest" href="/site.webmanifest">
@@ -64,7 +53,7 @@ function headCommon(blocks, products) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${FONTS_URL}" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="${FONTS_URL}"></noscript>
-  <link rel="stylesheet" href="/css/style.css">${products ? '\n  <link rel="stylesheet" href="/css/products.css">' : ''}${blocks ? '\n  <link rel="stylesheet" href="/css/cms-blocks.css">' : ''}`;
+  <link rel="stylesheet" href="/css/style.css">${blocks ? '\n  <link rel="stylesheet" href="/css/cms-blocks.css">' : ''}`;
 }
 
 function absUrl(settings, p) {
@@ -82,14 +71,14 @@ function imgDims(src) {
     return d && d.width && d.height ? ` width="${d.width}" height="${d.height}"` : '';
   } catch (e) { return ''; }
 }
-function buildCard(e) {
+function buildCard(e, level = 2) {
   return `  <article class="post-card">
     <a href="${esc(e.slug)}" class="post-card-img">
       <img src="${esc(e.image)}"${imgDims(e.image)} alt="${esc(unesc(e.title))}" loading="lazy" decoding="async">
     </a>
     <div class="post-card-body">
       <span class="post-cat">${esc(unesc(e.catLabel))}</span>
-      <a href="${esc(e.slug)}"><h2 class="post-title">${esc(unesc(e.title))}</h2></a>
+      <a href="${esc(e.slug)}"><h${level} class="post-title">${esc(unesc(e.title))}</h${level}></a>
       <p class="post-excerpt">${esc(unesc(e.excerpt))}</p>
       <span class="post-meta">${U.formatDate(e.date)} &middot; ${e.readTime} min read</span>
     </div>
@@ -100,7 +89,39 @@ function unesc(s) {
   return String(s == null ? '' : s)
     .replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 }
-function buildCards(entries) { return entries.map(buildCard).join('\n'); }
+/* ---------- homepage blocks (kept in sync by the CMS on every publish) ---------- */
+const HOME_ICONS = {
+  "robot-vacuums": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"12\" cy=\"13\" r=\"8\"/><circle cx=\"12\" cy=\"13\" r=\"2.5\"/><path d=\"M9 4h6M12 4v3\" stroke-linecap=\"round\"/></svg>",
+  "vacuums": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M6 3v10a4 4 0 004 4h1\" stroke-linecap=\"round\"/><rect x=\"9\" y=\"17\" width=\"8\" height=\"5\" rx=\"1.5\"/><circle cx=\"6\" cy=\"3\" r=\"1.6\" fill=\"currentColor\" stroke=\"none\"/></svg>",
+  "cordless-stick-vacuums": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><rect x=\"10\" y=\"2\" width=\"4\" height=\"8\" rx=\"1\"/><path d=\"M12 10v8M8 21h8\" stroke-linecap=\"round\"/><rect x=\"7\" y=\"18\" width=\"10\" height=\"3\" rx=\"1\"/></svg>"
+};
+const HOME_ICON_FALLBACK = "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M4 5.5A2.5 2.5 0 016.5 3H20v16H6.5A2.5 2.5 0 004 21.5v-16z\" stroke-linejoin=\"round\"/><path d=\"M8 7h8M8 11h8\" stroke-linecap=\"round\"/></svg>";
+const HOME_BLURBS = {
+  "robot-vacuums": "Hands-off cleaning with smart navigation, mopping and self-emptying docks.",
+  "vacuums": "Corded uprights, canisters and shop vacs for deep, heavy-duty cleaning.",
+  "cordless-stick-vacuums": "Lightweight, battery-powered vacuums built for fast, everyday cleanups.",
+  "guides": "Plain-English explainers that help you understand the specs before you buy."
+};
+function categoryBlurb(cat) {
+  if (cat.blurb) return cat.blurb;
+  if (HOME_BLURBS[cat.slug]) return HOME_BLURBS[cat.slug];
+  const t = String(cat.intro || cat.metaDescription || '').replace(/\s*-\s*by .*$/i, '').trim();
+  return t.length > 110 ? t.slice(0, 107).replace(/\s+\S*$/, '') + '...' : t;
+}
+function buildHomeCards(entries) { return entries.map((e) => buildCard(e, 3)).join('\n'); }
+function buildCategoryCards(categories, entries) {
+  return categories.map((c) => {
+    const n = entries.filter((e) => e.category === c.slug).length;
+    const count = n === 1 ? '1 review' : `${n} reviews`;
+    return `      <a href="/category/${esc(c.slug)}" class="category-card">
+        <div class="category-card-icon">${HOME_ICONS[c.slug] || HOME_ICON_FALLBACK}</div>
+        <h3>${esc(c.label)}</h3>
+        <p>${esc(categoryBlurb(c))}</p>
+        <span class="category-card-count" id="count-${esc(c.slug)}">${count}</span>
+      </a>`;
+  }).join('\n');
+}
+function buildCards(entries) { return entries.map((e) => buildCard(e)).join('\n'); }
 
 function pageUrl(base, i) { return i === 1 ? (base || '/') : `${base}/page-${i}`; }
 function buildPagination(cur, total, base) {
@@ -237,7 +258,7 @@ ${related.map((r) => `            <li><a href="${esc(r.slug)}">${esc(unesc(r.tit
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
-  <link rel="canonical" href="${esc(canonical)}">${preview ? '\n  <meta name="robots" content="noindex, nofollow">' : ''}
+  <link rel="canonical" href="${esc(canonical)}">\n  <meta name="robots" content="${preview ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}">
   <meta property="og:type" content="article">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(desc)}">
@@ -337,11 +358,6 @@ function renderCategoryPage({ cat, entries, page, totalPages, perPage, settings,
   const pageEntries = entries.slice((page - 1) * perPage, page * perPage);
   const pag = buildPagination(page, totalPages, base);
   const ind = (s) => s.replace(/\n/g, '\n  ');
-  const productCards = page === 1 ? productCardsFor(cat.slug) : '';
-  const productSection = productCards
-    ? `\n\n    <div class="section-head" style="margin-top:48px;">\n      <h2>Individual Product Reviews</h2>\n      <a href="/products">View all products</a>\n    </div>\n    <div class="related-products-grid">\n${productCards}\n    </div>\n`
-    : '';
-
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -353,13 +369,14 @@ function renderCategoryPage({ cat, entries, page, totalPages, perPage, settings,
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(ogTitle)}">
   <meta property="og:description" content="${esc(ogDesc)}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta property="og:url" content="${esc(url)}">
   <meta property="og:image" content="${esc(absUrl(settings, settings.defaultOgImage))}">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="800">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="${esc(settings.twitterHandle)}">
-${headCommon(false, !!productCards)}
+${headCommon(false)}
   <script type="application/ld+json">
   ${ind(jsonLd(collection))}
   </script>
@@ -390,7 +407,7 @@ ${header}
     <div class="blog-grid" id="cat-grid">
 ${buildCards(pageEntries)}
 </div>
-    <div id="cat-pagination">${pag}</div>${productSection}
+    <div id="cat-pagination">${pag}</div>
   </div>
 </main>
 
@@ -421,6 +438,6 @@ ${footer}
 }
 
 module.exports = {
-  siteChrome, applyNav, harvest, buildCard, buildCards, buildPagination, pageUrl,
+  siteChrome, applyNav, harvest, buildCard, buildCards, buildHomeCards, buildCategoryCards, buildPagination, pageUrl,
   renderPost, renderCategoryPage, absUrl, unesc,
 };

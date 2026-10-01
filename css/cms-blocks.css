@@ -15,8 +15,8 @@
 }
 .article-content .quick-picks-title {
   font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 18px;
   line-height: 1.4;
   margin-bottom: 14px;
   color: #111;
@@ -36,10 +36,10 @@
   margin: 0;
 }
 .article-content .quick-picks-list a {
-  color: #E07B39;
+  color: #B5501A;
   text-decoration: none;
 }
-.article-content .quick-picks-list a:hover { color: #E07B39; text-decoration: underline; }
+.article-content .quick-picks-list a:hover { color: #B5501A; text-decoration: underline; }
 
 @media (max-width: 640px) {
   .article-content .quick-picks { padding: 20px 18px; }

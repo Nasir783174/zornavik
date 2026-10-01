@@ -153,11 +153,18 @@ function rebuildListings({ syncNav = false } = {}) {
   const sm = (loc, freq, prio, force) => { sitemap = sitemapSet(sitemap, settings.siteUrl + loc, { lastmod: today, changefreq: freq, priority: prio }); };
   const smKeep = (loc, freq, prio) => { if (!sitemap.includes(`<loc>${settings.siteUrl}${loc}</loc>`)) sm(loc, freq, prio); };
 
-  /* --- Home: index.html is a single hub page, curated by hand ---
-   * The "Latest Reviews" cards on the homepage are NOT auto-generated
-   * from the registry and there is no page-2 for the homepage - it's a
-   * hub page, not an archive. Update the cards in index.html yourself
-   * after publishing a new post. Full archive + pagination lives at /blog. */
+  /* --- Home: the "Latest Reviews" grid (newest 9 posts) and the category cards (with live review counts)
+   * are rebuilt from the registry on every publish, so the homepage always links to your newest posts and
+   * every category. The rest of index.html (hero, comparisons, FAQ) stays yours to edit by hand. --- */
+  const homeFile = path.join(P.ROOT, 'index.html');
+  const homeHtml = U.readText(homeFile);
+  if (homeHtml) {
+    let h = homeHtml;
+    const newest = sortEntries(entries, 'newest');
+    h = U.replaceDivInner(h, /<div class="blog-grid" id="home-grid">/, '\n' + L.buildHomeCards(newest.slice(0, 9)) + '\n') || h;
+    h = U.replaceDivInner(h, /<div class="category-grid" id="home-category-grid">/, '\n' + L.buildCategoryCards(categories, entries) + '\n    ') || h;
+    if (writeIfChanged(homeFile, h)) sm('/', 'daily', '1.0');
+  }
   smKeep('/', 'weekly', '1.0');
   for (const f of fs.readdirSync(P.ROOT)) {
     const m = /^page-(\d+)\.html$/.exec(f);
@@ -480,6 +487,7 @@ async function deleteCategory(slug) {
     let sm = U.readText(P.SITEMAP, '');
     sm = sitemapRemove(sm, `${settings.siteUrl}/category/${slug}`);
     U.writeText(P.SITEMAP, sm);
+    removeRedirects((r) => r.destination === `/category/${slug}`);   // no redirects pointing at a deleted category
     rebuildListings({ syncNav: true });
   });
 }
