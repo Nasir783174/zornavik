@@ -50,8 +50,6 @@ h4 { font-weight: 700; font-size: var(--fs-h4); line-height: 1.35; }
 h5 { font-weight: 600; font-size: var(--fs-h5); line-height: 1.4; }
 h6 { font-weight: 600; font-size: var(--fs-h6); line-height: 1.4; }
 p { font-size: var(--fs-body); line-height: 1.75; }
-.small-text { font-family: var(--font-body); font-weight: 400; font-size: 16px; line-height: 1.7; }
-.caption { font-family: var(--font-body); font-weight: 400; font-size: 14px; line-height: 1.6; }
 
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
@@ -147,62 +145,6 @@ ul { list-style: none; }
   transition: color 0.15s, background 0.15s;
 }
 .mobile-nav a:hover { color: var(--black); background: var(--gray-100); }
-
-/* ---- FEATURED POST ---- */
-.featured-section { padding: 48px 0 0; }
-.featured-post {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border: 1px solid var(--gray-200);
-  border-radius: 6px;
-  overflow: hidden;
-}
-.featured-img-wrap { position: relative; overflow: hidden; }
-.featured-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 340px;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.featured-post:hover .featured-img-wrap img { transform: scale(1.02); }
-.featured-content {
-  padding: 40px 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-}
-.featured-label {
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gray-400);
-}
-.featured-title {
-  font-family: var(--font-head);
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--black);
-  letter-spacing: -0.01em;
-}
-.featured-excerpt {
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--gray-600);
-  line-height: 1.8;
-}
-.featured-meta {
-  font-size: 14px;
-  color: var(--gray-400);
-  font-family: var(--font-body);
-}
 .btn-read {
   display: inline-block;
   width: fit-content;
@@ -631,7 +573,6 @@ ul { list-style: none; }
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 1024px) {
-  .featured-content { padding: 32px; }
   .article-layout { grid-template-columns: 1fr; gap: 40px; }
   .article-sidebar { position: static; }
   .share-btns { flex-direction: row; flex-wrap: wrap; }
@@ -640,9 +581,6 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   .main-nav { display: none; }
   .hamburger { display: flex; }
-  .featured-post { grid-template-columns: 1fr; }
-  .featured-img-wrap img { min-height: 220px; }
-  .featured-content { padding: 24px 20px; }
   .blog-grid { grid-template-columns: 1fr 1fr; }
   .footer-inner { flex-direction: column; gap: 20px; }
   .footer-links { gap: 0; }
@@ -656,7 +594,6 @@ ul { list-style: none; }
 
 @media (max-width: 480px) {
   .blog-grid { grid-template-columns: 1fr; }
-  .featured-section { padding: 28px 0 0; }
   .pagination { gap: 4px; }
   .page-btn { min-width: 40px; height: 42px; font-size: 15px; padding: 0 10px; }
 }
@@ -725,25 +662,6 @@ ul { list-style: none; }
   color: #555;
 }
 .ftc-disclosure strong { color: #111; }
-/* ---- AUTHOR BIO ---- */
-.author-bio {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 32px 0;
-}
-.author-bio img {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.author-bio-text h4 { font-family: var(--font-head); font-size: 18px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
-.author-bio-text p { font-family: var(--font-body); font-size: 14px; color: #555; line-height: 1.6; margin: 0; }
 /* ---- RELATED POSTS ---- */
 .related-posts { margin-top: 40px; border-top: 1px solid var(--gray-200); padding-top: 24px; }
 .related-posts h3 { font-family: var(--font-head); font-size: var(--fs-h3); font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
@@ -760,11 +678,6 @@ ul { list-style: none; }
   transition: background 0.15s;
 }
 .related-posts ul li a:hover { background: var(--gray-200); color: var(--black); }
-/* ---- TEST DATA TABLE ---- */
-.test-data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-family: var(--font-body); font-size: 16px; }
-.test-data-table th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-family: var(--font-head); font-weight: 700; }
-.test-data-table td { padding: 9px 12px; border-bottom: 1px solid var(--gray-200); }
-.test-data-table tr:nth-child(even) td { background: var(--gray-100); }
 
 /* author-avatar as img */
 img.author-avatar {
@@ -863,13 +776,6 @@ img.author-avatar {
 .ftc-disclosure strong { color: #111; }
 .ftc-disclosure a { color: var(--orange-text); text-decoration: underline; }
 
-/* ---- RELATED GUIDES ---- */
-.related-guides { margin: 40px 0 32px; padding: 28px 32px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
-.related-guides h2 { font-family: var(--font-head); font-size: var(--fs-h3); font-weight: 700; line-height: 1.3; margin: 0 0 16px; color: var(--heading); }
-.related-guides ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-.related-guides ul li a { display: inline-block; padding: 8px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--accent); font-family: var(--font-body); font-size: 16px; font-weight: 500; text-decoration: none; transition: background .2s, border-color .2s; }
-.related-guides ul li a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-
 /* ---- NAV DROPDOWN (Categories) ---- */
 .nav-dropdown { position: relative; }
 .nav-dropdown-toggle { display: inline-flex !important; align-items: center; gap: 5px; }
@@ -900,41 +806,8 @@ img.author-avatar {
    filter tabs). Merged into this single stylesheet so the whole site loads ONE css file.
    ===================================================================== */
 /* =============================================
-   zornavik.me - Products Stylesheet
-   Dedicated CSS for product cards, product listing
-   and individual product review pages.
-   Loaded in addition to /css/style.css
+   Filter tabs + small-screen overrides
    ============================================= */
-
-/* ---- STAR RATING ---- */
-
-
-
-
-
-
-/* ---- PRODUCT GRID ---- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ---- CATEGORY / PRODUCT FILTER TABS ---- */
 .filter-tabs {
@@ -987,24 +860,6 @@ img.author-avatar {
 
 /* ---- PRODUCT DETAIL PAGE ---- */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .cta-secondary {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid var(--gray-200); color: var(--black);
@@ -1013,24 +868,7 @@ img.author-avatar {
 }
 .cta-secondary:hover { border-color: var(--black); background: var(--gray-100); }
 
-
-/* ---- QUICK SPECS GRID ---- */
-
-
-
-
-
-
-/* ---- FEATURE LIST ---- */
-
-
-
-
-/* ---- RELATED PRODUCTS ---- */
-
-
 /* ---- RESPONSIVE ---- */
-
 
 @media (max-width: 480px) {
   
@@ -1137,9 +975,6 @@ img.author-avatar {
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
 .faq-answer-inner { padding: 0 22px 20px; font-family: var(--font-body); font-size: var(--fs-body); font-weight: 400; color: var(--gray-600); line-height: 1.7; }
 .faq-item.open .faq-answer { max-height: 400px; }
-
-/* ---- SECTION SUBHEAD (used under section-head h2) ---- */
-.section-sub { font-family: var(--font-body); font-size: 16px; color: var(--gray-400); margin: -14px 0 24px; max-width: 620px; }
 
 /* ---- HOME INTRO (short intro paragraph under the hero) ---- */
 .home-intro { font-family: var(--font-body); font-size: var(--fs-body); color: var(--gray-600); line-height: 1.75; max-width: 780px; margin: 4px 0 44px; }
