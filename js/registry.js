@@ -13,7 +13,7 @@ const BLOG_REGISTRY = [
     readTime: 23,
     category: "guides",
     catLabel: "Guides",
-    image:    "/images/vacuum.webp",
+    image:    "/images/vacuum-suction-power-explained.webp",
   },
   {
     title:    "Best Lightweight Vacuums of 2026: Top 5 Picks",
