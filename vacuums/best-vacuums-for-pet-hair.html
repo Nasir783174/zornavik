@@ -18,11 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"></noscript>
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
 
   <!-- Schema: Article + BreadcrumbList -->
@@ -53,7 +49,7 @@
           "url": "https://zornavik.me/about",
           "jobTitle": "Vacuum Industry Expert",
           "image": "https://zornavik.me/images/liam-adrian-foster.webp",
-          "sameAs": ["https://twitter.com/zornavik"]
+          "sameAs": ["https://x.com/zornavik"]
         },
         "publisher": {
           "@type": "Organization",
@@ -61,7 +57,7 @@
           "url": "https://zornavik.me",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://zornavik.me/android-chrome-512x512.png"
+            "url": "https://zornavik.me/favicon.png"
           }
         },
         "datePublished": "2026-01-15",
@@ -317,14 +313,14 @@
         </div>
 
         <!-- Quick Picks Box -->
-        <div style="background:#f8f8f8;border:1px solid #e8e8e8;border-radius:8px;padding:24px 28px;margin-bottom:32px;">
-          <p style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;line-height:1.4;margin-bottom:14px;color:#111;">&#9660; Quick Picks - Jump to Any Review</p>
-          <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">
-            <li style="font-size:0.9rem;color:#555;">&#8594; <a href="#dyson-ball-animal-3" style="color:#B5501A;text-decoration:none;">1. Dyson Ball Animal 3</a> - <em>Best Overall</em></li>
-            <li style="font-size:0.9rem;color:#555;">&#8594; <a href="#dyson-v15-detect" style="color:#B5501A;text-decoration:none;">2. Dyson V15 Detect</a> - <em>Best Cordless</em></li>
-            <li style="font-size:0.9rem;color:#555;">&#8594; <a href="#shark-ai-ultra" style="color:#B5501A;text-decoration:none;">3. Shark AI Ultra</a> - <em>Best Robot Vacuum</em></li>
-            <li style="font-size:0.9rem;color:#555;">&#8594; <a href="#bissell-pet-hair-eraser" style="color:#B5501A;text-decoration:none;">4. Bissell Pet Hair Eraser Turbo Plus</a> - <em>Best Budget</em></li>
-            <li style="font-size:0.9rem;color:#555;">&#8594; <a href="#miele-c1-cat-dog" style="color:#B5501A;text-decoration:none;">5. Miele Classic C1 Cat &amp; Dog</a> - <em>Best for Longevity &amp; Odor</em></li>
+        <div class="quick-picks">
+          <p class="quick-picks-title">&#9660; Quick Picks - Jump to Any Review</p>
+          <ul class="quick-picks-list">
+            <li>&#8594; <a href="#dyson-ball-animal-3">1. Dyson Ball Animal 3</a> - <em>Best Overall</em></li>
+            <li>&#8594; <a href="#dyson-v15-detect">2. Dyson V15 Detect</a> - <em>Best Cordless</em></li>
+            <li>&#8594; <a href="#shark-ai-ultra">3. Shark AI Ultra</a> - <em>Best Robot Vacuum</em></li>
+            <li>&#8594; <a href="#bissell-pet-hair-eraser">4. Bissell Pet Hair Eraser Turbo Plus</a> - <em>Best Budget</em></li>
+            <li>&#8594; <a href="#miele-c1-cat-dog">5. Miele Classic C1 Cat &amp; Dog</a> - <em>Best for Longevity &amp; Odor</em></li>
           </ul>
         </div>
 
@@ -782,7 +778,7 @@
         <a href="/disclaimer">Disclaimer</a>
         <a href="/terms-and-conditions">Terms &amp; Conditions</a>
       </nav>
-      <div class="footer-right">
+      <div>
         <div class="footer-social">
           <a href="https://www.facebook.com/zornavik" target="_blank" rel="noopener" aria-label="Facebook">
             <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.885v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -803,7 +799,6 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 <script src="/js/main.js"></script>
 </body>
 </html>

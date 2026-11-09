@@ -1,10 +1,14 @@
 /* =============================================
    zornavik.me - Main JS
-   Hamburger menu only. No heavy logic.
+   Hamburger menu, active nav link, FAQ accordion, footer year.
    ============================================= */
 
 (function () {
   "use strict";
+
+  /* Footer year */
+  const yr = document.getElementById('yr');
+  if (yr) yr.textContent = new Date().getFullYear();
 
   /* Hamburger */
   const btn = document.getElementById('hamburger');

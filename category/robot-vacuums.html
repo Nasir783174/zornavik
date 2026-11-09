@@ -16,15 +16,11 @@
   <meta property="og:image:height" content="800">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@zornavik">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"></noscript>
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
   <script type="application/ld+json">
   {
@@ -111,7 +107,7 @@
       <h2>All Robot Vacuum Reviews</h2>
     </div>
 
-    <div class="blog-grid" id="cat-grid">
+    <div class="blog-grid">
   <article class="post-card">
     <a href="/robot-vacuums/best-roomba-for-pet-hair" class="post-card-img">
       <img src="/images/roomba-combo-10-max.webp" width="800" height="600" alt="Best Roomba for Pet Hair in 2026: Top 5 Picks" loading="lazy" decoding="async">
@@ -135,7 +131,6 @@
     </div>
   </article>
 </div>
-    <div id="cat-pagination"></div>
   </div>
 </main>
 
@@ -153,7 +148,7 @@
         <a href="/disclaimer">Disclaimer</a>
         <a href="/terms-and-conditions">Terms &amp; Conditions</a>
       </nav>
-      <div class="footer-right">
+      <div>
         <div class="footer-social">
           <a href="https://www.facebook.com/zornavik" target="_blank" rel="noopener" aria-label="Facebook">
             <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.885v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -174,24 +169,7 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
-<script src="/js/registry.js"></script>
 <script src="/js/main.js"></script>
-<script>
-  const CATEGORY = 'robot-vacuums';
-  const CAT_BASE = '/category/robot-vacuums';
-  const postsPerPage = 9;
-  const pathParts = window.location.pathname.split('/page-');
-  const currentPage = pathParts.length > 1 ? parseInt(pathParts[1]) : 1;
-  const filtered = BLOG_REGISTRY.filter(p => p.category === CATEGORY);
-  const totalPages = Math.ceil(filtered.length / postsPerPage);
-  const start = (currentPage - 1) * postsPerPage;
-  const pagePosts = filtered.slice(start, start + postsPerPage);
-  renderGrid('cat-grid', pagePosts);
-  if (totalPages > 1) {
-    document.getElementById('cat-pagination').innerHTML = buildPagination(currentPage, totalPages, CAT_BASE);
-  }
-</script>
 
 </body>
 </html>
